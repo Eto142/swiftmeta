@@ -8,7 +8,7 @@
             <div class="col-lg-6">
                 <h1 class="slide-h1">AI-Powered Trading. Fully Automated.</h1>
                 <p class="slide-subtitle">
-                    Our advanced artificial intelligence executes trades automatically, analyzes market patterns, and maximizes profit potential — even while you sleep.
+                    Our advanced artificial intelligence executes trades automatically, analyzes market patterns, and maximizes profit potential even while you sleep.
                 </p>
 
                 <div class="d-flex flex-wrap gap-3">

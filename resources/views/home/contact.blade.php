@@ -316,8 +316,8 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h3 class="contact-title">EMAIL ADDRESS</h3>
-                        <p class="contact-detail green">support@globwavecpt.online</p>
-                        <p class="contact-detail green">info@globwavecpt.online</p>
+                        <p class="contact-detail green">support@swiftmetatrd.com</p>
+                        <p class="contact-detail green">info@swiftmetatrd.com</p>
                     </div>
                     
                     {{-- <div class="contact-info-card">

@@ -42,7 +42,7 @@
                     </div>
                     <div class="contact-info">
                         <i class="fas fa-envelope"></i>
-                        <span>support@globwavecpt.online</span>
+                        <span>support@swiftmetatrd.com</span>
                     </div>
                     <div class="mt-4">
                         <h6 class="text-light mb-3">Follow Us</h6>
