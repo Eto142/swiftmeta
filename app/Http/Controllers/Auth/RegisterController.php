@@ -23,40 +23,40 @@ class RegisterController extends Controller
 
 
 
-// public function register(Request $request)
-// {
-//     try {
-//         // Validate form inputs
-//         $request->validate([
-//             'name'      => 'required|string|max:255',
-//             'lname'     => 'required|string|max:255',
-//             'currency'  => 'required|string|max:255',
-//             'email'     => 'required|email|unique:users,email',
-//             'password'  => 'required|string|min:8|confirmed',
-//         ]);
+public function register(Request $request)
+{
+    try {
+        // Validate form inputs
+        $request->validate([
+            'name'      => 'required|string|max:255',
+            'lname'     => 'required|string|max:255',
+            'currency'  => 'required|string|max:255',
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required|string|min:8|confirmed',
+        ]);
 
-//         // Create new user
-//         $user = User::create([
-//             'name'      => $request->input('name'),
-//             'lname'     => $request->input('lname'),
-//             'currency'  => $request->input('currency'),
-//             'email'     => $request->input('email'),
-//             'password'  => bcrypt($request->input('password')),
-//         ]);
+        // Create new user
+        $user = User::create([
+            'name'      => $request->input('name'),
+            'lname'     => $request->input('lname'),
+            'currency'  => $request->input('currency'),
+            'email'     => $request->input('email'),
+            'password'  => bcrypt($request->input('password')),
+        ]);
 
-//         // Redirect to update details page with success message
-//         return redirect()->route('step2')->with('success', 'Registration successful! Please update your details.');
+        // Redirect to update details page with success message
+        return redirect()->route('step2')->with('success', 'Registration successful! Please update your details.');
 
-//     } catch (\Throwable $e) {
-//         \Log::error('Registration error:', [
-//             'message' => $e->getMessage(),
-//             'file'    => $e->getFile(),
-//             'line'    => $e->getLine(),
-//         ]);
+    } catch (\Throwable $e) {
+        \Log::error('Registration error:', [
+            'message' => $e->getMessage(),
+            'file'    => $e->getFile(),
+            'line'    => $e->getLine(),
+        ]);
 
-//         return back()->with('error', 'Registration failed. Please try again.');
-//     }
-// }
+        return back()->with('error', 'Registration failed. Please try again.');
+    }
+}
 
 
 
