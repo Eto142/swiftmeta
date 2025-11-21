@@ -12,6 +12,7 @@
      <link rel="stylesheet" href="{{ asset('assets/home/style.css') }}">
   
 </head>
+@include('home.notification')
 <body>
     <!-- Lightning Fast Preloader - Only 300ms! -->
     <div class="pre-loader">
@@ -26,6 +27,10 @@
             <div class="loading-dot"></div>
         </div>
     </div>
+
+
+
+
 
     <!-- Header -->
     <header>
@@ -78,7 +83,7 @@
     </header>
 
       <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/18053932568?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
+{{-- <a href="https://wa.me/18053932568?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
    class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 32 32" fill="white">
       <path d="M19.11 17.53c-.33-.17-1.95-.96-2.25-1.07s-.52-.17-.74.17-.85 1.07-1.05 1.29-.39.26-.72.09a7.87 7.87 0 01-2.31-1.42 
@@ -89,7 +94,7 @@
       10.93 0 01-1.68-5.83c0-6.05 4.92-10.97 10.97-10.97 2.93 0 5.68 1.14 7.75 3.21s3.21 4.82 3.21 7.75c0 6.05-4.92 10.97-10.97 10.97z"/>
    </svg>
    <span class="whatsapp-tooltip">Chat with us</span>
-</a>
+</a> --}}
 
 {{-- <style>
 .whatsapp-float {

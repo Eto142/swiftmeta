@@ -75,7 +75,65 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+
     <script>
+    // Lightning Fast Preloader - Only 300ms!
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const preloader = document.querySelector('.pre-loader');
+            preloader.classList.add('hidden');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 150);
+        }, 300);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.padding = '8px 0';
+            navbar.style.backgroundColor = 'rgba(2, 2, 28, 0.98)';
+        } else {
+            navbar.style.padding = '12px 0';
+            navbar.style.backgroundColor = 'rgba(2, 2, 28, 0.95)';
+        }
+    });
+
+    // Ensure Slick slider works properly on all devices
+    $(document).ready(function() {
+
+        // Fix: wrap each slider item correctly for Slick
+        if (!$('.hero-slider').hasClass('slick-initialized')) {
+            $('.hero-slider > .slider-item').wrap('<div class="slide-wrap"></div>');
+        }
+
+        // Initialize Slick Slider for Hero Section
+        $('.hero-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: true,
+            infinite: true,
+            speed: 900,
+            fade: true,
+            cssEase: 'linear',
+            autoplay: true,
+            autoplaySpeed: 4500,
+            pauseOnHover: false,
+            arrows: true,
+            mobileFirst: true,
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: { arrows: true }
+                }
+            ]
+        });
+    });
+</script>
+
+    {{-- <script>
         // Lightning Fast Preloader - Only 300ms!
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -121,6 +179,6 @@
                 ]
             });
         });
-    </script>
+    </script> --}}
 </body>
 </html>
