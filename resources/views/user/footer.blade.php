@@ -1,162 +1,212 @@
-  <!-- content @e -->
-                <!--<div class="nk-footer">-->
-                <!--    <div class="container-fluid">-->
-                <!--        <div class="nk-footer-wrap">-->
-                <!--            <div class="nk-footer-copyright"> &copy; 2024 Swift Meta Trade.-->
-                <!--            </div>-->
-                            
-                <!--        </div>-->
-                <!--    </div>-->
-                <!--</div>-->
-                <!-- footer @e -->
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © swift meta.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    swift meta <a href="#!" class="text-decoration-underline">trade</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
-            <!-- wrap @e -->
+            <!-- end main content-->
+
         </div>
-        <!-- main @e -->
-    </div>
-    <!-- app-root @e -->
-    <!-- select region modal -->
-     <!--Email fixed -->
-<!--           <div id="mybutton">-->
+        <!-- END layout-wrapper -->
 
-<!--<a href="mailto:support@Swift Meta Trade.org"><img src="email.png" class="feedback" alt="email"/></a>-->
-<!--</div>-->
-<!--        <style>-->
-<!--         .feedback {-->
-<!--             width:62px;-->
-<!--             height: 62px;-->
-<!--         }-->
-<!--        #mybutton {-->
-<!--          position: fixed;-->
-<!--          bottom: 48px;-->
-<!--          left: 18px;-->
-<!--          z-index:99;-->
-<!--        }-->
-<!--        </style>-->
-    <!-- JavaScript -->
-     <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
         
-        for (i = 0; i < acc.length; i++) {
-          acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-              panel.style.maxHeight = null;
-            } else {
-              panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-          });
-        }
-    </script>
-    <script src="assets1/js/bundle.js"></script>
-    <script src="assets1/js/scripts.js"></script>
-    <script src="assets1/js/charts/chart-crypto.js"></script>
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center p-3">
+
+                    <h5 class="m-0 me-2">Theme Customizer</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="m-0" />
+
+                <div class="p-4">
+                    <h6 class="mb-3">Select Custome Colors</h6>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input theme-color" type="radio" name="theme-mode"
+                            id="theme-default" value="default" onchange="document.documentElement.setAttribute('data-theme-mode', 'default')" checked>
+                        <label class="form-check-label" for="theme-default">Default</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input theme-color" type="radio" name="theme-mode"
+                            id="theme-red" value="red" onchange="document.documentElement.setAttribute('data-theme-mode', 'red')">
+                        <label class="form-check-label" for="theme-red">Red</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input theme-color" type="radio" name="theme-mode"
+                            id="theme-purple" value="purple" onchange="document.documentElement.setAttribute('data-theme-mode', 'purple')">
+                        <label class="form-check-label" for="theme-purple">Purple</label>
+                    </div>
 
 
+                    <h6 class="mt-4 mb-3 pt-2">Layout</h6>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-vertical" value="vertical">
+                        <label class="form-check-label" for="layout-vertical">Vertical</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-horizontal" value="horizontal">
+                        <label class="form-check-label" for="layout-horizontal">Horizontal</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-light" value="light">
+                        <label class="form-check-label" for="layout-mode-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-dark" value="dark">
+                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                        <label class="form-check-label" for="topbar-color-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                        <label class="form-check-label" for="sidebar-size-default">Default</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                        <label class="form-check-label" for="sidebar-color-light">Light</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-ltr" value="ltr">
+                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-rtl" value="rtl">
+                        <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                    </div>
+
+           
+
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="{{asset('assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('assets/libs/node-waves/waves.min.js')}}"></script>
+        <script src="{{asset('assets/libs/feather-icons/feather.min.js')}}"></script>
+        <!-- pace js -->
+        <script src="{{asset('assets/libs/pace-js/pace.min.js')}}"></script>
+
+        
+        <!-- apexcharts -->
+        <script src="{{asset('assets/libs/apexcharts/apexcharts.min.js')}}"></script>
+
+        <!-- Plugins js-->
+        <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+        <script src="{{asset('assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js')}}"></script>
+
+        <script src="{{asset('assets/js/pages/allchart.js')}}"></script>
+        <!-- dashboard init -->
+        <script src="{{asset('assets/js/pages/dashboard.init.js')}}"></script>
+
+        <script src="{{asset('assets/js/app.js')}}"></script>
+
+    </body>
 
 
-
-
-    <!--   Core JS Files   -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script src="user/dash/js/core/popper.min.js"></script>
-    <script src="user/dash/js/core/bootstrap.min.js "></script>
-    <script src="user/dash/js/customs.js"></script>
-
-    <!-- jQuery UI -->
-    <script src="user/dash/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-    <script src="user/dash/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-    <!-- jQuery Scrollbar -->
-    <script src="user/dash/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js "></script>
-
-    <!-- jQuery Sparkline -->
-    <script src="user/dash/js/plugin/jquery.sparkline/jquery.sparkline.min.js "></script>
-
-    <!-- Sweet Alert -->
-    <script src="user/dash/js/plugin/sweetalert/sweetalert.min.js "></script>
-    <!-- Bootstrap Notify -->
-    <script src="user/dash/js/plugin/bootstrap-notify/bootstrap-notify.min.js "></script>
-
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js"></script>
-
-    <script src="user/dash/js/atlantis.min.js"></script>
-    <script src="user/dash/js/atlantis.js"></script>
-
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
-        }
-    </script>
-
-    <script type="text/javascript">
-        var badWords = [
-            '<!--Start of Tawk.to Script-->',
-            '<script type="text/javascript">',
-            '<!--End of Tawk.to Script-->'
-        ];
-        $(':input').on('blur', function() {
-            var value = $(this).val();
-            $.each(badWords, function(idx, word) {
-                value = value.replace(word, '');
-            });
-            $(this).val(value);
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#ShipTable').DataTable({
-                order: [
-                    [0, 'desc']
-                ],
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'print', 'excel', 'pdf'
-                ]
-            });
-
-
-            $(".dataTables_length select").addClass("bg-light text-dark");
-            $(".dataTables_filter input").addClass("bg-light text-dark");
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.UserTable').DataTable({
-                order: [
-                    [0, 'desc']
-                ]
-            });
-            $(".dataTables_length select").addClass("bg-light text-dark");
-            $(".dataTables_filter input").addClass("bg-light text-dark");
-        });
-    </script>
-    <script src="/livewire/livewire.js?id=25f025805c3c370f7e87" data-turbo-eval="false" data-turbolinks-eval="false"></script>
-    <script data-turbo-eval="false" data-turbolinks-eval="false">
-        window.livewire = new Livewire();
-        window.Livewire = window.livewire;
-        window.livewire_app_url = '';
-        window.livewire_token = 'Ye6bP1CNFffOxFfI70qMAgqwV6N2btDUclZ7fAGh';
-        window.deferLoadingAlpine = function(callback) {
-            window.addEventListener('livewire:load', function() {
-                callback();
-            });
-        };
-        document.addEventListener("DOMContentLoaded", function() {
-            window.livewire.start();
-        });
-    </script>
-
-</body>
-</div>
-
-</html>
-</body>
-
+<!-- Mirrored from themesbrand.com/swift meta/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Nov 2025 21:20:05 GMT -->
 </html>

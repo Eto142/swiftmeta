@@ -1,895 +1,464 @@
-<!DOCTYPE html>
-<html lang="zxx" class="js">
+<!doctype html>
+<html lang="en">
 
-<head>
-  <base href="../">
-  <meta charset="utf-8">
-  <meta name="author" content="Softnio">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-  <!-- Fav Icon  -->
-  <link rel="shortcut icon" href="images/favicon.png">
-  <!-- Page Title  -->
-  <title>Dashboard | Swift Meta Trade</title>
-  <!-- StyleSheets  -->
-
-  <link rel="stylesheet" href="{{asset('assets1/css/dashlite.css')}}">
-  <link id="skin-default" rel="stylesheet" href="{{asset('assets1/css/theme.css')}}">
-  <script src="{{asset('https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')}}"></script>
-  <script src=" {{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js')}}"></script>
- <!-- toastr-->
-    <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-     alpha/css/bootstrap.css')}}" rel="stylesheet">
-	
-    <script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')}}"></script>
-
-	<link rel="stylesheet" type="text/css" 
-     href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css')}}">
-	
-    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js')}}"></script>
-  <style>
-    .accordion {
-      background-color: transparent;
-      color: #444;
-      cursor: pointer;
-      padding: 18px;
-      width: 100%;
-      text-align: left;
-      border: none;
-      outline: none;
-      transition: 0.4s;
-    }
-
-    /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-    .active,
-    .accordion:hover {}
-
-    /* Style the accordion panel. Note: hidden by default */
-    .panel2 {
-      padding: 0 18px;
-      background-color: white;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.2s ease-out;
-    }
-  </style>
-</head>
-
-<body onload="show()" class="nk-body npc-crypto has-sidebar " style="background-color: #101924;" >
-
-  <!-- .modal -->
-  <!-- @@ Buy Coin Modal @e -->
-  <script src="blueimp-md5/js/md5.js"></script>
-  <script src="blueimp-md5/js/md5.min.js"></script>
-  <input type="hidden" id="test" value="" class="btn btn-primary btn-lg">
-  <input type="hidden" id="key1" value="" class="btn btn-primary btn-lg">
-  <input type="hidden" id="key2" value="" class="btn btn-primary btn-lg">
-
-
-  <div class="modal fade" tabindex="-1" role="dialog" id="buy-coin">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-        <div class="modal-body modal-body-lg">
-          <div class="nk-block-head nk-block-head-xs text-center">
-            <h5 class="nk-block-title">Confirm Order</h5>
-            <div class="nk-block-text">
-              {{-- <div class="caption-text">
-                You are about to get <strong>{{$btc_balance}}</strong> BTC for
-                <strong>{{$user_balance}}</strong> USD* --}}
-              </div>
-              <span class="sub-text-sm">Exchange rate: 1 BTC = USD</span>
-            </div>
-          </div>
-          <div class="nk-block">
-            <div class="buysell-overview">
-              <ul class="buysell-overview-list">
-                <li class="buysell-overview-item">
-                  <span class="pm-title">Pay with</span>
-                  <span class="pm-currency"><em class="icon bi-currency-bitcoin"></em>
-                    <span>Cyptocurrency</span></span>
-                </li>
-                <li class="buysell-overview-item">
-                  <span class="pm-title">Total</span>
-                  <span class="pm-currency">500.00 USD</span>
-                </li>
-              </ul>
-
-            </div>
-            <div class="buysell-field form-group">
-              <div class="form-label-group">
-                <label class="form-label">Choose what currency to pay with</label>
-
-              </div>
-              <div class="form-group">
-                <div class="form-control-wrap">
-                  <select class="form-select js-select2">
-                    <option value="default_option">Cryptocurrency</option>
-                    <option value="option_select_name">Bitcoin</option>
-                    <option value="option_select_name">Ethereum</option>
-                  </select>
-                </div>
-              </div>
-              <!-- .dropdown -->
-            </div>
-            <!-- .buysell-field -->
-            <div class="buysell-field form-action text-center">
-              <div>
-                <a href="#" class="btn btn-primary btn-lg" data-bs-dismiss="modal" data-bs-toggle="modal"
-                  data-bs-target="#confirm-coin">Confirm the Order</a>
-              </div>
-              <div class="pt-3">
-                <a href="#" data-bs-dismiss="modal" class="link link-danger">Cancel Order</a>
-              </div>
-            </div>
-          </div>
-          <!-- .nk-block -->
-        </div>
-        <!-- .modal-body -->
-      </div>
-      <!-- .modal-content -->
-    </div>
-    <!-- .modla-dialog -->
-  </div>
-
-
-
-  <div class="modal fade" tabindex="-1" role="dialog" id="keyb">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-        <div class="modal-body modal-body-lg text-center">
-          <div class="nk-modal">
-            <form action="" method="post">
-              <h4 class="nk-modal-title">WITHDRWAL ACTIVATION KEY</h4>
-              <div class="nk-modal-text">
-                <input type="number" id="activation_key" name="activation_key"
-                  class="form-control form-control-lg form-control-number" placeholder="256978">
-              </div>
-              <div class="nk-modal-action-lg">
-                <ul class="btn-group gx-4">
-                  <li>
-                    <button class="btn btn-lg btn-mw btn-primary" name="request">Request For Activation Key</button>
-                  </li>
-                  <li>
-                    <p id="act_key"></p>
-                  </li>
-                  <li>
-                    <button name="submit_key" class="btn btn-lg btn-mw btn-primary">Submit Key</button>
-                  </li>
-                </ul>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- .modal-body -->
-      </div>
-      <!-- .modal-content -->
-    </div>
-    <!-- .modla-dialog -->
-  </div>
-  <!-- .modla-dialog -->
-  </div>
-
-  <div class="modal fade" tabindex="-1" role="dialog" id="payment_method">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-        <div class="modal-body modal-body-lg text-center">
-          <div class="nk-modal">
-            <h4 class="nk-modal-title">PAYMENT METHOD</h4>
-            <div class="buysell-field form-group">
-              <div class="form-pm-group">
-                <ul class="buysell-pm-list">
-                  <li class="buysell-pm-item">
-                    <input class="buysell-pm-control" type="radio" name="bs" id="bitcoin" />
-                    <label class="buysell-pm-label" for="bitcoin">
-                      <span class="pm-name">Bitcoin</span>
-                      <span class="pm-icon"><em class="tranx-icon sm icon ni ni-sign-btc"></em></span>
-                    </label>
-                  </li>
-                  <li class="buysell-pm-item">
-                    <input class="buysell-pm-control" type="radio" name="bs" id="ethereum" />
-                    <label class="buysell-pm-label" for="ethereum">
-                      <span class="pm-name">Ethereum</span>
-                      <span class="pm-icon"><em class="tranx-icon sm icon ni ni-sign-eth"></em></span>
-                    </label>
-                  </li>
-                  <li class="buysell-pm-item">
-                    <input class="buysell-pm-control" type="radio" name="bs" id="bank" />
-                    <label class="buysell-pm-label" for="bank">
-                      <span class="pm-name">Bank</span>
-                      <span class="pm-icon"><em class="icon ni ni-cc-alt-fill"></em></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="nk-modal-action-lg">
-              <ul class="btn-group gx-4">
-                <li>
-                  <a href="#" onclick="pay_met()" class="btn btn-lg btn-mw btn-primary" name="request" id="pick"
-                    data-bs-dismiss="modal" data-bs-toggle="modal">Proceed</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- .modal-body -->
-      </div>
-      <!-- .modal-content -->
-    </div>
-    <!-- .modla-dialog -->
-  </div>
-  <!-- .modla-dialog -->
-  </div>
-
-  <div class="modal fade" tabindex="-1" role="dialog" id="btc">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-        <div class="modal-body modal-body-lg text-center">
-          <div class="nk-modal">
-            <form action="" method="post">
-              <h4 class="nk-modal-title">Bitcoin Withdrawal</h4>
-              <div class="nk-modal-text">
-                <input type="number" name="amount" id="activation_key"
-                  class="form-control form-control-lg form-control-number" step="0.00005"
-                  placeholder="Amount In BITCOIN">
-                <input type="text" value="Btc" name="payment" class="form-control form-control-lg form-control-number">
-              </div>
-              <div class="nk-modal-action-lg">
-                <ul class="btn-group gx-4">
-                  <li>
-                    <button class="btn btn-lg btn-mw btn-primary" name="pay">Place Order</button>
-                  </li>
-                </ul>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- .modal-body -->
-      </div>
-      <!-- .modal-content -->
-    </div>
-    <!-- .modla-dialog -->
-  </div>
-  <!-- .modla-dialog -->
-  </div>
-
-  <div class="modal fade" tabindex="-1" role="dialog" id="eth">
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content">
-        <a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
-        <div class="modal-body modal-body-lg text-center">
-          <div class="nk-modal">
-            <form action="" method="post">
-              <h4 class="nk-modal-title">Ethereum Withdrawal</h4>
-              <div class="nk-modal-text">
-                <input type="number" name="amount" id="activation_key"
-                  class="form-control form-control-lg form-control-number" step="0.00005"
-                  placeholder="Amount In BITCOIN">
-                <input type="hidden" value="Eth" name="payment"
-                  class="form-control form-control-lg form-control-number">
-              </div>
-              <div class="nk-modal-action-lg">
-                <ul class="btn-group gx-4">
-                  <li>
-                    <button class="btn btn-lg btn-mw btn-primary" name="pay">Place Order</button>
-                  </li>
-                </ul>
-              </div>
-            </form>
-          </div>
-        </div>
-        <!-- .modal-body -->
-      </div>
-      <!-- .modal-content -->
-    </div>
-    <!-- .modla-dialog -->
-  </div>
-  <!-- .modla-dialog -->
-  </div>
-
-
-  <!-- JavaScript -->
-  <script type="text/javascript">
-    if (document.getElementById('bitcoin').checked == false) {
-      document.getElementById('pick').disabled = true;
-    }
-  
-    function show() {
-      if (document.getElementById("test").value == "1") {
-        $('#key').modal('show');
-      } else if (document.getElementById("test").value == "2") {
-        if (document.getElementById('key2').value == "yes") {
-          $('#payment_method').modal('show');
-        } else {
-          $('#key').modal('show');
-          alert("Nahhh");
-        }
-      } else if (document.getElementById("test").value == "3") {
-        $('#confirm_wit').modal('show');
-      }
-    }
     
-    // function activate() {
-      // $('#payment_method').modal('show');
-    // }
-    function pay_met() {
-      // document.getElementById('bitcoin').addEventListener('click', event=>{
-        // if(event.target.checked){
-          // alert("btc");
-        // }
-      // });
-      if (document.getElementById('bitcoin').checked) {
-        $('#btc').modal('show');
-      } else if (document.getElementById('ethereum').checked){
-        $('#eth').modal('show');
-      } else if (document.getElementById('bank').checked){
-        $('#bank').modal('show');
-      }
+<!-- Mirrored from themesbrand.com/swift meta/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Nov 2025 21:17:32 GMT -->
+<head>
 
-      // alert("sss");
-    }
-  </script>
-  <script>
-    function modal() {
-      let e = md5(document.getElementById('conpass').value);
-      var a = document.getElementById('check').value;
-      if (e == a) {
-        // $('#key').modal('show');
-        alert("sss");
-      } else {
-        alert("Invalid Password");
-      }
-    }
-  </script>
-  
-  
-  
-                      <script>
- @if(Auth::user()->kyc_status=='1')
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.success("Kyc status verified");
+        <meta charset="utf-8" />
+        <title>Dashboard | swift meta - user dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose user dashboard" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-  @else
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  toastr.warning("kyc not verified, please verify your kyc document");
-  @endif
-</script>
+        <!-- plugin css -->
+        <link href="{{asset('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css" />
 
-  <div class="nk-app-root">
-    <!-- main @s -->
-    <div class="nk-main ">
-      <!-- sidebar @s -->
-      <div class="nk-sidebar nk-sidebar-fixed is-dark" data-content="sidebarMenu">
-        <div class="nk-sidebar-element nk-sidebar-head">
-          <div class="nk-sidebar-brand">
-            <a href="{{route('user.home')}}" class="logo-link nk-sidebar-logo">
+        <!-- preloader css -->
+        <link rel="stylesheet" href="{{asset('assets/css/preloader.min.css')}}" type="text/css" />
 
+        <!-- Bootstrap Css -->
+        <link href="{{asset('assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{asset('assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
-              <img class="" style="width:192px; height:62px;" src="logo.png" />
+    </head>
 
+    <body data-topbar="dark">
 
+    <!-- <body data-layout="horizontal"> -->
 
+        <!-- Begin page -->
+        <div id="layout-wrapper">
 
+            
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">swift meta</span>
+                                </span>
+                            </a>
 
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">swift meta</span>
+                                </span>
+                            </a>
+                        </div>
 
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
 
-            </a>
-          </div>
-          <div class="nk-menu-trigger me-n2">
-            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
-                class="icon ni ni-arrow-left"></em></a>
-          </div>
-        </div><!-- .nk-sidebar-element -->
-        <div class="nk-sidebar-element"  >
-          <div class="nk-sidebar-body" data-simplebar>
-            <div class="nk-sidebar-content">
-              <div class="nk-sidebar-widget d-none d-xl-block">
-                <div class="user-account-info between-center">
-                  <div class="user-account-main">
-                    <h6 class="overline-title-alt" style="color: white;">Available Balance</h6>
-                    <div class="user-balance">{{$btc_balance}} <small class="currency currency-btc">BTC</small></div>
-                    <!-- <div class="user-balance-alt">18,934.84 <span class="currency currency-btc">BTC</span></div> !-->
-                  </div>
-                  <!--<a href="#" class="btn btn-white btn-icon btn-dark"><em class="icon ni ni-line-chart"></em></a>-->
-                </div>
-                <ul class="user-account-data gy-1">
-                  <li>
-                    
-                  </li>
-                  <li>
-                    <div class="user-account-label">
-                      <span class="sub-text" style="color: white;">Deposit in orders</span>
+                        <!-- App Search-->
+                        <form class="app-search d-none d-lg-block">
+                            <div class="position-relative">
+                                <input type="search" class="form-control" placeholder="Search...">
+                                <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="user-account-value" >
-                      <span class="sub-text" style="color: white;">{{Auth::user()->currency}}{{$user_balance}} <span class="currency currency-btc"></span></span>
-                    </div>
-                  </li>
-                </ul>
-                <div class="user-account-actions">
-                  <ul class="g-3">
-                    <li><a href="{{route('user.fund.wallet')}}" class="btn btn-lg btn-primary" style="color: white;"><span>Deposit</span></a></li>
-                    
-                     <li>
-                                            <a href="#" class="btn btn-lg btn-warning"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#pass"><span>Withdraw</span></a
-                                            >
-                                        </li>
-                    <!--<li>-->
-                    <!--  <a href="{{url('withdrawal')}}" class="btn btn-lg btn-warning" ><span>Withdraw</span></a>-->
-                    <!--</li>-->
-                  </ul>
-                </div>
-              </div><!-- .nk-sidebar-widget -->
 
+                    <div class="d-flex">
 
+                        <div class="dropdown d-inline-block d-lg-none ms-2">
+                            <button type="button" class="btn header-item" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="search" class="icon-lg"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
+        
+                                <form class="p-3">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Search Result">
 
-
-              <div class="nk-sidebar-widget nk-sidebar-widget-full d-xl-none pt-0">
-                <a class="nk-profile-toggle toggle-expand" data-target="sidebarProfile" href="#">
-                  <div class="user-card-wrap">
-                    <div class="user-card">
-                      <div class="user-avatar">
-
-                        <span><img src="{{ Auth::user()->photo ? asset('user/uploads/id/'.Auth::user()->photo) : asset('default-avatar.png') }}" alt="{{ Auth::user()->name }}">
-</span>
-                      </div>
-                      <div class="user-info">
-                        <span class="lead-text">{{Auth::user()->name}}</span>
-                        <span class="sub-text">{{Auth::user()->email}}</span>
-                      </div>
-                      <div class="user-action">
-                        <em class="icon ni ni-chevron-down"></em>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <div class="nk-profile-content toggle-expand-content" data-content="sidebarProfile">
-                  <div class="user-account-info between-center">
-                    <div class="user-account-main">
-                      <h6 class="overline-title-alt">Available Balance</h6>
-                      <div class="user-balance">{{$btc_balance}} <small class="currency currency-btc">BTC</small></div>
-                      <!-- <div class="user-balance-alt">18,934.84 <span class="currency currency-btc">BTC</span></div> !-->
-                    </div>
-                    <!--<a href="#" class="btn btn-white btn-icon btn-dark"><em class="icon ni ni-line-chart"></em></a>-->
-                  </div>
-                  <ul class="user-account-data gy-1">
-                    <li>
-                      <!-- <div class="user-account-label">
-                                            <span class="sub-text">Profits (7d)</span>
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
                                         </div>
-                                        <div class="user-account-value">
-                                            <span class="lead-text">+ 0.0526 <span class="currency currency-btc">BTC</span></span>
-                                            <span class="text-success ms-2">3.1% <em class="icon ni ni-arrow-long-up"></em></span>
-                                        </div> !-->
-                    </li>
-                    <li>
-                      <div class="user-account-label">
-                        <span class="sub-text">Deposit in orders</span>
-                      </div>
-                      <div class="user-account-value">
-                        <span class="sub-text">{{Auth::user()->currency}}{{$user_balance}} <span class="currency currency-btc"></span></span>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="user-account-links">
-                    <li>
-                      <a href="{{route('user.withdrawal')}}" class="link"><span>Withdraw Funds</span> <em
-                          class="icon ni ni-wallet-out"></em>
-                      </a>
-                    </li>
-                    <li><a href="{{route('user.fund.wallet')}}" class="link"><span>Deposit Funds</span> <em
-                          class="icon ni ni-wallet-in"></em></a></li>
-                  </ul>
-                  <ul class="link-list">
-                    <li><a href="{{route('user.profile')}}"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a>
-                    </li>
-                  </ul>
-                  <ul class="link-list">
-                    <li><a href="{{route('user.logout')}}"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                  </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-sm-inline-block">
+                            {{-- <button type="button" class="btn header-item"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img id="header-lang-img" src="assets/images/flags/us.jpg" alt="Header Language" height="16">
+                            </button> --}}
+                            <div class="dropdown-menu dropdown-menu-end">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
+                                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
+                                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
+                                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
+                                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
+                                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-none d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
+                                <i data-feather="sun" class="icon-lg layout-mode-light"></i>
+                            </button>
+                        </div>
+
+                        {{-- <div class="dropdown d-none d-lg-inline-block ms-1">
+                            <button type="button" class="btn header-item"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="grid" class="icon-lg"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                                <div class="p-2">
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/github.png" alt="Github">
+                                                <span>GitHub</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                                                <span>Bitbucket</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                                                <span>Dribbble</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                                                <span>Dropbox</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                                                <span>Mail Chimp</span>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a class="dropdown-icon-item" href="#">
+                                                <img src="assets/images/brands/slack.png" alt="slack">
+                                                <span>Slack</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="bell" class="icon-lg"></i>
+                                <span class="badge bg-success rounded-pill">5</span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-notifications-dropdown">
+                                <div class="p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0"> Notifications </h6>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="#!" class="small text-reset text-decoration-underline"> Unread (3)</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-simplebar style="max-height: 230px;">
+                                    <a href="#!" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <img src="assets/images/users/avatar-3.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">James Lemire</h6>
+                                                <div class="font-size-13 text-muted">
+                                                    <p class="mb-1">It will seem like simplified English.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours ago</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#!" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 avatar-sm me-3">
+                                                <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                    <i class="bx bx-cart"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">Your order is placed</h6>
+                                                <div class="font-size-13 text-muted">
+                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min ago</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#!" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 avatar-sm me-3">
+                                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                    <i class="bx bx-badge-check"></i>
+                                                </span>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">Your item is shipped</h6>
+                                                <div class="font-size-13 text-muted">
+                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>3 min ago</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#!" class="text-reset notification-item">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <img src="assets/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">Salena Layfield</h6>
+                                                <div class="font-size-13 text-muted">
+                                                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
+                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>1 hours ago</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="p-2 border-top d-grid">
+                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                        <i class="mdi mdi-arrow-right-circle me-1"></i> <span>View More..</span> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i data-feather="settings" class="icon-lg"></i>
+                            </button>
+                        </div>
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-light-subtle border-start border-end" id="page-header-user-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{{ Auth::user()->photo ? asset('user/uploads/id/'.Auth::user()->photo) : asset('default-avatar.png') }}" alt="{{ Auth::user()->name }}"
+                                    alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ Auth::user()->name }}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="apps-contacts-profile.html"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                                <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="auth-logout.html"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-              </div>
-              <!-- .nk-sidebar-widget -->
-              <div class="nk-sidebar-menu">
-                <!-- Menu -->
-                <ul class="nk-menu">
-                  <li class="nk-menu-heading">
-                    <h6 class="overline-title" style="color: white;">Menu</h6>
-                  </li>
-                  
-                  <!-- <li class="nk-menu-item">-->
-                  <!--  <a href="{{url('bot')}}" class="nk-menu-link">-->
-                  <!--    <span class="nk-menu-icon"><em class="icon ni ni-growth"></em></span>-->
-                  <!--    <span class="nk-menu-text">ETM PROTECT</span>-->
-                  <!--  </a>-->
-                  <!--</li>-->
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.home')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Dashboard</span>
-                    </a>
-                  </li>
+            </header>
 
-                  <li class="nk-menu-item">
-                    <span class="accordion nk-menu-text toggle-expand" style="margin-left: 2%;">
-                      <span class="nk-menu-icon" style="padding-right: 4%;">
-                        <em class="icon ni ni-layout-alt"></em>
-                      </span>
-                      <span class="nk-menu-text" style="color: white;" >Trading Options</span>
-                      <em class="icon ni ni-caret-down-fill"></em>
-                    </span>
-                    <ul class="panel2">
-                      <li class="nk-menu-item">
-                        <a href="{{route('user.forex')}}" class="nk-menu-link">
-                          <span class="nk-menu-text">Forex Trade</span>
-                        </a>
-                      </li>
-                      <li class="nk-menu-item">
-                        <a href="{{route('user.binary')}}" class="nk-menu-link">
-                          <span class="nk-menu-text">Binary Trade</span>
-                        </a>
-                      </li>
-                      <li class="nk-menu-item">
-                        <a href="{{route('user.stocks')}}" class="nk-menu-link">
-                          <span class="nk-menu-text">Stocks Trade</span>
-                        </a>
-                      </li>
-                      <li class="nk-menu-item">
-                        <a href="{{route('user.crypto')}}" class="nk-menu-link">
-                          <span class="nk-menu-text">Crypto Trade</span>
-                        </a>
-                      </li>
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
 
-                      <!--<li class="nk-menu-item">-->
-                      <!--  <a href="{{url('bot')}}" class="nk-menu-link">-->
-                      <!--    <span class="nk-menu-text">QAI Protect</span>-->
-                      <!--  </a>-->
-                      <!--</li>-->
-                    </ul>
-                    <div class="nk-profile-content toggle-expand-content" data-content="sidebarProfile">
+                <div data-simplebar class="h-100">
 
-                      </a>
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li class="menu-title" data-key="t-menu">Menu</li>
 
-                  </li>
+                            <li>
+                                <a href="{{route('user.home')}}">
+                                    <i data-feather="home"></i>
+                                    <span class="badge rounded-pill bg-success-subtle text-success float-end"></span>
+                                    <span data-key="t-dashboard">Dashboard</span>
+                                </a>
+                            </li>
 
-           <li class="nk-menu-item">
-                    <a href="{{route('user.buy.plan')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-navigate"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Invest</span>
-                    </a>
-                  </li>
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.wallet')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-wallet-alt"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Wallet</span>
-                    </a>
-                  </li>
-                  
-                  
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.copy')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-target"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Copy Trade</span>
-                    </a>
-                  </li>
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.fund.wallet')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Deposit</span>
-                    </a>
-                  </li>
-
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.withdrawal')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-trend-up"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Withdrawal</span>
-                    </a>
-                  </li>
-
-                  <!--<li class="nk-menu-item">-->
-                  <!--  <a href="{{url('withdrawal')}}" class="nk-menu-link">-->
-                  <!--    <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>-->
-                  <!--    <span class="nk-menu-text">Withdrawals</span>-->
-                  <!--  </a>-->
-                  <!--</li>-->
-                  <li class="nk-menu-item">
-                    <a href="{{ route('user.crypto.buy') }}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Crypto</span>
-                    </a>
-                  </li>
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.profile')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-account-setting"></em></span>
-                      <span class="nk-menu-text" style="color: white;">My Profile</span>
-                    </a>
-                  </li>
-
-                  {{-- <li class="nk-menu-item">
-                    <a href="{{url('buy-plan')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-navigate"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Subscribe To A Plan</span>
-                    </a>
-                  </li> --}}
-                  
-                   <li class="nk-menu-item">
-                    <a href="{{route('user.investment')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-archive"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Investment History</span>
-                    </a>
-                  </li>
-
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.accounthistory')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-archive"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Transaction History</span>
-                    </a>
-                  </li>
-
+                            <li class="menu-title" data-key="t-apps">Trading Menu</li>
                 
-                  <li class="nk-menu-item">
-                    <a href="{{route('user.refer')}}" class="nk-menu-link">
-                      <span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
-                      <span class="nk-menu-text" style="color: white;">Refer Family & Friends</span>
-                    </a>
-                  </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow">
+                                    <i class="bi bi-bar-chart"></i>
 
-                </ul><!-- .nk-menu -->
-              </div><!-- .nk-sidebar-menu -->
+                                    <span data-key="t-ecommerce">Trading Options</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="ecommerce-products.html" key="t-products">Forex Trade</a></li>
+                                    <li><a href="ecommerce-product-detail.html" data-key="t-product-detail">Binary Trade</a></li>
+                                    <li><a href="ecommerce-orders.html" data-key="t-orders">Stocks Trade</a></li>
+                                    <li><a href="ecommerce-customers.html" data-key="t-customers">Crypto Trade</a></li>
+                                   
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="apps-chat.html">
+                                  <i class="bi bi-cash-stack"></i>
+                                    <span data-key="t-chat">Invest</span>
+                                </a>
+                            </li>
+
+                             <li>
+                                <a href="apps-chat.html">
+                                   <i class="bi bi-wallet2"></i>
+                                    <span data-key="t-chat">Wallet</span>
+                                </a>
+                            </li>
+
+            
+
+                            <li>
+                                <a href="apps-calendar.html">
+                                   <i class="bi bi-person-lines-fill"></i>
+                                    <span data-key="t-calendar">Copy trade</span>
+                                </a>
+                            </li>
+                
+
+                            
+                            <li>
+                                <a href="apps-calendar.html">
+                                   <i class="bi bi-box-arrow-in-down"></i>
+                                    <span data-key="t-calendar">Deposit</span>
+                                </a>
+                            </li>
+                
+
+                            
+                            <li>
+                                <a href="apps-calendar.html">
+                                   <i class="bi bi-box-arrow-up"></i>
+                                    <span data-key="t-calendar">Withdrawal</span>
+                                </a>
+                            </li>
+
+                            
+                            <li>
+                                <a href="apps-calendar.html">
+                                  <i class="bi bi-shield-lock"></i>
+                                    <span data-key="t-calendar">Crypto</span>
+                                </a>
+                            </li>
 
 
-            </div><!-- .nk-sidebar-content -->
-          </div><!-- .nk-sidebar-body -->
-        </div><!-- .nk-sidebar-element -->
-      </div>
-      <!-- sidebar @e -->
-      <!-- wrap @s -->
-      <div class="nk-wrap ">
-        <!-- main header @s -->
-        <div class="nk-header nk-header-fluid nk-header-fixed is-dark">
-          <div class="container-fluid">
-            <div class="nk-header-wrap">
-              <div class="nk-menu-trigger d-xl-none ms-n1">
-                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
-                    class="icon ni ni-menu"></em></a>
-              </div>
-              <div class="nk-header-brand d-xl-none">
-                <a href="{{url('/home')}}" class="logo-link">
+                            
+                            <li>
+                                <a href="apps-calendar.html">
+                                   <i class="bi bi-person-circle"></i>
+                                    <span data-key="t-calendar">My Profile</span>
+                                </a>
+                            </li>
 
-                  <img class="" style="width:192px; height:62px;" src="logo.png" />
+                                                    <li>
+                                <a href="apps-calendar.html">
+                                   <i class="bi bi-card-checklist"></i>
+                                    <span data-key="t-calendar"> Subscribe To A Plan</span>
+                                </a>
+                            </li>
 
 
-                </a>
-              </div>
-              <div class="nk-header-news d-none d-xl-block">
-                <div class="nk-news-list">
-                  {{-- <a class="nk-news-item" href="./mail/mailer.php"> --}}
-                    <div class="nk-news-icon">
-                      <em class="icon ni ni-card-view"></em>
+                            
+                                                    <li>
+                                <a href="apps-calendar.html">
+                                  <i class="bi bi-clock-history"></i>
+                                    <span data-key="t-calendar"> Investment History</span>
+                                </a>
+                            </li>
+                  
+
+
+
+                            
+                                                    <li>
+                                <a href="apps-calendar.html">
+                                    <i class="bi bi-receipt"></i>
+                                    <span data-key="t-calendar"> Transaction History</span>
+                                </a>
+                            </li>
+                  
+
+
+                            
+                                                    <li>
+                                <a href="apps-calendar.html">
+                                  <i class="bi bi-people-fill"></i>
+                                    <span data-key="t-calendar"> Refer Family & Friends</span>
+                                </a>
+                            </li>
+
+
+
+                            
+                                            
+    
+                
+                           
+
+                          
+
+                        <div class="card sidebar-alert shadow-none text-center mx-4 mb-0 mt-5">
+                            <div class="card-body">
+                                <img src="assets/images/giftbox.png" alt="">
+                                <div class="mt-4">
+                                    <h5 class="alertcard-title font-size-16">Welcome to swift meta</h5>
+                                    <p class="font-size-13 text-dark">Refer and get bonuses.</p>
+          
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="nk-news-text">
-
-                      {{-- <p>Email has not been verified <span> Click here to verify</span></p> --}}
-
-
-
-                      <em class="icon ni ni-external"></em>
-                    </div>
-                  </a>
+                    <!-- Sidebar -->
                 </div>
-              </div>
-              <div class="nk-header-tools">
-                <ul class="nk-quick-nav">
-                  <li class="dropdown language-dropdown d-none d-sm-block me-n1">
-                    <a href="#" class="dropdown-toggle nk-quick-nav-icon" data-bs-toggle="dropdown">
-                      {{-- <div class="quick-icon border border-dark">
-                        {{Auth::user()->name}}
-                      </div> --}}
-                    </a>
-
-                  </li><!-- .dropdown -->
-                  <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                      <div class="user-toggle">
-                        <div class="user-avatar sm" style="background: none; background-color: transparent;">
-  <span>
-    <img src="{{ Auth::user()->photo ? asset('user/uploads/id/'.Auth::user()->photo) : asset('default-avatar.png') }}" alt="{{ Auth::user()->name }}">
-  </span>
-</div>
-
-                        <div class="user-info d-none d-md-block">
-                          @if(Auth::user()->kyc_status==='0')
-                          <div class="user-status user-status-unverified">Unverified</div>
-                          @elseif(Auth::user()->kyc_status==='1')
-                          <div class="user-status user-status-verified">verified</div>
-                          @elseif(Auth::user()->kyc_status==='2')
-                          <div class="user-status user-status-unverified">Failed</div>
-                          @endif
-                          <div class="user-name dropdown-indicator">{{Auth::user()->name}}</div>
-                        </div>
-                      </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-end dropdown-menu-s1">
-                      <div class="dropdown-inner user-card-wrap bg-darker d-none d-md-block">
-                        <div class="user-card">
-                          <div class="user-avatar">
-
-                            <span><img src="{{ Auth::user()->photo ? asset('user/uploads/id/'.Auth::user()->photo) : asset('default-avatar.png') }}" alt="{{ Auth::user()->name }}">
-</span>
-                          </div>
-                          <div class="user-info">
-                            <span class="lead-text">{{Auth::user()->name}}</span>
-                            <span class="sub-text">{{Auth::user()->email}}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="dropdown-inner user-account-info">
-                        <h6 class="overline-title-alt">Btc Wallet Account</h6>
-                        <div class="user-balance">{{$btc_balance}} <small class="currency currency-btc">BTC</small>
-                        </div>
-                        <div class="user-balance-sub">Locked <span>{{$btc_balance}} <span
-                              class="currency currency-btc">BTC</span></span></div>
-                        <a href="{{ route('user.withdrawal') }}" class="link" ><span>Withdraw
-                            Funds</span> <em class="icon ni ni-wallet-out"></em></a>
-                      </div>
-                      <div class="dropdown-inner">
-                        <ul class="link-list">
-                          <li><a href="{{ route('user.profile') }}"><em class="icon ni ni-user-alt"></em><span>View
-                                Profile</span></a></li>
-                          <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark
-                                Mode</span></a></li>
-                        </ul>
-                      </div>
-                      <div class="dropdown-inner">
-                        <ul class="link-list">
-                          <li><a href="{{ route('user.logout.perform') }}"><em class="icon ni ni-signout"></em><span>Sign
-                                out</span></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </li>
-
-                </ul>
-              </div>
             </div>
-          </div>
-        </div>
-            <!-- JavaScript -->
-	<script type="text/javascript">
-		if (document.getElementById('bitcoin').checked == false) {
-			document.getElementById('pick').disabled = true;
-		}
-	
-		function show() {
-			if (document.getElementById("test").value == "1") {
-				$('#key').modal('show');
-			} else if (document.getElementById("test").value == "2") {
-				if (document.getElementById('key2').value == "yes") {
-					$('#payment_method').modal('show');
-				} else {
-					$('#key').modal('show');
-					alert("Nahhh");
-				}
-			} else if (document.getElementById("test").value == "3") {
-				$('#confirm_wit').modal('show');
-			}
-		}
-		
-		// function activate() {
-			// $('#payment_method').modal('show');
-		// }
-		function pay_met() {
-			// document.getElementById('bitcoin').addEventListener('click', event=>{
-				// if(event.target.checked){
-					// alert("btc");
-				// }
-			// });
-			if (document.getElementById('bitcoin').checked) {
-				$('#btc').modal('show');
-			} else if (document.getElementById('ethereum').checked){
-				$('#eth').modal('show');
-			} else if (document.getElementById('bank').checked){
-				$('#bank').modal('show');
-			}
+            <!-- Left Sidebar End -->
 
-			// alert("sss");
-		}
-	</script>
-	<script>
-		function modal() {
-			let e = md5(document.getElementById('conpass').value);
-			var a = document.getElementById('check').value;
-			if (e == a) {
-				// $('#key').modal('show');
-				alert("sss");
-			} else {
-				alert("Invalid Password");
-			}
-		}
-	</script>
-	
-	            <!-- WhatsApp Floating Button -->
-<a href="https://wa.me/18053932568?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services." 
-   class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
-   <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 32 32" fill="white">
-      <path d="M19.11 17.53c-.33-.17-1.95-.96-2.25-1.07s-.52-.17-.74.17-.85 1.07-1.05 1.29-.39.26-.72.09a7.87 7.87 0 01-2.31-1.42 
-      8.62 8.62 0 01-1.59-1.98c-.17-.3 0-.46.13-.63.13-.13.3-.35.46-.52s.22-.3.35-.52.07-.39 0-.56c-.09-.17-.74-1.77-1.02-2.43s-.52-.52-.74-.52h-.63c-.22 
-      0-.56.09-.85.39s-1.12 1.09-1.12 2.66 1.15 3.09 1.31 3.3 2.27 3.46 5.49 4.85c.77.33 1.37.52 1.84.67a4.42 4.42 0 002.03.13c.62-.09 
-      1.95-.8 2.23-1.57s.28-1.42.2-1.57-.3-.22-.63-.39zM16.02 3c-7.16 0-12.97 5.81-12.97 12.97 0 2.29.59 4.52 1.71 6.49L3 29l6.74-1.77a12.93 
-      12.93 0 006.28 1.61h.01c7.16 0 12.97-5.81 12.97-12.97S23.18 3 16.02 3zm0 23.66c-2.2 0-4.35-.59-6.23-1.7l-.45-.27-4 .99 1.06-3.9-.25-.4a10.93 
-      10.93 0 01-1.68-5.83c0-6.05 4.92-10.97 10.97-10.97 2.93 0 5.68 1.14 7.75 3.21s3.21 4.82 3.21 7.75c0 6.05-4.92 10.97-10.97 10.97z"/>
-   </svg>
-   <span class="whatsapp-tooltip">Chat with us</span>
-</a>
-
-<style>
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    padding: 16px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1) rotate(-5deg);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.4);
-}
-
-.whatsapp-tooltip {
-    position: absolute;
-    left: 70px;
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.whatsapp-float:hover .whatsapp-tooltip {
-    opacity: 1;
-    transform: translateY(0);
-}
-</style>
-
-<<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '23953927cb41ee739722ce20ed7c44829348837d';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
-
+            
