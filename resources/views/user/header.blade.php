@@ -293,10 +293,10 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <a class="dropdown-item" href="apps-contacts-profile.html"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
-                                <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
+                                {{-- <a class="dropdown-item" href="auth-lock-screen.html"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a> --}}
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="auth-logout.html"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                                <a class="dropdown-item" href="{{ route('user.logout.perform') }}"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
                             </div>
                         </div>
 
@@ -399,7 +399,7 @@
                             </li>
 
                                                     <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.buy.plan')}}">
                                    <i class="bi bi-card-checklist"></i>
                                     <span data-key="t-calendar"> Subscribe To A Plan</span>
                                 </a>
@@ -408,7 +408,7 @@
 
                             
                                                     <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.investment')}}">
                                   <i class="bi bi-clock-history"></i>
                                     <span data-key="t-calendar"> Investment History</span>
                                 </a>
@@ -419,7 +419,7 @@
 
                             
                                                     <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.accounthistory')}}">
                                     <i class="bi bi-receipt"></i>
                                     <span data-key="t-calendar"> Transaction History</span>
                                 </a>
@@ -429,7 +429,7 @@
 
                             
                                                     <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.refer')}}">
                                   <i class="bi bi-people-fill"></i>
                                     <span data-key="t-calendar"> Refer Family & Friends</span>
                                 </a>

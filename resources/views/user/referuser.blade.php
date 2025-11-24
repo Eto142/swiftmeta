@@ -1,218 +1,683 @@
 @include('user.header')
-<!-- content @s -->
-                 <div class="container">
-        <div class="row mt-30 mb-30">
-          <div class="col-sm-12 col-md-3">
-            <div class="share-boxes">
-              <img src="https://i.ibb.co/PtYrLNy/img1.png" alt="img1" border="0">
-              <p>Share with your friends</p>
-            </div>
-          </div>
-          <div class="col"></div>
-          <div class="col-sm-12 col-md-3">
-            <div class="share-boxes">
-              <img src="https://i.ibb.co/P5TdfkT/img2.png" alt="img2" border="0">
-              <p>Give her to $5 Discount</p>
-              <img src="https://i.ibb.co/Sr5F70S/dotted-arrow1.png" alt="dotted-arrow1" class="dotted-line">
-              <img src="https://i.ibb.co/Fqs2KxB/dotted-arrow2.png" alt="dotted-arrow2" class="dotted-line2">
-            </div>
-          </div>
-          <div class="col"></div>
-          <div class="col-sm-12 col-md-3">
-            <div class="share-boxes">
-              <img src="https://i.ibb.co/StC3RWk/img3.png" alt="img3" border="0">
-              <p>Get $1 for every $5</p>
-            </div>
-          </div>
-        </div>
-        <div class="row refer-form-sec">
-          <div class="col">
-            <div class="refer-image">
-              <img src="https://i.ibb.co/72ngXX8/big-image.jpg" alt="big-image" border="0" />
-            </div>
-          </div>
-          <div class="col">
-            <div class="refer-form">
-              
-            </div>
-           <!-- <div class="refer-form-content">
-              <h2>Friends To Friends</h2>
-              <p>Talking about friends sexually helps to normalize it. You can start <a href="#">NOW!</a></p> -->
-              <!--<form action="" method="post">-->
-                <!--<input type="text" name="Your Name" placeholder="Your Friend Name">-->
-                <!--<input type="email" name="Your Email" placeholder="Your Friend Email">--><br>
-                <input type="text" id="refer" value="https:// Quintessenceoptionss.net/src/auths/register.php?refer=94388539" disabled>
-                <!--<input type="text" id="refer" value="https:// Quintessenceoptions.com/src/auths/register.php?refer=94388539">-->
-                <!--<p>-->
-                <!--  <label class="container-checkbox">i have read and accept the T & C and privacy policy-->
-                <!--    <input type="checkbox">-->
-                <!--    <span class="checkmark"></span>-->
-                <!--  </label>-->
-                <!--</p>-->
-                <div class="modal-footer bg-lighter" id="copy_text" style="display: none;">
-                    <p>Referral link has been copied to your clipboard</p>
-                    
-                </div>
-                  
-                <button name="refer" onclick="copy()" class="btn btn-lg btn-primary btn-block">REFER & EARN</button>
-              <!--</form>-->
-            </div>
-          </div>
-        </div>
-        <div class="row mt-30 mb-30">
-          <div class="col">
-            <div class="referal-progress">
-              <h2>YOUR REFERAL PROGRESS</h2>
-              <table class="table table-hover">
-                <tbody>
-                  <tr>
-                    <td>No. of referral</td>
-                    <td><strong>0</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Referral Bonus</td>
-                    <td><strong>0 USD</strong></td>
-                  </tr>
-                  <!--<tr>-->
-                  <!--  <td>No. of friends who have purchased</td>-->
-                  <!--  <td><strong>USD : 10.00</strong></td>-->
-                  <!--</tr>-->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    
-    <style>
-        
-        * {
-    margin: 0px;
-    padding: 0px;
-    transition: all 0.5s ease 0s;
-    -webkit-transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -ms-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
-}
-html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul, dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object, a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span, strong, sub, sup, tt, var, legend, fieldset, p {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-a, input, select, textarea {
-    outline: none;
-    margin: 0;
-    padding: 0;
-}
-a:hover,focus{
-    text-decoration:none;
-    outline: none;
-    border: none;
-}
-img, fieldset {
-    border: 0;
-}
-a {
-    outline: none;
-    border: none;
-}
-img {
-    max-width: 100%;
-    height: auto;
-    width: auto\9;
-    vertical-align: middle;
-    border: none;
-    outline: none;
-}
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-    display: block;
-    margin: 0;
-    padding: 0;
-}
-div, h1, h2, h3, h4, span, p, input, form, img, hr, img, a {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-.mt-30, .mb-30{margin: 30px 0;}
-.clear {
-    clear: both;
-}
-.share-boxes p {margin: 15px 0 0; font-size: 15px; font-weight: bold;}
-.share-boxes {background: #f9f9f9; text-align: center; border-radius: 10px;  box-shadow: 0 0 17px #ccc;
-    padding: 20px 0;  position: relative;}
-.share-boxes img.dotted-line {position: absolute; left: -167px; top: 5px; transform: rotate(-3deg);}
-.share-boxes img.dotted-line2 {position: absolute; right: -173px; top: 5px; transform: rotate(-4deg);}
-.refer-image img {width: 100%;}
-.refer-form ul li {float: left; list-style: none; width: 33.333%; text-align: center;}
-.refer-form ul li a {background: #9fb0f8; display: block; padding: 14px; color: #fff; text-transform: uppercase;
-    font-weight: 600;}
-.refer-form ul {margin: 0;}
-.refer-form ul li.facebook-color a{background: #9fb0f8}
-.refer-form ul li.youtube-color a{background: #eb8c8c}
-.refer-form ul li.twitter-color a{background: #9cd0fc}
-.refer-form ul li.facebook-color a:hover{background: #4667f7; text-decoration: none;}
-.refer-form ul li.youtube-color a:hover{background: #dd2020; text-decoration: none;}
-.refer-form ul li.twitter-color a:hover{background: #40a7ff; text-decoration: none;}
-.refer-form-content {float: left; width: 100%; background: #f9f9f9; padding: 30px; }
-.refer-form-content h2 {color: #3a8dfe; font-weight: bold; text-transform: uppercase; font-size: 25px; margin: 0 0 10px; }
-.refer-form-content P a {color: #3a8dfe; font-weight: 500; }
-.refer-form-content input{height: 50px; width: 100%; padding: 15px; border-radius: 1px; margin-bottom: 20px; box-shadow: 0 0 6px #ccc; }
-.container-checkbox {display: block; position: relative; padding-left: 30px; margin-bottom: 12px; cursor: pointer; font-size: 16px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.container-checkbox input {position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; } 
-.checkmark {position: absolute; top: 3px; left: 0; height: 20px; width: 20px; background-color: transparent; border: 2px solid #3a8dfe; }
-.container-checkbox:hover input ~ .checkmark {background-color: #ccc; } 
-.container-checkbox input:checked ~ .checkmark {background-color: #3a8dfe; } 
-.checkmark:after {content: ""; position: absolute; display: none; } 
-.container-checkbox input:checked ~ .checkmark:after {display: block; } 
-.container-checkbox .checkmark:after {left: 5px; top: 0px; width: 7px; height: 12px; border: solid white; border-width: 0 3px 3px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } 
-.refer-form-content form button {background: #3a8dfe; color: #fff; font-weight: 500; font-size: 18px; width: 100%; height: 50px; cursor: pointer; } 
-.refer-form-content form button:hover{background: #000;}
-.refer-form-content input::placeholder{color:#c5c5c5; font-size: 14px;}
-.row.refer-form-sec {height: 450px; overflow: hidden; margin-top: 55px; }
-.referal-progress table td:nth-child(2) {text-align: right; } 
-.referal-progress table td {border: 1px solid #cccc; padding: 15px 20px; } 
-.row.refer-form-sec .col:first-child {padding-right: 0; } 
-.row.refer-form-sec .col:last-child {padding-left: 0; }
-.referal-progress h2 {color: #3a8dfe; font-size: 22px; margin: 10px 0 15px; }
-.share-boxes:after {content: ""; background: url("https://i.ibb.co/WHdS3G1/circle.png") no-repeat 0 0; position: absolute; left: 0; right: 0; bottom: -65px; margin: 0 auto; z-index: 99999; height: 60px; width: 20px; }
-@media only screen and (max-width: 1100px){
-.share-boxes img.dotted-line, .share-boxes img.dotted-line2 {
-    display: none;
-}
 
-}
-@media only screen and (max-width: 767px){
-.share-boxes {
-    margin: 0 0 52px;
-}
-.row.refer-form-sec {
-    height: auto;
-    overflow: hidden;
-    margin-top: 55px;
-    display: block;
-}
-.row.refer-form-sec .col:first-child {
-    padding-right: 15px;
-    margin: 0 0 30px;
-}
-.row.refer-form-sec .col:last-child {
-    padding-left: 15px;
-}
-}
-@media only screen and (max-width: 380px){
-.refer-form ul li a {
-    padding: 9px;
-    font-size: 14px;
-}
-.refer-form-content h2 {
-    font-size: 22px;
-}
-}
-    </style>
+<!-- Start right Content here -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18 animate__animated animate__fadeInDown animate__faster">🚀 AI Referral Program</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Earn</a></li>
+                                <li class="breadcrumb-item active">Refer & Earn</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
-    @include('user.footer')
+            </div>
+            <!-- end page title -->
+
+            <!-- Alert Section -->
+            <div class="row">
+                <div class="col-12">
+                    @if (session('status'))
+                        <div class="alert alert-success animate__animated animate__bounceIn" role="alert">
+                            <i class="mdi mdi-check-circle-outline me-2"></i> {{ session('status') }}
+                        </div>
+                    @endif
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-success animate__animated animate__bounceIn">
+                            <i class="mdi mdi-check-circle-outline me-2"></i> {{ $message }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <!-- AI Referral Header with Bonus -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card bg-gradient-primary text-white ai-bonus-card animate__animated animate__fadeIn">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <i class="mdi mdi-rocket-launch display-4 me-3"></i>
+                                        <div>
+                                            <h2 class="text-white mb-1">Earn $50 per Referral!</h2>
+                                            <p class="text-white-50 mb-0">AI-powered matching for maximum earnings</p>
+                                        </div>
+                                    </div>
+                                    <div class="ai-bonus-badge">
+                                        <span class="badge bg-warning text-dark ai-pulse">
+                                            <i class="mdi mdi-star me-1"></i> LIMITED TIME BONUS
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="ai-reward-circle">
+                                        <span class="reward-amount">$50</span>
+                                        <small class="text-white-50">per friend</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works Section -->
+            <div class="row mt-4 mb-4">
+                <div class="col-sm-12 col-md-4">
+                    <div class="card share-boxes ai-referral-card animate__animated animate__fadeInLeft">
+                        <div class="card-body text-center">
+                            <div class="ai-icon-container bg-primary mb-3">
+                                <i class="mdi mdi-share-variant icon"></i>
+                            </div>
+                            <h5 class="text-primary">Share Your Link</h5>
+                            <p class="text-muted">Share your unique AI referral link with friends</p>
+                            <div class="ai-step-pulse">1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card share-boxes ai-referral-card animate__animated animate__fadeInUp">
+                        <div class="card-body text-center position-relative">
+                            <div class="ai-connection-line d-none d-md-block"></div>
+                            <div class="ai-icon-container bg-success mb-3">
+                                <i class="mdi mdi-account-plus icon"></i>
+                            </div>
+                            <h5 class="text-success">Friends Join</h5>
+                            <p class="text-muted">Friends sign up using your referral link</p>
+                            <div class="ai-step-pulse">2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="card share-boxes ai-referral-card animate__animated animate__fadeInRight">
+                        <div class="card-body text-center position-relative">
+                            <div class="ai-connection-line d-none d-md-block" style="right: -50%; left: auto;"></div>
+                            <div class="ai-icon-container bg-warning mb-3">
+                                <i class="mdi mdi-cash-usd icon"></i>
+                            </div>
+                            <h5 class="text-warning">Earn $50 Each</h5>
+                            <p class="text-muted">Get $50 for every friend who invests $100+</p>
+                            <div class="ai-step-pulse">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Form Section -->
+            <div class="row refer-form-sec mt-4">
+                <div class="col-lg-6">
+                    <div class="card refer-image-card animate__animated animate__fadeInLeft h-100">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <div class="ai-network-visual mb-4">
+                                    <div class="ai-node main-node">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                    <div class="ai-node connected-node node-1">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                    <div class="ai-node connected-node node-2">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                    <div class="ai-node connected-node node-3">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                    <div class="ai-node connected-node node-4">
+                                        <i class="mdi mdi-account"></i>
+                                    </div>
+                                </div>
+                                <h4 class="text-primary mb-3">Expand Your Network</h4>
+                                <div class="ai-earnings-preview">
+                                    <div class="earnings-item">
+                                        <span class="text-muted">5 Friends =</span>
+                                        <span class="text-success fw-bold">$250</span>
+                                    </div>
+                                    <div class="earnings-item">
+                                        <span class="text-muted">10 Friends =</span>
+                                        <span class="text-success fw-bold">$500</span>
+                                    </div>
+                                    <div class="earnings-item">
+                                        <span class="text-muted">20 Friends =</span>
+                                        <span class="text-success fw-bold">$1,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card refer-form-card animate__animated animate__fadeInRight h-100">
+                        <div class="card-body">
+                            <div class="refer-form-content">
+                                <h3 class="text-primary mb-3">
+                                    <i class="mdi mdi-link-variant me-2"></i>Your AI Referral Link
+                                </h3>
+                                <p class="text-muted mb-4">Share this link and earn $50 for every qualified referral</p>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label text-muted">Your Personal Referral Link</label>
+                                    <div class="input-group ai-input-group">
+                                        <input type="text" class="form-control ai-referral-input" 
+                                               id="refer" value="{{ config('app.url') }}/register?ref=94388539" 
+                                               readonly>
+                                        <button class="btn btn-primary ai-copy-btn" onclick="copyReferralLink()">
+                                            <i class="mdi mdi-content-copy"></i>
+                                        </button>
+                                    </div>
+                                    <small class="text-muted mt-1">Friends get $5 bonus when they sign up with your link</small>
+                                </div>
+
+                                <div class="alert alert-success ai-copy-alert" id="copy_alert" style="display: none;">
+                                    <i class="mdi mdi-check-circle-outline me-2"></i>
+                                    Referral link copied to clipboard!
+                                </div>
+
+                                <div class="d-grid mb-4">
+                                    <button class="btn btn-primary btn-lg ai-refer-btn" onclick="copyReferralLink()">
+                                        <i class="mdi mdi-rocket me-2"></i>
+                                        COPY & SHARE LINK
+                                    </button>
+                                </div>
+
+                                <!-- Quick Share Options -->
+                                <div class="mb-4">
+                                    <h6 class="text-muted mb-3">Quick Share</h6>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <button class="btn btn-primary ai-social-btn facebook-color" onclick="shareOnFacebook()">
+                                            <i class="mdi mdi-facebook me-1"></i> Facebook
+                                        </button>
+                                        <button class="btn btn-info ai-social-btn twitter-color" onclick="shareOnTwitter()">
+                                            <i class="mdi mdi-twitter me-1"></i> Twitter
+                                        </button>
+                                        <button class="btn btn-success ai-social-btn whatsapp-color" onclick="shareOnWhatsApp()">
+                                            <i class="mdi mdi-whatsapp me-1"></i> WhatsApp
+                                        </button>
+                                        <button class="btn btn-danger ai-social-btn email-color" onclick="shareViaEmail()">
+                                            <i class="mdi mdi-email me-1"></i> Email
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Referral Terms -->
+                                <div class="ai-terms-card">
+                                    <h6 class="text-muted mb-2">💡 How to Earn $50:</h6>
+                                    <ul class="text-muted small">
+                                        <li>Friend signs up using your link</li>
+                                        <li>They deposit minimum $100</li>
+                                        <li>You receive $50 instantly</li>
+                                        <li>No limit on number of referrals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Progress & Leaderboard -->
+            <div class="row mt-4">
+                <div class="col-lg-8">
+                    <div class="card animate__animated animate__fadeInUp">
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">
+                                <i class="mdi mdi-trophy me-2"></i>Your Referral Performance
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-md-3">
+                                    <div class="ai-stat-box">
+                                        <h3 class="text-primary ai-count" data-target="0">0</h3>
+                                        <p class="text-muted mb-0">Total Referrals</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="ai-stat-box">
+                                        <h3 class="text-success ai-count" data-target="0">$0</h3>
+                                        <p class="text-muted mb-0">Total Earned</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="ai-stat-box">
+                                        <h3 class="text-warning ai-count" data-target="0">0</h3>
+                                        <p class="text-muted mb-0">Pending</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="ai-stat-box">
+                                        <h3 class="text-info ai-count" data-target="50">$50</h3>
+                                        <p class="text-muted mb-0">Per Referral</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card animate__animated animate__fadeInUp">
+                        <div class="card-header">
+                            <h4 class="card-title mb-0">
+                                <i class="mdi mdi-crown me-2"></i>Top Referrers
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="ai-leaderboard">
+                                <div class="leaderboard-item">
+                                    <span class="rank">1</span>
+                                    <span class="name">Alex Chen</span>
+                                    <span class="earnings">$2,500</span>
+                                </div>
+                                <div class="leaderboard-item">
+                                    <span class="rank">2</span>
+                                    <span class="name">Sarah Kim</span>
+                                    <span class="earnings">$1,800</span>
+                                </div>
+                                <div class="leaderboard-item">
+                                    <span class="rank">3</span>
+                                    <span class="name">Mike Ross</span>
+                                    <span class="earnings">$1,200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+</div>
+<!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+<style>
+    /* Enhanced AI Animations */
+    .ai-bonus-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ai-bonus-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .ai-bonus-badge {
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+
+    .ai-reward-circle {
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+        50% { box-shadow: 0 0 30px rgba(255,255,255,0.6); }
+    }
+
+    .reward-amount {
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    /* Network Visualization */
+    .ai-network-visual {
+        position: relative;
+        height: 200px;
+        margin: 40px 0;
+    }
+
+    .ai-node {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        animation: nodeFloat 3s ease-in-out infinite;
+    }
+
+    .main-node {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    }
+
+    .connected-node {
+        animation-delay: calc(var(--delay) * 0.5s);
+    }
+
+    .node-1 { top: 20%; left: 20%; --delay: 1; }
+    .node-2 { top: 20%; right: 20%; --delay: 2; }
+    .node-3 { bottom: 20%; left: 20%; --delay: 3; }
+    .node-4 { bottom: 20%; right: 20%; --delay: 4; }
+
+    @keyframes nodeFloat {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    /* Earnings Preview */
+    .ai-earnings-preview {
+        background: rgba(67, 97, 238, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .earnings-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .earnings-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Enhanced Cards */
+    .ai-referral-card {
+        transition: all 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .ai-referral-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(67, 97, 238, 0.2);
+    }
+
+    /* Social Buttons */
+    .whatsapp-color { background: #25D366; border-color: #25D366; }
+    .email-color { background: #EA4335; border-color: #EA4335; }
+
+    /* Terms Card */
+    .ai-terms-card {
+        background: rgba(67, 97, 238, 0.05);
+        border-radius: 10px;
+        padding: 15px;
+        border-left: 4px solid #4361ee;
+    }
+
+    .ai-terms-card ul {
+        margin-bottom: 0;
+        padding-left: 20px;
+    }
+
+    .ai-terms-card li {
+        margin-bottom: 5px;
+    }
+
+    /* Stats Boxes */
+    .ai-stat-box {
+        padding: 20px;
+    }
+
+    .ai-stat-box h3 {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    /* Leaderboard */
+    .ai-leaderboard {
+        space-y: 10px;
+    }
+
+    .leaderboard-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .leaderboard-item:last-child {
+        border-bottom: none;
+    }
+
+    .rank {
+        background: #4361ee;
+        color: white;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .name {
+        flex: 1;
+        margin-left: 10px;
+        font-weight: 500;
+    }
+
+    .earnings {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    /* Enhanced Animations */
+    .ai-pulse {
+        animation: aiPulse 2s infinite;
+    }
+
+    @keyframes aiPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .ai-icon-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        color: white;
+        animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    .ai-step-pulse {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #4361ee;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+        animation: stepPulse 2s infinite;
+    }
+
+    .ai-connection-line {
+        position: absolute;
+        top: 50%;
+        left: -50%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #4361ee, transparent);
+        animation: lineFlow 3s infinite;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Copy referral link function
+        window.copyReferralLink = function() {
+            const referralInput = document.getElementById('refer');
+            const copyAlert = document.getElementById('copy_alert');
+            
+            // Select the text
+            referralInput.select();
+            referralInput.setSelectionRange(0, 99999);
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(referralInput.value).then(() => {
+                // Show success alert
+                copyAlert.style.display = 'block';
+                
+                // Add animation
+                copyAlert.classList.remove('animate__fadeIn');
+                void copyAlert.offsetWidth;
+                copyAlert.classList.add('animate__fadeIn');
+                
+                // Hide alert after 3 seconds
+                setTimeout(() => {
+                    copyAlert.style.display = 'none';
+                }, 3000);
+            });
+        };
+
+        // Share functions
+        window.shareOnFacebook = function() {
+            const link = document.getElementById('refer').value;
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}&quote=Join me on this amazing AI investment platform and get $5 bonus!`;
+            window.open(url, '_blank', 'width=600,height=400');
+        };
+
+        window.shareOnTwitter = function() {
+            const link = document.getElementById('refer').value;
+            const text = "Join this amazing AI investment platform! Get $5 bonus when you sign up with my link. Earn with AI-powered trading!";
+            const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank', 'width=600,height=400');
+        };
+
+        window.shareOnWhatsApp = function() {
+            const link = document.getElementById('refer').value;
+            const text = "Hey! Check out this AI investment platform. Use my link to get $5 bonus: " + link;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        };
+
+        window.shareViaEmail = function() {
+            const link = document.getElementById('refer').value;
+            const subject = "Join me on this amazing AI investment platform!";
+            const body = `Hi! I wanted to share this amazing AI investment platform with you. 
+
+Use my referral link to get $5 bonus when you sign up:
+${link}
+
+We can both earn $50 when you start investing!`;
+            
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        };
+
+        // Number counting animation for stats
+        const counters = document.querySelectorAll('.ai-count');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 50;
+            
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    if (counter.textContent.includes('$')) {
+                        counter.textContent = '$' + Math.ceil(current).toLocaleString();
+                    } else {
+                        counter.textContent = Math.ceil(current).toLocaleString();
+                    }
+                    setTimeout(updateCount, 30);
+                } else {
+                    if (counter.textContent.includes('$')) {
+                        counter.textContent = '$' + target.toLocaleString();
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                }
+            };
+            
+            // Start counting when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(counter);
+        });
+
+        // Network animation
+        const nodes = document.querySelectorAll('.ai-node');
+        nodes.forEach((node, index) => {
+            node.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        // Auto-animate elements on scroll
+        const animatedElements = document.querySelectorAll('.animate__animated');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.visibility = 'visible';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+    });
+</script>
+
+@include('user.footer')

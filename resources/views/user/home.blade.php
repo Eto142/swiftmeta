@@ -9,37 +9,49 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Welcome {{ Auth::user()->name }}!</h4>
+                        <h4 class="mb-sm-0 font-size-18 animate__animated animate__fadeInDown">🤖 Welcome {{ Auth::user()->name }}!</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Welcome {{ Auth::user()->name }}!</li>
+                                <li class="breadcrumb-item active">AI Trading Platform</li>
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
             <!-- end page title -->
 
+            <!-- Notification Marquee -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="notification-bar ai-notification animate__animated animate__fadeIn">
+                        <div class="marquee-container">
+                            <div class="marquee-content">
+                                <span class="notification-badge ai-pulse">📢 NOTICE</span>
+                                <span class="notification-text">{{ Auth::user()->update_notification }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stats Cards -->
             <div class="row">
-
                 <!-- TRADING BALANCE -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInLeft">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">TRADING BALANCE</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ $user_balance }}.0</span>
+                                        <span class="ai-count" data-target="{{ $user_balance }}">{{ Auth::user()->currency }}0.0</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-wallet2 fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-wallet-outline fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -49,18 +61,18 @@
 
                 <!-- TRADING CAPITAL -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInLeft" style="animation-delay: 0.1s">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">TRADING CAPITAL</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ $deposit }}.00</span>
+                                        <span class="ai-count" data-target="{{ $deposit }}">{{ Auth::user()->currency }}0.00</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-piggy-bank fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-piggy-bank-outline fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -70,18 +82,18 @@
 
                 <!-- TRADING PROFIT -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInRight" style="animation-delay: 0.1s">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">TRADING PROFIT</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ $profit }}.00</span>
+                                        <span class="ai-count" data-target="{{ $profit }}">{{ Auth::user()->currency }}0.00</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-graph-up-arrow fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-chart-line fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -91,18 +103,18 @@
 
                 <!-- TOTAL WITHDRAWAL -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInRight">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">TOTAL WITHDRAWAL</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ $withdrawal }}.00</span>
+                                        <span class="ai-count" data-target="{{ $withdrawal }}">{{ Auth::user()->currency }}0.00</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-cash-stack fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-cash-multiple fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -112,18 +124,18 @@
 
                 <!-- TOTAL FEE -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInLeft">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <span class="text-muted mb-3 lh-1 d-block text-truncate">TOTAL FEE</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ Auth::user()->update_trade_fee }}.00</span>
+                                        <span class="ai-count" data-target="{{ Auth::user()->update_trade_fee }}">{{ Auth::user()->currency }}0.00</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-receipt fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-receipt fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -131,20 +143,20 @@
                     </div>
                 </div>
 
-                <!-- TRADING PROFIT (Duplicate Box) -->
+                <!-- BONUS BALANCE -->
                 <div class="col-xl-3 col-md-6">
-                    <div class="card card-h-100 sweet-card">
+                    <div class="card card-h-100 sweet-card ai-stats-card animate__animated animate__fadeInRight">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
-                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">TRADING PROFIT</span>
+                                    <span class="text-muted mb-3 lh-1 d-block text-truncate">BONUS BALANCE</span>
                                     <h4 class="mb-3">
-                                        <span>{{ Auth::user()->currency }}{{ $profit }}.00</span>
+                                        <span class="ai-count" data-target="0">{{ Auth::user()->currency }}0.00</span>
                                     </h4>
                                 </div>
                                 <div class="flex-shrink-0 text-end dash-widget">
-                                    <div class="sweet-icon">
-                                        <i class="bi bi-graph-up-arrow fs-2"></i>
+                                    <div class="sweet-icon ai-icon-pulse">
+                                        <i class="mdi mdi-gift fs-2"></i>
                                     </div>
                                 </div>
                             </div>
@@ -152,196 +164,232 @@
                     </div>
                 </div>
 
+                <!-- Signal Strength Indicator -->
+                <div class="col-xl-6 col-md-12">
+                    <div class="card sweet-card ai-signal-card animate__animated animate__fadeInUp">
+                        <div class="card-body">
+                            <div class="signal-strength">
+                                <div class="signal-header">
+                                    <h5 class="card-title mb-2">
+                                        <i class="mdi mdi-access-point me-2"></i>AI Signal Strength
+                                    </h5>
+                                    <div class="signal-value ai-pulse">{{ Auth::user()->signal_strength }}%</div>
+                                </div>
+                                <div class="signal-progress-container">
+                                    <div class="signal-progress-bar" style="width: {{ Auth::user()->signal_strength }}%">
+                                        <div class="signal-progress-fill"></div>
+                                    </div>
+                                </div>
+                                <div class="signal-labels">
+                                    <span>Weak</span>
+                                    <span>Moderate</span>
+                                    <span>Strong</span>
+                                    <span>Excellent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <a href="{{route('user.fund.wallet')}}" class="btn btn-primary btn-lg ai-action-btn me-3 animate__animated animate__pulse animate__infinite">
+                        <i class="mdi mdi-plus-circle me-2"></i> Add Funds
+                    </a>
+                    <a href="{{route('user.copy')}}" class="btn btn-success btn-lg ai-action-btn">
+                        <i class="mdi mdi-robot me-2"></i> Trading Bot
+                    </a>
+                </div>
             </div>
 
             <!-- Charts Section -->
             <div class="row">
                 <div class="col-xl-8">
-                    <!-- card -->
-                    <div class="card sweet-card">
-                        <!-- card body -->
+                    <div class="card sweet-card ai-chart-card animate__animated animate__fadeInLeft">
                         <div class="card-body">
                             <div class="d-flex flex-wrap align-items-center mb-4">
-                                <h5 class="card-title me-2">Market Overview</h5>
+                                <h5 class="card-title me-2">
+                                    <i class="mdi mdi-chart-areaspline me-2"></i>Market Overview
+                                </h5>
                                 <div class="ms-auto">
-                                    <div>
-                                        <button type="button" class="btn btn-soft-primary btn-sm sweet-btn">
-                                            ALL
-                                        </button>
-                                        <button type="button" class="btn btn-soft-secondary btn-sm sweet-btn">
-                                            1M
-                                        </button>
-                                        <button type="button" class="btn btn-soft-secondary btn-sm sweet-btn">
-                                            6M
-                                        </button>
-                                        <button type="button" class="btn btn-soft-secondary btn-sm sweet-btn">
-                                            1Y
-                                        </button>
-                                    </div>
+                                    <span class="badge bg-primary ai-pulse">
+                                        <i class="mdi mdi-brain me-1"></i> Live Data
+                                    </span>
                                 </div>
                             </div>
 
-                            <div class="row align-items-center">
-                                <div class="col-xl-8">
-                                    <div>
-                                        <div id="market-overview" data-colors='["--bs-primary", "--bs-success"]' class="apex-charts"></div>
+                            <!-- TradingView Ticker -->
+                            <div class="mb-4">
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                                    {
+                                        "symbols": [
+                                            { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+                                            { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+                                            { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+                                            { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+                                            { "proName": "BITSTAMP:ETHUSD", "title": "ETH/USD" }
+                                        ],
+                                        "showSymbolLogo": true,
+                                        "colorTheme": "light",
+                                        "isTransparent": false,
+                                        "displayMode": "adaptive",
+                                        "locale": "en"
+                                    }
+                                    </script>
+                                </div>
+                            </div>
+
+                            <!-- Crypto Widgets -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="crypto-widget">
+                                        <div class="tradingview-widget-container">
+                                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                            {
+                                                "symbol": "FX:BTCUSD",
+                                                "width": "100%",
+                                                "height": "100%",
+                                                "locale": "en",
+                                                "dateRange": "12M",
+                                                "colorTheme": "light",
+                                                "trendLineColor": "rgba(33, 150, 243, 1)",
+                                                "underLineColor": "rgba(33, 150, 243, 0.3)",
+                                                "isTransparent": false,
+                                                "autosize": true
+                                            }
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4">
-                                    <div class="p-4">
-                                        <div class="mt-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm m-auto">
-                                                    <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                        1
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <span class="font-size-14">Mobile Phones</span>
-                                                </div>
-    
-                                                <div class="flex-shrink-0">
-                                                    <span class="badge rounded-pill bg-success-subtle text-success font-size-12 fw-medium">+5.4%</span>
-                                                </div>
-                                            </div>
+                                <div class="col-md-4">
+                                    <div class="crypto-widget">
+                                        <div class="tradingview-widget-container">
+                                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                            {
+                                                "symbol": "FX:ETHUSD",
+                                                "width": "100%",
+                                                "height": "100%",
+                                                "locale": "en",
+                                                "dateRange": "12M",
+                                                "colorTheme": "light",
+                                                "trendLineColor": "rgba(33, 150, 243, 1)",
+                                                "underLineColor": "rgba(33, 150, 243, 0.3)",
+                                                "isTransparent": false,
+                                                "autosize": true
+                                            }
+                                            </script>
                                         </div>
-    
-                                        <div class="mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm m-auto">
-                                                    <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                        2
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <span class="font-size-14">Smart Watch</span>
-                                                </div>
-    
-                                                <div class="flex-shrink-0">
-                                                    <span class="badge rounded-pill bg-success-subtle text-success font-size-12 fw-medium">+6.8%</span>
-                                                </div>
-                                            </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="crypto-widget">
+                                        <div class="tradingview-widget-container">
+                                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                                            {
+                                                "symbol": "FX:LTCUSD",
+                                                "width": "100%",
+                                                "height": "100%",
+                                                "locale": "en",
+                                                "dateRange": "12M",
+                                                "colorTheme": "light",
+                                                "trendLineColor": "rgba(33, 150, 243, 1)",
+                                                "underLineColor": "rgba(33, 150, 243, 0.3)",
+                                                "isTransparent": false,
+                                                "autosize": true
+                                            }
+                                            </script>
                                         </div>
-    
-                                        <div class="mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm m-auto">
-                                                    <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                        3
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <span class="font-size-14">Protable Acoustics</span>
-                                                </div>
-    
-                                                <div class="flex-shrink-0">
-                                                    <span class="badge rounded-pill bg-danger-subtle text-danger font-size-12 fw-medium">-4.9%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-    
-                                        <div class="mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm m-auto">
-                                                    <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                        4
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <span class="font-size-14">Smart Speakers</span>
-                                                </div>
-    
-                                                <div class="flex-shrink-0">
-                                                    <span class="badge rounded-pill bg-success-subtle text-success font-size-12 fw-medium">+3.5%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="avatar-sm m-auto">
-                                                    <span class="avatar-title rounded-circle bg-light text-dark font-size-13">
-                                                        5
-                                                    </span>
-                                                </div>
-                                                <div class="flex-grow-1 ms-3">
-                                                    <span class="font-size-14">Camcorders</span>
-                                                </div>
-    
-                                                <div class="flex-shrink-0">
-                                                    <span class="badge rounded-pill bg-danger-subtle text-danger font-size-12 fw-medium">-0.3%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4 pt-2">
-                                            <a href="#" class="btn btn-primary w-100 sweet-btn">See All Balances <i
-                                                    class="mdi mdi-arrow-right ms-1"></i></a>
-                                        </div>
-    
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end card -->
                     </div>
-                    <!-- end col -->
                 </div>
-                <!-- end row-->
-    
+
                 <div class="col-xl-4">
-                    <!-- card -->
-                    <div class="card sweet-card">
-                        <!-- card body -->
+                    <div class="card sweet-card ai-trades-card animate__animated animate__fadeInRight">
                         <div class="card-body">
-                            <div class="d-flex flex-wrap align-items-center mb-4">
-                                <h5 class="card-title me-2">Sales by Locations</h5>
-                                <div class="ms-auto">
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle text-reset sweet-dropdown" href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="text-muted font-size-12">Sort By:</span> <span class="fw-medium">World<i class="mdi mdi-chevron-down ms-1"></i></span>
-                                        </a>
+                            <h5 class="card-title mb-4">
+                                <i class="mdi mdi-swap-horizontal me-2"></i>Trading Activity
+                            </h5>
 
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href="#">USA</a>
-                                            <a class="dropdown-item" href="#">Russia</a>
-                                            <a class="dropdown-item" href="#">Australia</a>
+                            <!-- Tabs Navigation -->
+                            <ul class="nav nav-tabs nav-justified mb-4 ai-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active ai-tab-link" data-bs-toggle="tab" href="#open-trades">
+                                        <i class="mdi mdi-play-circle-outline me-1"></i> Open Trades
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ai-tab-link" data-bs-toggle="tab" href="#closed-trades">
+                                        <i class="mdi mdi-check-circle-outline me-1"></i> Closed Trades
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- Tabs Content -->
+                            <div class="tab-content">
+                                <!-- Open Trades -->
+                                <div class="tab-pane fade show active" id="open-trades">
+                                    @if(!empty($profithistory))
+                                        @foreach($profithistory as $history)
+                                        <div class="trade-item ai-trade-item animate__animated animate__fadeIn">
+                                            <div class="trade-icon bg-primary">
+                                                <i class="mdi mdi-chart-line"></i>
+                                            </div>
+                                            <div class="trade-details">
+                                                <div class="trade-date">{{ \Carbon\Carbon::parse($history->created_at)->format('M d, Y') }}</div>
+                                                <div class="trade-amount">${{ number_format($history->amount, 2) }}</div>
+                                            </div>
+                                            <div class="trade-status">
+                                                <span class="badge bg-success ai-pulse">Active</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="sales-by-locations" data-colors='["--bs-success"]' style="height: 253px"></div>
-
-                            <div class="px-2 py-2">
-                                <p class="mb-1">USA <span class="float-end">75%</span></p>
-                                <div class="progress mt-2 sweet-progress" style="height: 6px;">
-                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                        style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
-                                    </div>
+                                        @endforeach
+                                    @else
+                                        <div class="text-center py-4">
+                                            <i class="mdi mdi-chart-line display-4 text-muted mb-3"></i>
+                                            <p class="text-muted">No open trades</p>
+                                        </div>
+                                    @endif
                                 </div>
 
-                                <p class="mt-3 mb-1">Russia <span class="float-end">55%</span></p>
-                                <div class="progress mt-2 sweet-progress" style="height: 6px;">
-                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                        style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="55">
-                                    </div>
-                                </div>
-
-                                <p class="mt-3 mb-1">Australia <span class="float-end">85%</span></p>
-                                <div class="progress mt-2 sweet-progress" style="height: 6px;">
-                                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                        style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="85">
-                                    </div>
+                                <!-- Closed Trades -->
+                                <div class="tab-pane fade" id="closed-trades">
+                                    @if(!empty($withdrawalhistory))
+                                        @foreach($withdrawalhistory as $withdrawal)
+                                        <div class="trade-item ai-trade-item animate__animated animate__fadeIn">
+                                            <div class="trade-icon bg-{{ $withdrawal->status == '0' ? 'warning' : 'success' }}">
+                                                <i class="mdi mdi-cash"></i>
+                                            </div>
+                                            <div class="trade-details">
+                                                <div class="trade-date">{{ \Carbon\Carbon::parse($withdrawal->created_at)->format('M d, Y') }}</div>
+                                                <div class="trade-amount">${{ number_format($withdrawal->amount, 2) }}</div>
+                                                <div class="trade-method">{{ $withdrawal->mode }}</div>
+                                            </div>
+                                            <div class="trade-status">
+                                                <span class="badge bg-{{ $withdrawal->status == '0' ? 'warning' : 'success' }}">
+                                                    {{ $withdrawal->status == '0' ? 'Pending' : 'Completed' }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    @else
+                                        <div class="text-center py-4">
+                                            <i class="mdi mdi-cash-multiple display-4 text-muted mb-3"></i>
+                                            <p class="text-muted">No closed trades</p>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                        <!-- end card body -->
                     </div>
-                    <!-- end card -->
                 </div>
-                <!-- end col -->
             </div>
-            <!-- end row-->
 
         </div>
         <!-- container-fluid -->
@@ -351,13 +399,262 @@
 <!-- end main content-->
 
 <style>
+    /* Enhanced AI Animations */
+    .ai-pulse {
+        animation: aiPulse 2s infinite;
+    }
+
+    @keyframes aiPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .ai-stats-card {
+        transition: all 0.3s ease;
+        border: 1px solid #e9ecef;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ai-stats-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+        transition: left 0.5s;
+    }
+
+    .ai-stats-card:hover::before {
+        left: 100%;
+    }
+
+    .ai-stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(67, 97, 238, 0.15);
+    }
+
+    .ai-icon-pulse {
+        animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes iconFloat {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+    }
+
+    .ai-notification {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 15px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .marquee-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .notification-badge {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Signal Strength */
+    .ai-signal-card {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+    }
+
+    .signal-strength {
+        text-align: center;
+    }
+
+    .signal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .signal-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #4cd964;
+    }
+
+    .signal-progress-container {
+        background: rgba(255,255,255,0.2);
+        border-radius: 10px;
+        height: 8px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+
+    .signal-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #ff6b6b, #4cd964);
+        border-radius: 10px;
+        position: relative;
+        transition: width 1s ease;
+    }
+
+    .signal-progress-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .signal-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.8);
+    }
+
+    /* Action Buttons */
+    .ai-action-btn {
+        position: relative;
+        overflow: hidden;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .ai-action-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .ai-action-btn:hover::before {
+        left: 100%;
+    }
+
+    .ai-action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Trades Section */
+    .ai-tabs {
+        border-bottom: 2px solid #e9ecef;
+    }
+
+    .ai-tab-link {
+        border: none;
+        background: none;
+        color: #6c757d;
+        padding: 12px 20px;
+        border-radius: 8px 8px 0 0;
+        transition: all 0.3s ease;
+    }
+
+    .ai-tab-link.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .ai-tab-link:hover {
+        color: #4361ee;
+    }
+
+    .trade-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        background: rgba(67, 97, 238, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .trade-item:hover {
+        transform: translateX(5px);
+        background: rgba(67, 97, 238, 0.1);
+    }
+
+    .trade-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-right: 15px;
+    }
+
+    .trade-details {
+        flex: 1;
+    }
+
+    .trade-date {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .trade-amount {
+        font-weight: 700;
+        color: #28a745;
+    }
+
+    .trade-method {
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    /* Crypto Widgets */
+    .crypto-widget {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .crypto-widget:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Counting Animation */
+    .ai-count {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Enhanced Base Styles */
     .sweet-card {
         border: none;
         border-radius: 16px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
-        background: linear-gradient(145deg, #ffffff, #f8f9fa);
-        border: 1px solid rgba(255, 255, 255, 0.8);
+        background: white;
     }
 
     .sweet-card:hover {
@@ -375,193 +672,93 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        transition: all 0.3s ease;
     }
-
-    .sweet-card:hover .sweet-icon {
-        transform: scale(1.1);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-    }
-
-    .sweet-btn {
-        border-radius: 12px;
-        border: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        padding: 8px 16px;
-    }
-
-    .btn-soft-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .btn-soft-secondary {
-        background: rgba(108, 117, 125, 0.1);
-        color: #6c757d;
-        border: 1px solid rgba(108, 117, 125, 0.2);
-    }
-
-    .btn-soft-secondary:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        transform: translateY(-1px);
-    }
-
-    .sweet-progress {
-        border-radius: 10px;
-        background: rgba(108, 117, 125, 0.1);
-    }
-
-    .sweet-progress .progress-bar {
-        border-radius: 10px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        transition: width 0.6s ease;
-    }
-
-    .sweet-dropdown {
-        padding: 8px 16px;
-        border-radius: 12px;
-        background: rgba(108, 117, 125, 0.1);
-        border: 1px solid rgba(108, 117, 125, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .sweet-dropdown:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .avatar-sm {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
-        font-weight: 600;
-    }
-
-    .badge {
-        border-radius: 8px;
-        font-weight: 500;
-        padding: 6px 12px;
-    }
-
-    .bg-success-subtle {
-        background: rgba(40, 167, 69, 0.15) !important;
-        color: #28a745 !important;
-        border: 1px solid rgba(40, 167, 69, 0.2);
-    }
-
-    .bg-danger-subtle {
-        background: rgba(220, 53, 69, 0.15) !important;
-        color: #dc3545 !important;
-        border: 1px solid rgba(220, 53, 69, 0.2);
-    }
-
-    .card-title {
-        font-weight: 600;
-        color: #2c3e50;
-    }
-
-    h4 {
-        font-weight: 700;
-        color: #2c3e50;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .text-muted {
-        color: #6c757d !important;
-        font-weight: 500;
-    }
-
-    .dropdown-menu {
-        border: none;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        padding: 8px;
-    }
-
-    .dropdown-item {
-        border-radius: 8px;
-        padding: 8px 12px;
-        margin: 2px 0;
-        transition: all 0.3s ease;
-    }
-
-    .dropdown-item:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    /* Animation for cards */
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .sweet-card {
-        animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .sweet-card:nth-child(1) { animation-delay: 0.1s; }
-    .sweet-card:nth-child(2) { animation-delay: 0.2s; }
-    .sweet-card:nth-child(3) { animation-delay: 0.3s; }
-    .sweet-card:nth-child(4) { animation-delay: 0.4s; }
-    .sweet-card:nth-child(5) { animation-delay: 0.5s; }
-    .sweet-card:nth-child(6) { animation-delay: 0.6s; }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Add hover effects
-        const cards = document.querySelectorAll('.sweet-card');
+        // Number counting animation
+        const counters = document.querySelectorAll('.ai-count');
+        
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 50;
+            const currency = counter.textContent.includes('$') ? '$' : '{{ Auth::user()->currency }}';
+            
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = currency + Math.ceil(current).toLocaleString() + '.00';
+                    setTimeout(updateCount, 30);
+                } else {
+                    counter.textContent = currency + target.toLocaleString() + '.00';
+                }
+            };
+            
+            // Start counting when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(counter);
+        });
+
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.ai-stats-card');
         cards.forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
+                this.style.zIndex = '10';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
+                this.style.zIndex = '1';
             });
         });
 
-        // Add click effects to buttons
-        const buttons = document.querySelectorAll('.sweet-btn');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
+        // Tab switching animation
+        const tabLinks = document.querySelectorAll('.ai-tab-link');
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all tabs
+                tabLinks.forEach(tab => tab.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+            });
+        });
+
+        // Trade items animation
+        const tradeItems = document.querySelectorAll('.ai-trade-item');
+        tradeItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Random AI-like activity
+        setInterval(() => {
+            const badges = document.querySelectorAll('.ai-pulse');
+            badges.forEach(badge => {
+                badge.style.animation = 'none';
                 setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 150);
+                    badge.style.animation = 'aiPulse 2s infinite';
+                }, 10);
             });
-        });
+        }, 5000);
 
-        // Progress bar animation
-        const progressBars = document.querySelectorAll('.sweet-progress .progress-bar');
-        progressBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0%';
+        // Signal strength animation
+        const signalBar = document.querySelector('.signal-progress-bar');
+        if (signalBar) {
+            const width = signalBar.style.width;
+            signalBar.style.width = '0%';
             setTimeout(() => {
-                bar.style.width = width;
-            }, 500);
-        });
+                signalBar.style.width = width;
+            }, 1000);
+        }
     });
 </script>
 
 @include('user.footer')
-
-
-
-
