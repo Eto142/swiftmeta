@@ -383,7 +383,7 @@
 
                             
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{ route('user.crypto.buy') }}">
                                   <i class="bi bi-shield-lock"></i>
                                     <span data-key="t-calendar">Crypto</span>
                                 </a>
