@@ -1,533 +1,568 @@
 @include('user.header')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet Assets | Crypto Platform</title>
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3a0ca3;
-            --success-color: #4cc9f0;
-            --dark-color: #0f172a;
-            --light-color: #f8f9fa;
-            --card-bg: #1e293b;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            --transition: all 0.3s ease;
-        }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0b1120;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
+<!-- Start right Content here -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
 
-        .dashboard-header {
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
-        }
 
-        .header-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+            <!-- end page title -->
 
-        .header-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+            <!-- Dashboard Header -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card animate__animated animate__fadeInUp">
+                        <div class="card-body">
+                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                                <div>
+                                    <h5 class="card-title mb-1">
+                                        <i class="mdi mdi-robot-excited-outline me-2 text-primary"></i>
+                                        AI Account Wallet
+                                    </h5>
+                                    <p class="card-title-desc mb-0">Smart asset management with real-time AI analysis</p>
+                                    <span class="badge bg-primary mt-1 animate__animated animate__pulse animate__infinite">
+                                        <i class="mdi mdi-brain me-1"></i> Neural Network Powered
+                                    </span>
+                                </div>
+                                <div class="action-buttons mt-3 mt-md-0">
+                                    <a href="{{route('user.fund.wallet')}}" class="btn btn-primary ai-button">
+                                        <i class="mdi mdi-plus-circle-outline me-1"></i> AI Deposit
+                                    </a>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="btn btn-outline-primary ms-2 ai-button">
+                                        <i class="mdi mdi-arrow-up me-1"></i> Smart Withdraw
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        .header-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
+            <!-- Crypto Accounts Section -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card animate__animated animate__fadeInUp">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="mdi mdi-currency-btc me-2 text-warning"></i>
+                                AI Crypto Accounts
+                            </h4>
+                            <p class="card-title-desc">Smart cryptocurrency wallets with AI optimization</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- Bitcoin Wallet -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInLeft">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3 ai-pulse">
+                                                    <i class="fab fa-btc text-warning"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">Bitcoin AI Wallet</h5>
+                                                    <small class="text-muted">BTC • Neural Optimized</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($btc_balance)}}">0.00000000 <small class="text-muted">BTC</small></h3>
+                                                <p class="text-muted mb-0">≈ {{$user_balance}} USD</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-trending-up text-success me-1"></i>
+                                                    <small class="text-success">AI Prediction: Bullish</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-actions">
+                                                <a href="{{route('user.fund.wallet')}}" class="btn btn-outline-primary btn-sm me-2 ai-action-btn">
+                                                    <i class="mdi mdi-arrow-down me-1"></i> AI Deposit
+                                                </a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="btn btn-outline-primary btn-sm me-2 ai-action-btn">
+                                                    <i class="mdi mdi-arrow-up me-1"></i> Smart Withdraw
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm ai-action-btn">
+                                                    <i class="mdi mdi-swap-horizontal me-1"></i> AI Swap
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        .action-buttons .btn {
-            margin-left: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
+                                <!-- Ethereum Wallet -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInUp">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3 ai-pulse">
+                                                    <i class="fab fa-ethereum text-info"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">Ethereum AI Wallet</h5>
+                                                    <small class="text-muted">ETH • Smart Contract Ready</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($eth_balance)}}">0.00000000 <small class="text-muted">ETH</small></h3>
+                                                <p class="text-muted mb-0">≈ {{$user_balance}} USD</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-trending-neutral text-warning me-1"></i>
+                                                    <small class="text-warning">AI Prediction: Stable</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-actions">
+                                                <a href="{{route('user.fund.wallet')}}" class="btn btn-outline-primary btn-sm me-2 ai-action-btn">
+                                                    <i class="mdi mdi-arrow-down me-1"></i> AI Deposit
+                                                </a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="btn btn-outline-primary btn-sm me-2 ai-action-btn">
+                                                    <i class="mdi mdi-arrow-up me-1"></i> Smart Withdraw
+                                                </a>
+                                                <a href="#" class="btn btn-outline-primary btn-sm ai-action-btn">
+                                                    <i class="mdi mdi-swap-horizontal me-1"></i> AI Swap
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        .btn-deposit {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border: none;
-        }
+                                <!-- Escrow Account -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInRight">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3">
+                                                    <i class="mdi mdi-lock text-danger"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">AI Escrow Vault</h5>
+                                                    <small class="text-muted">Secure Holding • AI Protected</small>
+                                                </div>
+                                                <span class="badge bg-danger ms-auto ai-pulse">🔒 Locked</span>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-primary mb-1">{{Auth::user()->currency}}{{Auth::user()->update_escrow}}</h3>
+                                                <p class="text-muted mb-0">AI Secured Funds</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-shield-check text-success me-1"></i>
+                                                    <small class="text-success">AI Security: Active</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        .btn-withdraw {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
+            <!-- Fiat Accounts Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card animate__animated animate__fadeInUp">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="mdi mdi-bank me-2 text-success"></i>
+                                AI Fiat Accounts
+                            </h4>
+                            <p class="card-title-desc">Smart traditional currency accounts with AI analysis</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- USD Account -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInLeft">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3 ai-pulse">
+                                                    <i class="mdi mdi-currency-usd text-success"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">USD AI Account</h5>
+                                                    <small class="text-muted">US Dollar • AI Managed</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-primary mb-1">0.00 <small class="text-muted">USD</small></h3>
+                                                <p class="text-muted mb-0">≈ 0.00 USD</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-rocket-launch text-info me-1"></i>
+                                                    <small class="text-info">AI Ready for Activation</small>
+                                                </div>
+                                            </div>
+                                            <div class="wallet-actions">
+                                                <a href="{{route('user.fund.wallet')}}" class="btn btn-outline-primary btn-sm me-2 ai-action-btn">
+                                                    <i class="mdi mdi-arrow-down me-1"></i> AI Deposit
+                                                </a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="btn btn-outline-primary btn-sm ai-action-btn">
+                                                    <i class="mdi mdi-arrow-up me-1"></i> Smart Withdraw
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        .btn-withdraw:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+                                <!-- EUR Account -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInUp">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3">
+                                                    <i class="mdi mdi-currency-eur text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">EUR AI Account</h5>
+                                                    <small class="text-muted">Euro • AI Enhanced</small>
+                                                </div>
+                                                <span class="badge bg-danger ms-auto ai-pulse">🔒 AI Locked</span>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-muted mb-1">AI Locked</h3>
+                                                <p class="text-muted mb-0">Neural Network Calibrating</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-timer-sand text-warning me-1"></i>
+                                                    <small class="text-warning">AI Activation: 85%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        .section-title {
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.75rem;
-        }
+                                <!-- CHF Account -->
+                                <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="card wallet-card h-100 ai-wallet-card animate__animated animate__fadeInRight">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <div class="wallet-icon me-3">
+                                                    <i class="mdi mdi-currency-chf text-info"></i>
+                                                </div>
+                                                <div>
+                                                    <h5 class="mb-0">CHF AI Account</h5>
+                                                    <small class="text-muted">Swiss Franc • AI Optimized</small>
+                                                </div>
+                                                <span class="badge bg-danger ms-auto ai-pulse">🔒 AI Locked</span>
+                                            </div>
+                                            <div class="wallet-balance mb-4">
+                                                <h3 class="text-muted mb-1">AI Locked</h3>
+                                                <p class="text-muted mb-0">Machine Learning in Progress</p>
+                                                <div class="ai-trend mt-1">
+                                                    <i class="mdi mdi-brain text-info me-1"></i>
+                                                    <small class="text-info">AI Training: 72%</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), transparent);
-            border-radius: 3px;
-        }
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
 
-        .wallet-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-            box-shadow: var(--box-shadow);
-            border: none;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
+</div>
+<!-- end main content-->
 
-        .wallet-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--primary-color), var(--success-color));
-        }
+</div>
+<!-- END layout-wrapper -->
 
-        .wallet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
+<style>
+    /* AI Animations */
+    .ai-wallet-card {
+        transition: all 0.3s ease;
+        border: 1px solid #e9ecef;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .wallet-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
+    .ai-wallet-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(67, 97, 238, 0.1), transparent);
+        transition: left 0.5s;
+    }
 
-        .wallet-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-        }
+    .ai-wallet-card:hover::before {
+        left: 100%;
+    }
 
-        .wallet-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
+    .ai-wallet-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(67, 97, 238, 0.15);
+        border-color: #4361ee;
+    }
 
-        .wallet-balance {
-            margin-bottom: 1.5rem;
-        }
+    .ai-pulse {
+        animation: aiPulse 2s infinite;
+    }
 
-        .balance-amount {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
+    @keyframes aiPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
 
-        .balance-currency {
-            color: var(--text-secondary);
-            margin-left: 0.5rem;
-            font-weight: 500;
-        }
+    .ai-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
 
-        .balance-equivalent {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
+    .ai-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s;
+    }
 
+    .ai-button:hover::before {
+        left: 100%;
+    }
+
+    .ai-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+    }
+
+    .ai-action-btn {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ai-action-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(67, 97, 238, 0.2);
+    }
+
+    .ai-trend {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        background: rgba(67, 97, 238, 0.05);
+        border-radius: 4px;
+        display: inline-block;
+    }
+
+    .wallet-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(67, 97, 238, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .wallet-balance h3 {
+        font-weight: 600;
+    }
+
+    .wallet-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .wallet-actions .btn {
+        flex: 1;
+        min-width: 80px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    /* AI Assistant */
+    .ai-assistant {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        z-index: 1000;
+        animation: float 3s ease-in-out infinite;
+        transition: all 0.3s ease;
+    }
+
+    .ai-assistant:hover {
+        transform: scale(1.1);
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .ai-chat {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 300px;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e9ecef;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transform: translateY(20px);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .ai-chat.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .ai-chat-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e9ecef;
+    }
+
+    .ai-message {
+        background: rgba(67, 97, 238, 0.05);
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        border: 1px solid rgba(67, 97, 238, 0.1);
+    }
+
+    .progress-bar {
+        height: 4px;
+        background: #e9ecef;
+        border-radius: 2px;
+        overflow: hidden;
+        margin: 15px 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4361ee, #3a0ca3);
+        border-radius: 2px;
+        width: 0%;
+        animation: loading 2s infinite;
+    }
+
+    @keyframes loading {
+        0% { width: 0%; }
+        50% { width: 100%; }
+        100% { width: 0%; }
+    }
+
+    /* Counting Animation */
+    .animate-count {
+        font-variant-numeric: tabular-nums;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
         .wallet-actions {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1rem;
+            flex-direction: column;
         }
-
-        .action-btn {
-            color: var(--text-primary);
-            background: none;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
+        
+        .wallet-actions .btn {
+            width: 100%;
+            margin-bottom: 5px;
         }
-
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--primary-color);
+        
+        .ai-chat {
+            width: 280px;
+            right: 15px;
         }
+    }
+</style>
 
-        .action-btn i {
-            margin-right: 0.5rem;
-        }
+<script>
+    // AI Assistant Toggle
+    document.getElementById('aiAssistant').addEventListener('click', function() {
+        const chat = document.getElementById('aiChat');
+        chat.classList.toggle('active');
+    });
 
-        .btc-icon {
-            color: #f7931a;
-        }
-
-        .eth-icon {
-            color: #627eea;
-        }
-
-        .usd-icon {
-            color: #4ade80;
-        }
-
-        .eur-icon {
-            color: #60a5fa;
-        }
-
-        .chf-icon {
-            color: #a78bfa;
-        }
-
-        .escrow-icon {
-            color: #f472b6;
-        }
-
-        .status-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .balance-amount {
-                font-size: 1.5rem;
-            }
+    // Number Counting Animation
+    document.addEventListener('DOMContentLoaded', function() {
+        const counters = document.querySelectorAll('.animate-count');
+        
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 50;
             
-            .wallet-icon {
-                width: 42px;
-                height: 42px;
-                font-size: 1.25rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .action-buttons {
-                margin-top: 1rem;
-            }
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = current.toFixed(8) + ' ';
+                    setTimeout(updateCount, 30);
+                } else {
+                    counter.textContent = target.toFixed(8) + ' ';
+                }
+            };
             
-            .action-buttons .btn {
-                margin-left: 0;
-                margin-right: 0.75rem;
-                margin-bottom: 0.75rem;
-            }
-            
-            .wallet-actions {
-                flex-direction: column;
-            }
-            
-            .action-btn {
-                margin-bottom: 0.5rem;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .wallet-card {
-                padding: 1.25rem;
-            }
-            
-            .balance-amount {
-                font-size: 1.25rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container py-4 py-lg-5">
-        <!-- Dashboard Header -->
-        <div class="dashboard-header">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                <div>
-                    <span class="header-subtitle">Account Wallet</span>
-                    <h1 class="header-title">Wallet / Assets</h1>
-                    <p class="header-description">Here is the list of your assets with real-time values</p>
-                </div>
-                <div class="action-buttons mt-3 mt-md-0">
-                    <a href="{{route('user.fund.wallet')}}" class="btn btn-deposit">
-                        <i class="fas fa-plus-circle me-2"></i> Deposit
-                    </a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="btn btn-withdraw">
-                        <i class="fas fa-arrow-up me-2"></i> Withdraw
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Crypto Accounts Section -->
-        <div class="mb-5">
-            <h3 class="section-title">Crypto Accounts</h3>
-            <div class="row g-4">
-                <!-- Bitcoin Wallet -->
-                <div class="col-md-6 col-lg-4 col-xxl-4">
-                    <div class="wallet-card">
-                        <div class="wallet-header">
-                            <div class="wallet-icon btc-icon">
-                                <i class="fab fa-btc"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">Bitcoin Wallet</h4>
-                                <small class="text-muted">BTC</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                {{$btc_balance}} <span class="balance-currency">BTC</span>
-                            </div>
-                            <div class="balance-equivalent">
-                                ≈ {{$user_balance}} <span class="balance-currency">USD</span>
-                            </div>
-                        </div>
-                        <div class="wallet-actions">
-                            <a href="{{route('user.fund.wallet')}}" class="action-btn">
-                                <i class="fas fa-arrow-down"></i> Deposit
-                            </a>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="action-btn">
-                                <i class="fas fa-arrow-up"></i> Withdraw
-                            </a>
-                            <a href="#" class="action-btn">
-                                <i class="fas fa-exchange-alt"></i> Swap
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ethereum Wallet -->
-                <div class="col-md-6 col-lg-4 col-xxl-4">
-                    <div class="wallet-card">
-                        <div class="wallet-header">
-                            <div class="wallet-icon eth-icon">
-                                <i class="fab fa-ethereum"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">Ethereum Wallet</h4>
-                                <small class="text-muted">ETH</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                {{$eth_balance}} <span class="balance-currency">ETH</span>
-                            </div>
-                            <div class="balance-equivalent">
-                                ≈ {{$user_balance}} <span class="balance-currency">USD</span>
-                            </div>
-                        </div>
-                        <div class="wallet-actions">
-                            <a href="{{route('user.fund.wallet')}}" class="action-btn">
-                                <i class="fas fa-arrow-down"></i> Deposit
-                            </a>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="action-btn">
-                                <i class="fas fa-arrow-up"></i> Withdraw
-                            </a>
-                            <a href="#" class="action-btn">
-                                <i class="fas fa-exchange-alt"></i> Swap
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Escrow Account -->
-                <div class="col-md-6 col-lg-4 col-xxl-4">
-                    <div class="wallet-card">
-                        <span class="status-badge">Locked</span>
-                        <div class="wallet-header">
-                            <div class="wallet-icon escrow-icon">
-                                <i class="fas fa-lock"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">Escrow Account</h4>
-                                <small class="text-muted">Secure Holding</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                {{Auth::user()->currency}}{{Auth::user()->update_escrow}}
-                            </div>
-                            <div class="balance-equivalent">
-                                Funds held securely
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Fiat Accounts Section -->
-        <div class="mb-5">
-            <h3 class="section-title">Fiat Accounts</h3>
-            <div class="row g-4">
-                <!-- USD Account -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="wallet-card">
-                        <div class="wallet-header">
-                            <div class="wallet-icon usd-icon">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">USD Account</h4>
-                                <small class="text-muted">US Dollar</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                0.00 <span class="balance-currency">USD</span>
-                            </div>
-                            <div class="balance-equivalent">
-                                ≈ 0.00 <span class="balance-currency">USD</span>
-                            </div>
-                        </div>
-                        <div class="wallet-actions">
-                            <a href="{{route('user.fund.wallet')}}" class="action-btn">
-                                <i class="fas fa-arrow-down"></i> Deposit
-                            </a>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#pass" class="action-btn">
-                                <i class="fas fa-arrow-up"></i> Withdraw
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- EUR Account -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="wallet-card">
-                        <span class="status-badge">Locked</span>
-                        <div class="wallet-header">
-                            <div class="wallet-icon eur-icon">
-                                <i class="fas fa-euro-sign"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">EUR Account</h4>
-                                <small class="text-muted">Euro</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                Locked
-                            </div>
-                            <div class="balance-equivalent">
-                                Coming soon
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CHF Account -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="wallet-card">
-                        <span class="status-badge">Locked</span>
-                        <div class="wallet-header">
-                            <div class="wallet-icon chf-icon">
-                                <i class="fas fa-franc-sign"></i>
-                            </div>
-                            <div>
-                                <h4 class="wallet-title">CHF Account</h4>
-                                <small class="text-muted">Swiss Franc</small>
-                            </div>
-                        </div>
-                        <div class="wallet-balance">
-                            <div class="balance-amount">
-                                Locked
-                            </div>
-                            <div class="balance-equivalent">
-                                Coming soon
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- TradingView Widget -->
-    <div class="container mb-5">
-        <div class="card" style="background: var(--card-bg); border-radius: var(--border-radius); overflow: hidden;">
-            <div class="card-body p-0">
-                <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container">
-                    <div id="tradingview-wallet-chart" style="height: 400px;"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                    <script type="text/javascript">
-                    new TradingView.widget({
-                        "autosize": true,
-                        "symbol": "COINBASE:BTCUSD",
-                        "interval": "D",
-                        "timezone": "Etc/UTC",
-                        "theme": "dark",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#1e293b",
-                        "enable_publishing": false,
-                        "hide_top_toolbar": false,
-                        "hide_side_toolbar": false,
-                        "allow_symbol_change": true,
-                        "container_id": "tradingview-wallet-chart"
-                    });
-                    </script>
-                </div>
-                <!-- TradingView Widget END -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Initialize tooltips
-        document.addEventListener('DOMContentLoaded', function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
+            // Start counting when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
             });
             
-            // Update balances periodically (simulated)
-            setInterval(function() {
-                // In a real app, you would fetch updated balances from your API
-                console.log("Updating wallet balances...");
-            }, 30000);
+            observer.observe(counter);
         });
-    </script>
-</body>
-</html>
+
+        // Add hover effects to wallet cards
+        const walletCards = document.querySelectorAll('.ai-wallet-card');
+        walletCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '10';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Simulate AI activity
+        setInterval(() => {
+            const badges = document.querySelectorAll('.ai-pulse');
+            badges.forEach(badge => {
+                badge.style.animation = 'none';
+                setTimeout(() => {
+                    badge.style.animation = 'aiPulse 2s infinite';
+                }, 10);
+            });
+        }, 5000);
+    });
+
+    // Simulate real-time updates
+    setInterval(function() {
+        console.log("AI Wallet Analytics Updated");
+    }, 30000);
+</script>
 
 @include('user.footer')

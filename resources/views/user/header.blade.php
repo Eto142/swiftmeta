@@ -341,14 +341,14 @@
                             </li>
 
                             <li>
-                                <a href="apps-chat.html">
+                                <a href="{{route('user.buy.plan')}}">
                                   <i class="bi bi-cash-stack"></i>
                                     <span data-key="t-chat">Invest</span>
                                 </a>
                             </li>
 
                              <li>
-                                <a href="apps-chat.html">
+                                <a href="{{route('user.wallet')}}">
                                    <i class="bi bi-wallet2"></i>
                                     <span data-key="t-chat">Wallet</span>
                                 </a>
@@ -357,7 +357,7 @@
             
 
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.copy')}}">
                                    <i class="bi bi-person-lines-fill"></i>
                                     <span data-key="t-calendar">Copy trade</span>
                                 </a>
@@ -366,7 +366,7 @@
 
                             
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.fund.wallet')}}">
                                    <i class="bi bi-box-arrow-in-down"></i>
                                     <span data-key="t-calendar">Deposit</span>
                                 </a>
@@ -375,7 +375,7 @@
 
                             
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.withdrawal')}}">
                                    <i class="bi bi-box-arrow-up"></i>
                                     <span data-key="t-calendar">Withdrawal</span>
                                 </a>
@@ -392,7 +392,7 @@
 
                             
                             <li>
-                                <a href="apps-calendar.html">
+                                <a href="{{route('user.profile')}}">
                                    <i class="bi bi-person-circle"></i>
                                     <span data-key="t-calendar">My Profile</span>
                                 </a>
