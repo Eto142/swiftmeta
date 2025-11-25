@@ -546,9 +546,62 @@
                             @endif
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
+
+        <div class="card-body p-0">
+
+    <!-- Heading -->
+    <div class="p-3 border-bottom bg-light">
+        <h5 class="mb-0 fw-bold">User Notifications</h5>
+    </div>
+
+    <div class="tab-content p-3" id="activityTabsContent">
+
+        <!-- Notifications Tab -->
+        <div class="tab-pane fade show active" id="notifications" role="tabpanel">
+            <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Message</th>
+                            <th>User</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($notifications as $notification)
+                        <tr>
+                            <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('M j, Y') }}</td>
+                            <td>{{ $notification->message }}</td>
+                            <td>{{ $notification->user->name ?? 'N/A' }}</td>
+                            <td>
+                                <form action="{{ route('admin.delete.notification', $notification->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @if($notifications->isEmpty())
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">No notifications found</td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
     </div>
 
     <!-- All Modals -->

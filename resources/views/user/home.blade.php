@@ -23,7 +23,7 @@
             <!-- end page title -->
 
             <!-- Notification Marquee -->
-            <div class="row mb-4">
+            {{-- <div class="row mb-4">
                 <div class="col-12">
                     <div class="notification-bar ai-notification animate__animated animate__fadeIn">
                         <div class="marquee-container">
@@ -34,7 +34,29 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+
+              <div class="mb-4">
+                                <div class="tradingview-widget-container">
+                                    <div class="tradingview-widget-container__widget"></div>
+                                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                                    {
+                                        "symbols": [
+                                            { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
+                                            { "proName": "FOREXCOM:NSXUSD", "title": "Nasdaq 100" },
+                                            { "proName": "FX_IDC:EURUSD", "title": "EUR/USD" },
+                                            { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
+                                            { "proName": "BITSTAMP:ETHUSD", "title": "ETH/USD" }
+                                        ],
+                                        "showSymbolLogo": true,
+                                        "colorTheme": "light",
+                                        "isTransparent": false,
+                                        "displayMode": "adaptive",
+                                        "locale": "en"
+                                    }
+                                    </script>
+                                </div>
+                            </div>
 
             <!-- Stats Cards -->
             <div class="row">
@@ -164,31 +186,46 @@
                     </div>
                 </div>
 
-                <!-- Signal Strength Indicator -->
-                <div class="col-xl-6 col-md-12">
-                    <div class="card sweet-card ai-signal-card animate__animated animate__fadeInUp">
-                        <div class="card-body">
-                            <div class="signal-strength">
-                                <div class="signal-header">
-                                    <h5 class="card-title mb-2">
-                                        <i class="mdi mdi-access-point me-2"></i>AI Signal Strength
-                                    </h5>
-                                    <div class="signal-value ai-pulse">{{ Auth::user()->signal_strength }}%</div>
-                                </div>
-                                <div class="signal-progress-container">
-                                    <div class="signal-progress-bar" style="width: {{ Auth::user()->signal_strength }}%">
-                                        <div class="signal-progress-fill"></div>
-                                    </div>
-                                </div>
-                                <div class="signal-labels">
-                                    <span>Weak</span>
-                                    <span>Moderate</span>
-                                    <span>Strong</span>
-                                    <span>Excellent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              <!-- AI Signal Strength Card -->
+<div class="col-xl-6 col-md-12">
+    <div class="card sweet-card ai-signal-card shadow-sm border-0 animate__animated animate__fadeInUp">
+        <div class="card-body">
+
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h5 class="card-title mb-0 d-flex align-items-center">
+                    <i class="mdi mdi-access-point me-2 text-primary"></i>
+                    AI Signal Strength
+                </h5>
+
+                <div class="signal-value fw-bold text-primary" style="font-size: 1.2rem;">
+                    {{ Auth::user()->signal_strength }}%
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress" style="height: 10px; border-radius: 10px; background: #e9ecef;">
+                <div class="progress-bar" role="progressbar"
+                     style="width: {{ Auth::user()->signal_strength }}%; 
+                            background: linear-gradient(90deg, #4f8dfd, #6fb3ff); 
+                            box-shadow: 0 0 8px rgba(79,141,253,0.7);"
+                     aria-valuenow="{{ Auth::user()->signal_strength }}" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+
+            <!-- Labels -->
+            <div class="mt-3 d-flex justify-content-between text-muted small">
+                <span>Weak</span>
+                <span>Moderate</span>
+                <span>Strong</span>
+                <span>Excellent</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
                 </div>
             </div>
 

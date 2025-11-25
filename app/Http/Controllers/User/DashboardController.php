@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Debitprofit;
 use App\Models\Deposit;
 use App\Models\Earning;
-
+use App\Models\Notification;
 // Import your models
 use App\Models\Plan;
 use App\Models\Profit;
@@ -119,6 +119,19 @@ $data['eth_balance'] = $data['user_balance'] / $eth_price;
         
         return view('user.profile', $data);
     }
+
+
+public function UserNotification()
+{
+    $data = UserFinanceHelper::getUserFinancialData();
+
+    $data['notifications'] = Notification::where('user_id', auth()->id())
+        ->latest()
+        ->get();
+
+    return view('user.notification', $data);
+}
+
 
 
     

@@ -12,6 +12,7 @@ use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Withdrawal;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -80,7 +81,7 @@ public function userProfile($id)
     $withdrawal = Withdrawal::where('user_id', $id)->orderBy('id', 'desc')->get();
     $plan = Plan::where('user_id', $id)->orderBy('id', 'desc')->get();
     $earning = Earning::where('user_id', $id)->orderBy('id', 'desc')->get();
-    
+    $notifications = Notification::with('user')->orderBy('created_at', 'desc')->get();
     // Calculate totals
     $totalDeposit = DB::table('deposits')->where('user_id', $id)->where('status', '1')->sum('amount');
     $totalEarning = DB::table('earnings')->where('user_id', $id)->sum('amount');
@@ -101,6 +102,7 @@ public function userProfile($id)
 
     return view('admin.user_data', compact(
         'userProfile', 
+        'notifications',
         'userProfit', 
         'kyc',
         'deposit',

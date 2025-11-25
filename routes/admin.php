@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\ProfitController;
 use App\Http\Controllers\Admin\SendEmailController;
 use App\Http\Controllers\Admin\WalletController;
+use App\Http\Controllers\Admin\UserNotificationController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +62,7 @@ Route::post('/debit-profit', [DebitProfitController::class, 'debitUserProfit'])-
 
 // User Settings & Updates
 Route::post('/signal-strength/{id}', [ManageUserController::class, 'updateSignalStrength'])->name('signal.strength');
-Route::post('/update-notification/{id}', [ManageUserController::class, 'updateNotification'])->name('update.notification');
+// Route::post('/update-notification/{id}', [ManageUserController::class, 'updateNotification'])->name('update.notification');
 Route::post('/update-escrow/{id}', [ManageUserController::class, 'updateEscrow'])->name('update.escrow');
 Route::post('/update-tradefee/{id}', [ManageUserController::class, 'updateTradeFee'])->name('update.tradefee');
 
@@ -142,6 +143,17 @@ Route::post('/send-email', [SendEmailController::class, 'send'])->name('send.ema
 
 
     Route::get('/deposits', [ManageDepositController::class, 'UsersDepositHistory'])->name('deposits'); // becomes 'admin.user'
+
+
+
+    // Route::post('/add-notification/{id}', [UserNotificationController::class, 'addNotification'])
+    // ->name('update.notification');
+    Route::post('/add-notification/{id}', [UserNotificationController::class, 'addNotification'])
+    ->name('update.notification');
+
+  Route::delete('/notification/{id}', [UserNotificationController::class, 'deleteNotification'])->name('delete.notification');
+
+    // Route::post('/update-notification/{id}', [ManageUserController::class, 'updateNotification'])->name('update.notification');
 
 });
 });

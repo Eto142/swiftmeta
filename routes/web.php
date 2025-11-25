@@ -88,6 +88,7 @@ Route::prefix('user')
      Route::get('/profile', [DashboardController::class, 'Profile'])->name('profile'); // user.forex
      Route::get('/accounthistory', [DashboardController::class, 'AccountHistory'])->name('accounthistory'); // user.forex
       Route::get('/referuser', [DashboardController::class, 'Referuser'])->name('refer'); // user.forex
+     Route::get('/notifications', [DashboardController::class, 'UserNotification'])->name('notifications'); // user.forex
 
 Route::get('/verify-account', [DashboardController::class, 'verifyAccount'])->name('verify.account');
 Route::get('/upload-kyc', [DashboardController::class, 'uploadKyc']);
