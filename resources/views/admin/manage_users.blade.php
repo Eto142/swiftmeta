@@ -93,10 +93,16 @@
                              <i class="fas fa-eye"></i>
                              <span class="d-none d-lg-inline"> View</span>
                              </a>
-                            <button type="button" class="btn btn-outline-success" title="Send Mail">
-                                <i class="fas fa-envelope"></i>
-                                <span class="d-none d-lg-inline"> Mail</span>
-                            </button>
+                           <button type="button" 
+        class="btn btn-outline-success mail-btn"
+        data-email="{{ $user->email }}"
+        data-name="{{ $user->first_name }} {{ $user->last_name }}"
+        data-bs-toggle="modal" 
+        data-bs-target="#mailModal">
+    <i class="fas fa-envelope"></i>
+    <span class="d-none d-lg-inline"> Mail</span>
+</button>
+
                              <form action="{{route('admin.delete', $user->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
@@ -113,17 +119,22 @@
     </div>
     
     <!-- Pagination -->
-    <div class="card-footer d-flex justify-content-between align-items-center">
-        <div class="text-muted small">
+   <div class="card-footer">
+    <div class="row w-100">
+        <div class="col-md-6 text-start text-muted small mb-2">
             Showing <span class="fw-semibold">{{ $users->firstItem() }}</span> to 
             <span class="fw-semibold">{{ $users->lastItem() }}</span> of 
             <span class="fw-semibold">{{ $users->total() }}</span> entries
         </div>
-        {{ $users->links() }}
+
+        <div class="col-md-6 d-flex justify-content-md-end justify-content-center">
+            {!! $users->links('pagination::bootstrap-5') !!}
+        </div>
     </div>
 </div>
 
-<!-- Mail Compose Modal -->
+
+{{-- <!-- Mail Compose Modal -->
 <div class="modal fade" id="mailModal" tabindex="-1" aria-labelledby="mailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -132,30 +143,114 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="mailForm">
+                <form id="mailForm"  action="{{ route('admin.send.email.post') }}" method="POST">
                     @csrf
-                    <input type="hidden" id="mail_user_id" name="user_id">
-                    <div class="mb-3">
-                        <label for="mail_subject" class="form-label">Subject</label>
-                        <input type="text" class="form-control" id="mail_subject" name="subject" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="mail_message" class="form-label">Message</label>
-                        <textarea class="form-control" id="mail_message" name="message" rows="8" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="mail_attachments" class="form-label">Attachments</label>
-                        <input class="form-control" type="file" id="mail_attachments" name="attachments[]" multiple>
-                    </div>
+                  <div>
+            <label style="font-weight: bold;">Recipient Email</label>
+            <input type="email" name="to" value="{{ old('to') }}" required 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            @error('to')
+                <small style="color:red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div>
+            <label style="font-weight: bold;">Subject</label>
+            <input type="text" name="subject" value="{{ old('subject') }}" required 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            @error('subject')
+                <small style="color:red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div>
+            <label style="font-weight: bold;">Message</label>
+            <textarea name="message" rows="6" required 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; resize: vertical;">{{ old('message') }}</textarea>
+            @error('message')
+                <small style="color:red;">{{ $message }}</small>
+            @enderror
+        </div>
+          <button type="button" class="btn btn-primary" id="sendMailBtn">Send Email</button>
+
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="sendMailBtn">Send Email</button>
+              
             </div>
+        </div>
+    </div> --}}
+
+
+    <!-- Mail Compose Modal -->
+<div class="modal fade" id="mailModal" tabindex="-1" aria-labelledby="mailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="mailModalLabel">Send Email</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                
+                <form action="{{ route('admin.send.email.post') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="fw-bold">Recipient Email</label>
+                        <input id="mail_to" type="email" name="to" required class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-bold">Subject</label>
+                        <input id="mail_subject" type="text" name="subject" required class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-bold">Message</label>
+                        <textarea id="mail_message" name="message" rows="6" required class="form-control"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary w-100">Send Email</button>
+
+                </form>
+
+            </div>
+
         </div>
     </div>
 </div>
+
+</div>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll(".mail-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+
+            const email = btn.dataset.email;
+            const name  = btn.dataset.name;
+
+            // Update modal header
+            document.getElementById("mailModalLabel").innerText = "Send Email to " + name;
+
+            // Fill input fields
+            document.getElementById("mail_to").value = email;
+            document.getElementById("mail_subject").value = "Regarding Your Account";
+            document.getElementById("mail_message").value = "Dear " + name + ",\n\n";
+
+        });
+    });
+
+});
+</script>
+
 
 <!-- Success Toast -->
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">

@@ -158,67 +158,95 @@
             </div>
 
             <!-- Recent Users Section -->
-            <div class="card mb-4">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Recent Users</h5>
-                    <a href="{{ route('admin.users') }}" class="btn btn-sm btn-outline-primary">View All</a>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>User</th>
-                                    <th>Email</th>
-                                    <th>Joined</th>
-                                    <th class="text-end">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($recentUsers as $user)
-                                <tr>
-                                    <td>#{{ $user->id }}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="avatar-placeholder bg-primary text-white rounded-circle me-2" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
-                                                {{ substr($user->name, 0, 1) }}
-                                            </div>
-                                            <div>
-                                                <div class="fw-semibold">{{ $user->name }}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at->format('M j, Y') }}</td>
-                                    <td class="text-end">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="{{ route('admin.profile', $user->id) }}" class="btn btn-outline-primary" title="View" data-bs-toggle="tooltip">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="mailto:{{ $user->email }}" class="btn btn-outline-success" title="Send Email" data-bs-toggle="tooltip">
-                                                <i class="fas fa-envelope"></i>
-                                            </a>
-                                            <form action="{{route('admin.delete', $user->id) }}" method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-outline-danger" title="Delete" data-bs-toggle="tooltip">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="5" class="text-center py-4">No users registered yet</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+<div class="card mb-4">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center flex-wrap">
+        <h5 class="mb-0">Recent Users</h5>
+        <a href="{{ route('admin.users') }}" class="btn btn-sm btn-outline-primary mt-2 mt-sm-0">
+            View All
+        </a>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th class="d-none d-sm-table-cell">Email</th>
+                        <th class="d-none d-md-table-cell">Joined</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse($recentUsers as $user)
+                    <tr>
+                        <td>#{{ $user->id }}</td>
+
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-placeholder bg-primary text-white rounded-circle me-2"
+                                    style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;">
+                                    {{ substr($user->name, 0, 1) }}
+                                </div>
+                                <div class="fw-semibold">{{ $user->name }}</div>
+                            </div>
+
+                            <!-- Email for mobile -->
+                            <div class="text-muted small d-sm-none mt-1">
+                                {{ $user->email }}
+                            </div>
+
+                            <!-- Joined date for mobile -->
+                            <div class="text-muted small d-md-none mt-1">
+                                Joined: {{ $user->created_at->format('M j, Y') }}
+                            </div>
+                        </td>
+
+                        <td class="d-none d-sm-table-cell">
+                            {{ $user->email }}
+                        </td>
+
+                        <td class="d-none d-md-table-cell">
+                            {{ $user->created_at->format('M j, Y') }}
+                        </td>
+
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a href="{{ route('admin.profile', $user->id) }}"
+                                   class="btn btn-outline-primary" title="View">
+                                   <i class="fas fa-eye"></i>
+                                </a>
+
+                                <a href="mailto:{{ $user->email }}"
+                                   class="btn btn-outline-success" title="Send Email">
+                                   <i class="fas fa-envelope"></i>
+                                </a>
+
+                                <form action="{{ route('admin.delete', $user->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline-danger" title="Delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    @empty
+
+                    <tr>
+                        <td colspan="5" class="text-center py-4">No users registered yet</td>
+                    </tr>
+
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
 
