@@ -134,6 +134,23 @@ public function UserNotification()
 
 
 
+ // AJAX - mark as read
+    public function markRead(Request $request)
+    {
+        $message = Message::find($request->id);
+
+        if ($message && $message->is_read == 0) {
+            $message->update(['is_read' => 1]);
+        }
+
+        $newCount = Message::where('is_read', 0)->count();
+
+        return response()->json(['count' => $newCount]);
+    }
+
+
+
+
     
     public function CryptoBuy(){
 

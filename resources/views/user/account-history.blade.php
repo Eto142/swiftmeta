@@ -459,6 +459,113 @@
     }
 </style>
 
+<style>
+/* ============================================= */
+/* RESPONSIVE FIXES FOR ALL DEVICES */
+/* ============================================= */
+
+/* Make the analytics header responsive */
+@media (max-width: 767px) {
+    .ai-pulse-border .row {
+        text-align: center;
+    }
+
+    .ai-pulse-border h3 {
+        font-size: 1.3rem;
+    }
+
+    .ai-pulse-border p {
+        font-size: 0.9rem;
+    }
+
+    .ai-pulse-border .col-md-4 {
+        margin-top: 15px;
+        text-align: center !important;
+    }
+
+    .ai-pulse-border button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Stats cards */
+@media (max-width: 767px) {
+    .ai-stats-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Transaction table responsive */
+@media (max-width: 575px) {
+    .ai-transaction-table thead {
+        display: none; /* hide table header on phones */
+    }
+
+    .ai-transaction-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #eee !important;
+        padding: 12px;
+    }
+
+    .ai-transaction-table td {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        padding: 6px 0 !important;
+    }
+
+    .ai-transaction-table td:first-child {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .ai-transaction-table .amount-cell {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+/* Make title/breadcrumb responsive */
+@media (max-width: 767px) {
+    .page-title-box {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .page-title-right {
+        margin-top: 10px;
+    }
+}
+
+/* Icon containers scale properly */
+@media (max-width: 575px) {
+    .icon-container {
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 10px;
+    }
+
+    .icon {
+        font-size: 20px;
+    }
+}
+
+/* No transaction message */
+@media (max-width: 575px) {
+    .text-center.py-5 {
+        padding: 3rem 1rem !important;
+    }
+
+    .display-4 {
+        font-size: 2.5rem !important;
+    }
+}
+</style>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Number counting animation
