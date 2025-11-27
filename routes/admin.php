@@ -73,8 +73,8 @@ Route::post('/admin/withdrawal-status/{id}', [AdminController::class, 'updateWit
 // Approval Routes
 Route::post('/approve-deposit/{id}', [AdminController::class, 'approveDeposit'])->name('approve.deposit');
 Route::post('/decline-deposit/{id}', [AdminController::class, 'declineDeposit'])->name('decline.deposit');
-Route::post('/approve-withdrawal/{id}', [AdminController::class, 'approveWithdrawal'])->name('admin.approve.withdrawal');
-Route::post('/decline-withdrawal/{id}', [AdminController::class, 'declineWithdrawal'])->name('admin.decline.withdrawal');
+Route::post('/approve-withdrawal/{id}', [AdminController::class, 'approveWithdrawal'])->name('approve.withdrawal');
+Route::post('/decline-withdrawal/{id}', [AdminController::class, 'declineWithdrawal'])->name('decline.withdrawal');
 Route::post('/accept-kyc/{id}', [AdminController::class, 'acceptKyc'])->name('admin.accept.kyc');
 Route::post('/decline-kyc/{id}', [AdminController::class, 'declineKyc'])->name('admin.decline.kyc');
 
