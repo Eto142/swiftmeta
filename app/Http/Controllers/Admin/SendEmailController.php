@@ -14,23 +14,49 @@ class SendEmailController extends Controller
         return view('admin.send_email'); // Blade file: resources/views/admin/send_email.blade.php
     }
 
+    // public function send(Request $request)
+    // {
+    //     $request->validate([
+    //         'to'      => 'required|email',
+    //         'subject' => 'required|string|max:255',
+    //         'message' => 'required|string',
+    //     ]);
+
+    //     try {
+    //         Mail::to($request->to)->send(new AdminSendMail(
+    //             $request->subject,
+    //             $request->message
+    //         ));
+
+    //         return back()->with('success', 'Email sent successfully!');
+    //     } catch (\Exception $e) {
+    //         return back()->with('error', 'Failed to send email: ' . $e->getMessage());
+    //     }
+    // }
+
     public function send(Request $request)
-    {
-        $request->validate([
-            'to'      => 'required|email',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
+{
+    $request->validate([
+        'to'      => 'required|email',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string',
+    ]);
+
+    try {
+        Mail::to($request->to)->send(new AdminSendMail(
+            $request->subject,
+            $request->message
+        ));
+
+        return back()->with([
+            'status' => 'Email sent successfully!',
         ]);
 
-        try {
-            Mail::to($request->to)->send(new AdminSendMail(
-                $request->subject,
-                $request->message
-            ));
-
-            return back()->with('success', 'Email sent successfully!');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Failed to send email: ' . $e->getMessage());
-        }
+    } catch (\Exception $e) {
+        return back()->with([
+            'message' => 'Failed to send email: ' . $e->getMessage(),
+        ]);
     }
+}
+
 }
