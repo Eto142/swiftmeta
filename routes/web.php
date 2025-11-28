@@ -92,7 +92,7 @@ Route::prefix('user')
 
 Route::get('/verify-account', [DashboardController::class, 'verifyAccount'])->name('verify.account');
 Route::get('/upload-kyc', [DashboardController::class, 'uploadKyc']);
-Route::post('/upload-kyc', [DashboardController::class, 'uploadKyc']);
+Route::post('/upload-kyc', [DashboardController::class, 'uploadKyc'])->name('upload.kyc');
 
 Route::post('/profile-update',  [DashboardController::class, 'profileUpdate'])->name('profile.update');
 

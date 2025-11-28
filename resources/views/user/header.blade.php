@@ -8,8 +8,8 @@
         <meta charset="utf-8" />
         <title>Dashboard | swift meta - user dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose user dashboard" name="description" />
-        <meta content="Themesbrand" name="author" />
+        <meta content="user dashboard" name="description" />
+        <meta content="" name="" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -823,10 +823,10 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
                                     <span data-key="t-ecommerce">Trading Options</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="ecommerce-products.html" key="t-products">Forex Trade</a></li>
-                                    <li><a href="ecommerce-product-detail.html" data-key="t-product-detail">Binary Trade</a></li>
-                                    <li><a href="ecommerce-orders.html" data-key="t-orders">Stocks Trade</a></li>
-                                    <li><a href="ecommerce-customers.html" data-key="t-customers">Crypto Trade</a></li>
+                                    <li><a href="{{route('user.forex')}}" key="t-products">Forex Trade</a></li>
+                                    <li><a href="{{route('user.binary')}}" data-key="t-product-detail">Binary Trade</a></li>
+                                    <li><a href="{{route('user.stocks')}}" data-key="t-orders">Stocks Trade</a></li>
+                                    <li><a href="{{route('user.crypto')}}" data-key="t-customers">Crypto Trade</a></li>
                                    
                                 </ul>
                             </li>
