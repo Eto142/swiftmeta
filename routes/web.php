@@ -42,6 +42,7 @@ Route::get('/trade', function () {
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('show.register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/step2', [RegisterController::class, 'step2'])->name('user.step2');
+Route::post('/step3', [AuthController::class, 'step3'])->name('user.step3');
 
 
 
@@ -54,6 +55,9 @@ Route::post('/logout', [App\Http\Controllers\Auth\AuthController::class, 'logout
 
 
 Route::get('/step2', [AuthController::class, 'showpersonalDetailsForm'])->name('step2');
+Route::get('/step3', [AuthController::class, 'showVerifyForm'])->name('user.step3.form');
+Route::post('/resend-otp', [AuthController::class, 'resendOtp'])->name('user.resend.otp');
+
 
 Route::get('/update-details', [AuthController::class, 'showpersonalDetailsForm'])->name('update.details');
 Route::get('/verify', [AuthController::class, 'showVerifyForm'])->name('verify.form');
@@ -89,6 +93,9 @@ Route::prefix('user')
      Route::get('/accounthistory', [DashboardController::class, 'AccountHistory'])->name('accounthistory'); // user.forex
       Route::get('/referuser', [DashboardController::class, 'Referuser'])->name('refer'); // user.forex
      Route::get('/notifications', [DashboardController::class, 'UserNotification'])->name('notifications'); // user.forex
+      Route::post('/notifications/mark-all-read', [DashboardController::class, 'markAllRead'])->name('notifications.markAllRead');
+
+
 
 Route::get('/verify-account', [DashboardController::class, 'verifyAccount'])->name('verify.account');
 Route::get('/upload-kyc', [DashboardController::class, 'uploadKyc']);

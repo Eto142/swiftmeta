@@ -75,6 +75,12 @@ public function login(Request $request)
                     ->with('info', 'Please update your details to activate your account.');
             }
 
+              // Check if user is activated
+            if ($user->is_verified == 0) {
+                return redirect()->route('user.step3.form')
+                    ->with('info', 'Please update your details to activate your account.');
+            }
+
             // Redirect to home page if activated
             return redirect()->route('user.home')->with('success', 'Login successful!');
         }

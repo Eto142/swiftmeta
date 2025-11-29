@@ -219,6 +219,42 @@ public function WithdrawalStatus(Request $request, $id)
     }
 
 
+
+
+
+    
+    // public function acceptKyc($id)
+    // {
+
+    //     $user  = User::findOrFail($id);
+    //     $user->kyc_status = '1';
+    //     $user->save();
+    //     return back()->with('message', 'Kyc Approved Successfully');
+    // }
+
+
+    // public function declineKyc($id)
+    // {
+
+    //     $user  = User::findOrFail($id);
+    //     $user->kyc_status = '2';
+    //     $user->save();
+    //     return back()->with('message', 'Kyc Rejected Successfully');;
+    // }
+
+
+    public function updateKyc(Request $request, $id)
+{
+    $user = User::findOrFail($id);
+    $user->kyc_status = $request->kyc_status; // 1 or 0 or 2
+    $user->save();
+    
+   return back()->with('success', 'Kyc updated successfully');
+}
+
+    
+    
+    
 }
 
 

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AuthController extends Controller
 {
@@ -86,27 +87,80 @@ public function showpersonalDetailsForm()
 
 
 
-public function verifyCode(Request $request)
+// public function verifyCode(Request $request)
+// {
+//     $request->validate([
+//         'email' => 'required|email',
+//         'code'  => 'required|digits:6',
+//     ]);
+
+//     $user = User::where('email', $request->email)
+//                 ->where('verification_code', $request->code)
+//                 ->first();
+
+//     if ($user) {
+//         $user->is_verified = 1; // integer instead of true
+//         $user->verification_code = null;
+//         $user->save();
+
+//         return redirect()->route('login')->with('success', 'Account verified! You can now log in.');
+//     }
+
+//     return back()->withErrors(['code' => 'Invalid verification code.']);
+// }
+
+
+    // Step 3 POST: verify OTP
+    public function step3(Request $request)
 {
     $request->validate([
-        'email' => 'required|email',
-        'code'  => 'required|digits:6',
+        'otp_code' => 'required|digits:4',
     ]);
 
-    $user = User::where('email', $request->email)
-                ->where('verification_code', $request->code)
-                ->first();
-
-    if ($user) {
-        $user->is_verified = 1; // integer instead of true
-        $user->verification_code = null;
-        $user->save();
-
-        return redirect()->route('login')->with('success', 'Account verified! You can now log in.');
+    $user = Auth::user();
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
     }
 
-    return back()->withErrors(['code' => 'Invalid verification code.']);
+    if ($request->otp_code == $user->otp_code) {
+        $user->is_verified = 1;
+        $user->otp_code = null; // Clear OTP
+        $user->save();
+
+        return redirect()->route('user.home')->with('success', 'Your account has been verified!');
+    }
+
+    return back()->with('error', 'Failed to verify OTP. Please try again.');
 }
 
 
+
+public function resendOtp(Request $request)
+{
+    $user = Auth::user();
+
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'Please login first.');
+    }
+
+    // Generate new 4-digit OTP
+    $otp = rand(1000, 9999);
+
+    // Save OTP to user in DB
+    $user->otp_code = $otp;
+    $user->save();
+
+    // Send OTP via email (or SMS)
+    // Mail::to($user->email)->send(new OtpMail($otp));
+    // OR your preferred method
+
+       // Send OTP email
+        Mail::to($user->email)->send(new OtpMail($user, $otp));
+
+    return back()->with('success', 'A new OTP has been sent to your email.');
 }
+
+}
+
+
+

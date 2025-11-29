@@ -28,7 +28,8 @@ class User extends Authenticatable
         'phone',
         'is_activated',
         'country',
-
+        'otp_code',
+        'is_verified',
         'password',
   
     ];

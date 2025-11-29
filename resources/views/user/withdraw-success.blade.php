@@ -1,119 +1,124 @@
-
-
 <!DOCTYPE html>
 <html lang="zxx" class="js">
-
 <head>
     <base href=".">
     <meta charset="utf-8">
-    <meta name="author" content="Softnio">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
-    <!-- Fav Icon  -->
-    <link rel="shortcut icon" href="images/favicon.png">
-    <!-- Page Title  -->
     <title>Withdrawal Successful</title>
-    <!-- StyleSheets  -->
     <link rel="stylesheet" href="{{ asset('assets1/css/dashlite.css') }}" />
+    <link id="skin-default" rel="stylesheet" href="{{ asset('assets1/css/theme.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link
-      id="skin-default"
-      rel="stylesheet"
-      href="{{ asset('assets1/css/theme.css') }}">
 </head>
 
-<body class="nk-body npc-crypto bg-white has-sidebar ">
-        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-            <div class="modal-content">
-              
+<body class="nk-body npc-crypto bg-white has-sidebar">
 
-                <div class="modal-body modal-body-lg text-center">
-                    <div class="nk-modal">
-                            @if($mode=='Bitcoin')
-                        <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
-                        <h4 class="nk-modal-title">Order of <strong id="btc">{{ $btcAmount }} BTC </strong> for <strong id="price">{{ $withdrawal_amount }}</strong> USD was  Sent successfully .</h4>
-                        <div class="nk-modal-text">
-                            
-                        </div>
-                        <div class="nk-modal-action-lg">
-                            <ul class="btn-group gx-4">
-                                <li><a href="{{url('/dashboard')}}" class="btn btn-lg btn-mw btn-primary">Return</a></li>
-                            </ul>
-                        </div>
+<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body modal-body-lg text-center">
+            <div class="nk-modal">
+
+                <!-- SUCCESS ICON -->
+                <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
+
+                <!-- ==============================
+                    BITCOIN WITHDRAWAL SUCCESS
+                ================================= -->
+                @if($mode == 'Btc')
+                    <h4 class="nk-modal-title mt-3">
+                        Bitcoin Withdrawal Successful
+                    </h4>
+
+                    <div class="nk-modal-text mt-2">
+                        <p>
+                            You sent <strong>{{ $btcAmount }} BTC</strong>
+                        </p>
+                        <p>
+                            Equivalent Value: <strong>${{ $withdrawal_amount }}</strong>
+                        </p>
+                        <p>
+                            Wallet Address: <strong>{{ $wallet }}</strong>
+                        </p>
                     </div>
-                </div><!-- .modal-body -->
-                <div class="modal-footer bg-lighter">
-                    <div class="text-center w-100">
-                        <p>Earn upto $25 for each friend your refer! </p>
+
+                <!-- ==============================
+                    ETHEREUM WITHDRAWAL SUCCESS
+                ================================= -->
+                @elseif($mode == 'Eth')
+                    <h4 class="nk-modal-title mt-3">
+                        Ethereum Withdrawal Successful
+                    </h4>
+
+                    <div class="nk-modal-text mt-2">
+                        <p>
+                            You sent <strong>{{ $ethAmount }} ETH</strong>
+                        </p>
+                        <p>
+                            Equivalent Value: <strong>${{ $withdrawal_amount }}</strong>
+                        </p>
+                        <p>
+                            Wallet Address: <strong>{{ $wallet }}</strong>
+                        </p>
                     </div>
-                </div>
-                
-                  @elseif($mode=='Ethereum')
-                   <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
-                        <h4 class="nk-modal-title">Order of <strong id="btc">{{ $ethAmount }} ETH </strong> for <strong id="price">{{ $withdrawal_amount }}</strong> USD was  Sent successfully .</h4>
-                        <div class="nk-modal-text">
-                            
-                        </div>
-                        <div class="nk-modal-action-lg">
-                            <ul class="btn-group gx-4">
-                                <li><a href="{{url('/dashboard')}}" class="btn btn-lg btn-mw btn-primary">Return</a></li>
-                            </ul>
-                        </div>
+
+                <!-- ==============================
+                    BANK WITHDRAWAL SUCCESS
+                ================================= -->
+                @elseif($mode == 'Bank')
+                    <h4 class="nk-modal-title mt-3">
+                        Bank Withdrawal Successful
+                    </h4>
+
+                    <div class="nk-modal-text mt-2">
+                        <p>
+                            Amount Sent: <strong>${{ $withdrawal_amount }}</strong>
+                        </p>
+
+                        <p>Bank Name: <strong>{{ $withdrawal->bank_name }}</strong></p>
+                        <p>Account Name: <strong>{{ $withdrawal->account_name }}</strong></p>
+                        <p>Account Number: <strong>{{ $withdrawal->account_number }}</strong></p>
+                        <p>Country: <strong>{{ $withdrawal->bank_country }}</strong></p>
+                        <p>SWIFT: <strong>{{ $withdrawal->swift }}</strong></p>
+                        <p>Currency: <strong>{{ $withdrawal->currency }}</strong></p>
+                        <p>ZIP Code: <strong>{{ $withdrawal->zip }}</strong></p>
                     </div>
-                </div><!-- .modal-body -->
-                <div class="modal-footer bg-lighter">
-                    <div class="text-center w-100">
-                        <p>Earn upto $25 for each friend your refer! </p>
-                    </div>
-                </div>
-                
-                    @elseif($mode=='Bank')
-                   <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-check bg-success"></em>
-                        <h4 class="nk-modal-title">Order of Bank Withdrawal<strong id="price">{{ $withdrawal_amount }}</strong> USD was  Sent successfully .</h4>
-                        <div class="nk-modal-text">
-                            
-                        </div>
-                        <div class="nk-modal-action-lg">
-                            <ul class="btn-group gx-4">
-                                <li><a href="{{url('/dashboard')}}" class="btn btn-lg btn-mw btn-primary">Return</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!-- .modal-body -->
-                <div class="modal-footer bg-lighter">
-                    <div class="text-center w-100">
-                        <p>Earn upto $25 for each friend your refer! </p>
-                    </div>
-                </div>
                 @endif
-             
-               
-                
-            </div><!-- .modal-content -->
-        </div><!-- .modla-dialog -->
-    </div><!-- .modal -->
-	<script src="assets/js/bundle.js"></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="assets/js/charts/chart-crypto.js"></script>
-	</body>
+
+                <div class="nk-modal-action-lg mt-4">
+                    <ul class="btn-group gx-4">
+                        <li>
+                            <a href="{{ route('user.home') }}" class="btn btn-lg btn-primary">
+                                Return to Dashboard
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-footer bg-lighter">
+            <div class="text-center w-100">
+                <p>Earn up to $25 for each friend you refer!</p>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
-
-<!-- Withdrawal In Progress Popup -->
-<div class="modal fade" id="withdrawalProgressModal" tabindex="-1" role="dialog" aria-labelledby="withdrawalProgressLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+<!-- WITHDRAWAL IN PROGRESS POPUP -->
+<div class="modal fade" id="withdrawalProgressModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md">
     <div class="modal-content rounded-4 shadow border-0">
       <div class="modal-body modal-body-lg text-center p-5">
         <div class="nk-modal">
-          <!-- Icon -->
+
           <em class="nk-modal-icon icon icon-circle icon-circle-xxl ni ni-clock bg-primary text-white shadow-sm"></em>
 
-          <!-- Title -->
           <h4 class="nk-modal-title mt-3 fw-semibold text-dark">
             Withdrawal Processing
           </h4>
 
-          <!-- Message -->
           <div class="nk-modal-text mt-3">
             <p class="fs-6 text-secondary mb-2">
               Your withdrawal request is being processed securely.
@@ -124,7 +129,6 @@
             </p>
           </div>
 
-          <!-- Action Buttons -->
           <div class="nk-modal-action-lg mt-4">
             <ul class="btn-group gx-3 justify-content-center">
               <li>
@@ -139,6 +143,7 @@
               </li>
             </ul>
           </div>
+
         </div>
       </div>
     </div>
@@ -146,9 +151,12 @@
 </div>
 
 <script>
-// Auto show popup when page loads
+// Auto-show processing popup
 window.onload = function(){
     var myModal = new bootstrap.Modal(document.getElementById('withdrawalProgressModal'));
     myModal.show();
 }
 </script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 
     
-<!-- Mirrored from themesbrand.com/swift meta/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Nov 2025 21:17:32 GMT -->
+<!-- Mirrored from themesbrand.com/swift meta/layouts/{{route('user.home')}} by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Nov 2025 21:17:32 GMT -->
 <head>
 
         <meta charset="utf-8" />
@@ -42,21 +42,21 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{route('user.home')}}" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                    <img src="logo.png" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">swift meta</span>
+                                    <img src="logo.png" alt="" height="24"> <span class="logo-txt">swift meta</span>
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{route('user.home')}}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="30">
+                                    <img src="logo.png" alt="" height="30">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">swift meta</span>
+                                    <img src="logo.png" alt="" height="24"> <span class="logo-txt">swift meta</span>
                                 </span>
                             </a>
                         </div>
@@ -345,7 +345,7 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
 
     .ai-bell-icon {
         transition: all 0.3s ease;
-        color: #6c757d;
+        color: #ffffffff;
     }
 
     .ai-notification-btn:hover .ai-bell-icon {
@@ -623,7 +623,180 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
     }
 </style>
 
+
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize notification animations
+    const notificationBtn = document.querySelector('.ai-notification-btn');
+    const notificationDropdown = document.querySelector('.ai-notification-dropdown');
+    
+    // Add click animation to bell icon
+    notificationBtn.addEventListener('click', function() {
+        const bellIcon = this.querySelector('.ai-bell-icon');
+        bellIcon.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            bellIcon.style.transform = 'scale(1)';
+        }, 300);
+    });
+
+    // Show/hide bell ring animation based on unread count
+    const unreadCount = {{ $unreadCount }};
+    const bellRing = document.querySelector('.ai-bell-ring');
+    
+    if (unreadCount > 0) {
+        bellRing.style.display = 'block';
+    } else {
+        bellRing.style.display = 'none';
+    }
+
+    // Add hover effects to notification items
+    const notificationItems = document.querySelectorAll('.ai-notification-item');
+    notificationItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+
+    // Clear unread count and mark all notifications read on dropdown open
+    const dropdownEl = document.getElementById('page-header-notifications-dropdown');
+    const badge = document.querySelector('.ai-notification-badge');
+    const unreadSpan = document.querySelector('.ai-pulse-badge');
+
+    dropdownEl.addEventListener('show.bs.dropdown', function () {
+        // Clear badge UI
+        if (badge) badge.textContent = '';
+        if (unreadSpan) unreadSpan.textContent = 'Unread (0)';
+
+        // Update notification items visually
+        const unreadItems = document.querySelectorAll('.ai-notification-item[data-read="false"]');
+        unreadItems.forEach(item => {
+            item.setAttribute('data-read', 'true');
+            item.querySelector('.ai-notification-icon').classList.remove('bg-primary-subtle');
+            item.querySelector('.ai-notification-icon').classList.add('bg-secondary-subtle');
+            const icon = item.querySelector('.ai-notification-icon i');
+            if (icon) {
+                icon.classList.remove('bx-bell-ring', 'text-primary');
+                icon.classList.add('bx-bell', 'text-secondary');
+            }
+            item.querySelector('.ai-pulse-dot')?.remove();
+            item.querySelector('.ai-notification-progress')?.remove();
+            item.querySelector('.unread-text')?.classList.remove('unread-text');
+            item.style.borderLeft = 'none';
+            item.style.background = 'white';
+        });
+
+        // Mark all notifications as read in backend
+        fetch('{{ route("user.notifications.markAllRead") }}', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+          .then(data => {
+              if(data.success) console.log('All notifications marked as read.');
+          });
+    });
+});
+
+// Notification actions
+function markNotificationAsRead(notificationId) {
+    const item = document.querySelector(`[data-notification-id="${notificationId}"]`);
+    
+    item.style.animation = 'fadeOutLeft 0.5s ease';
+    
+    setTimeout(() => {
+        item.setAttribute('data-read', 'true');
+        item.querySelector('.ai-notification-icon').classList.remove('bg-primary-subtle');
+        item.querySelector('.ai-notification-icon').classList.add('bg-secondary-subtle');
+        item.querySelector('.ai-notification-icon i').classList.remove('bx-bell-ring', 'text-primary');
+        item.querySelector('.ai-notification-icon i').classList.add('bx-bell', 'text-secondary');
+        item.querySelector('.ai-pulse-dot')?.remove();
+        item.querySelector('.ai-notification-progress')?.remove();
+        item.querySelector('.unread-text')?.classList.remove('unread-text');
+        item.querySelector('.ai-mark-read-btn')?.remove();
+        item.style.borderLeft = 'none';
+        item.style.background = 'white';
+        item.style.animation = 'fadeInRight 0.5s ease';
+        updateNotificationBadge();
+    }, 500);
+}
+
+function markAllNotificationsAsRead() {
+    const unreadItems = document.querySelectorAll('.ai-notification-item[data-read="false"]');
+    unreadItems.forEach((item, index) => {
+        setTimeout(() => {
+            markNotificationAsRead(item.getAttribute('data-notification-id'));
+        }, index * 100);
+    });
+}
+
+function deleteNotification(notificationId) {
+    const item = document.querySelector(`[data-notification-id="${notificationId}"]`);
+    
+    item.style.animation = 'fadeOutRight 0.5s ease';
+    
+    setTimeout(() => {
+        item.remove();
+        updateNotificationBadge();
+        const remainingItems = document.querySelectorAll('.ai-notification-item').length;
+        if (remainingItems === 0) {
+            const list = document.querySelector('.ai-notification-list');
+            list.innerHTML = `
+                <div class="text-center py-5 ai-empty-state">
+                    <div class="ai-empty-icon mb-3">
+                        <i class="mdi mdi-bell-off-outline display-4 text-muted"></i>
+                    </div>
+                    <h6 class="text-muted mb-2">No notifications yet</h6>
+                    <p class="text-muted small">We'll notify you when something arrives</p>
+                </div>
+            `;
+        }
+    }, 500);
+}
+
+function updateNotificationBadge() {
+    const unreadItems = document.querySelectorAll('.ai-notification-item[data-read="false"]').length;
+    const badge = document.querySelector('.ai-notification-badge');
+    const unreadSpan = document.querySelector('.ai-pulse-badge');
+    
+    if (unreadItems > 0) {
+        badge.textContent = unreadItems;
+        unreadSpan.textContent = `Unread (${unreadItems})`;
+    } else {
+        badge?.remove();
+        unreadSpan.textContent = 'Unread (0)';
+        document.querySelector('.ai-bell-ring').style.display = 'none';
+    }
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeOutLeft {
+        from { opacity: 1; transform: translateX(0); }
+        to { opacity: 0; transform: translateX(-50px); }
+    }
+    
+    @keyframes fadeInRight {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeOutRight {
+        from { opacity: 1; transform: translateX(0); }
+        to { opacity: 0; transform: translateX(50px); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+
+
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Initialize notification animations
         const notificationBtn = document.querySelector('.ai-notification-btn');
@@ -766,7 +939,7 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
         }
     `;
     document.head.appendChild(style);
-</script>
+</script> --}}
 
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item right-bar-toggle me-2">
@@ -802,6 +975,17 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
 
                     <!--- Sidemenu -->
                     <div id="sidebar-menu">
+
+                         {{-- <li class="menu-title" data-key="t-menu">Available Balance</li>
+                           <li>
+                                <a href="#">
+                                    <i data-feather="home"></i>
+                                    <span class="badge rounded-pill bg-success-subtle text-success float-end"></span>
+                                    <span data-key="t-dashboard">{{$btc_balance}}</span>
+                                </a>
+                            </li> --}}
+                        
+
                         <!-- Left Menu Start -->
                         <ul class="metismenu list-unstyled" id="side-menu">
                             <li class="menu-title" data-key="t-menu">Menu</li>
@@ -951,5 +1135,52 @@ $unreadCount = $userNotifications->where('is_read', 0)->count();
                 </div>
             </div>
             <!-- Left Sidebar End -->
+
+            @if(Auth::user()->kyc_status == '1')
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1055; min-width: 300px;">
+    <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-check-circle-fill me-2" style="font-size: 1.3rem;"></i>
+                    <div>
+                        <strong>KYC Verified!</strong><br>
+                        Your account is fully verified.
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+@else
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 1055; min-width: 300px;">
+    <div class="toast align-items-center text-bg-warning border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-exclamation-triangle-fill me-2" style="font-size: 1.3rem;"></i>
+                    <div>
+                        <strong>KYC Not Verified!</strong><br>
+                        Please upload and verify your KYC documents to continue.
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+@endif
+
+<!-- Optional: Auto hide after 5 seconds -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, { delay: 5000, autohide: true }).show()
+        })
+    });
+</script>
+
 
             

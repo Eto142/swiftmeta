@@ -163,87 +163,301 @@ public function bankUpdate(Request $request)
 
 
 
-    public function makeWithdrawal(Request $request)
-{
+//     public function makeWithdrawal(Request $request)
+// {
     
-    $method = $request->input('item');
-    $data['method'] = $method;
-    $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
-    $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
-    $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
-    $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
-    $data['profit'] = $data['addprofit'] - $data['debitprofit'];
-    $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
-    $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
-    $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
-    $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
+//     $method = $request->input('item');
+//     $data['method'] = $method;
+//     $data['deposit'] = Deposit::where('user_id', Auth::user()->id)->where('status', '1')->sum('amount');
+//     $data['withdrawal'] = Withdrawal::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['addprofit'] = Profit::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['debitprofit'] = Debitprofit::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['profit'] = $data['addprofit'] - $data['debitprofit'];
+//     $data['earning'] = Earning::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['plan'] = Plan::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['referral'] = Refferal::where('user_id', Auth::user()->id)->sum('amount');
+//     $data['balance'] = $data['profit'] + $data['deposit'] + $data['earning'] + $data['referral'] - $data['withdrawal'] - $data['plan'];
     
-    $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
-    $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
-    $data['user_balance'] =  $data['credit'] - $data['debit'];
+//     $data['credit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('credit');
+//     $data['debit'] = Transaction::where('user_id', Auth::user()->id)->where('status', '1')->sum('debit');
+//     $data['user_balance'] =  $data['credit'] - $data['debit'];
 
  
 
-    if ($data['user_balance'] <= '0') {
-          return redirect()->route('user.withdrawal')
-    ->with('status', 'Your Balance Is Insufficient');
+//     if ($data['user_balance'] <= '0') {
+//           return redirect()->route('user.withdrawal')
+//     ->with('status', 'Your Balance Is Insufficient');
+//     }
+
+ 
+
+//     $transaction_id = rand(76503737, 12344994);
+//     $with = new Withdrawal;
+//     $with->transaction_id = $transaction_id;
+//     $with->user_id = Auth::user()->id;
+//     $with->amount = $request['amount'];
+//     $with->status = 0;
+//     $with->mode = $request['mode'];
+//     $with->account_name = $request['account_name'];
+//     $with->account_number = $request['account_number'];
+//     $with->bank_name = $request['bank_name'];
+//     $with->bank_routing_number = $request['bank_routing_number'];
+//     $with->swift = $request['swift'];
+//     $with->bank_country = $request['bank_country'];
+//     $with->currency = $request['currency'];
+//     $with->zip = $request['zip'];
+//     $with->crypto_type = $request['crypto_type'];
+//     $with->wallet_address = $request['wallet_address'];
+//     $mode = $request->input('payment');
+//     $data['mode'] = $mode;
+    
+//     //   // Calculate BTC and ETH amounts
+//     // $with->btc_amount = $with->amount / $priceBTC;
+//     // $with->eth_amount = $with->amount / $priceETH;
+//        // Check if the withdrawal amount exceeds the user's balance
+//     if ($request['amount'] > $data['user_balance']) {
+//        return redirect()->route('user.withdrawal')
+//     ->with('error', 'Withdrawal amount exceeds available balance.');
+
+//     }
+//     $with->save();
+
+
+//     $transaction = new Transaction;
+//     $transaction->user_id = Auth::user()->id;
+//     $transaction->transaction_id = $transaction_id;
+//     $transaction->transaction_type = "Debit";
+//     $transaction->transaction = "debit";
+//     $transaction->credit = "0";
+//     $transaction->debit = $request['amount'];
+//     $transaction->status = 0;
+//     $transaction->save();
+    
+    
+//       // Prepare data to pass to the view
+//      $dataForView = [
+//         'withdrawal' => $with,
+//         'withdrawal_amount' => $request['amount'], // Pass withdrawal amount
+//         'mode' => $request->input('mode'), // Pass item
+//         'btcAmount' => $with->btc_amount,
+//         'ethAmount' => $with->eth_amount
+//     ];
+
+//     return view('user.withdraw-success', $dataForView);
+// }
+
+
+// public function makeWithdrawal(Request $request)
+// {
+//     $userId = Auth::id();
+
+//     // Balance calculations
+//     $data['deposit']     = Deposit::where('user_id', $userId)->where('status', '1')->sum('amount');
+//     $data['withdrawal']  = Withdrawal::where('user_id', $userId)->sum('amount');
+//     $data['addprofit']   = Profit::where('user_id', $userId)->sum('amount');
+//     $data['debitprofit'] = Debitprofit::where('user_id', $userId)->sum('amount');
+//     $data['profit']      = $data['addprofit'] - $data['debitprofit'];
+//     $data['earning']     = Earning::where('user_id', $userId)->sum('amount');
+//     $data['plan']        = Plan::where('user_id', $userId)->sum('amount');
+//     $data['referral']    = Refferal::where('user_id', $userId)->sum('amount');
+
+//     $data['balance'] = 
+//         $data['profit'] + 
+//         $data['deposit'] + 
+//         $data['earning'] + 
+//         $data['referral'] -
+//         $data['withdrawal'] - 
+//         $data['plan'];
+
+//     // Transaction balance
+//     $data['credit'] = Transaction::where('user_id', $userId)->where('status', '1')->sum('credit');
+//     $data['debit']  = Transaction::where('user_id', $userId)->where('status', '1')->sum('debit');
+
+//     $data['user_balance'] = $data['credit'] - $data['debit'];
+
+//     // Check if insufficient balance
+//     if ($data['user_balance'] <= 0) {
+//         return redirect()->route('user.withdrawal')
+//             ->with('status', 'Your Balance Is Insufficient');
+//     }
+
+//     // Check if amount > balance
+//     if ($request->amount > $data['user_balance']) {
+//         return redirect()->route('user.withdrawal')
+//             ->with('error', 'Withdrawal amount exceeds available balance.');
+//     }
+
+//     // Create withdrawal
+//     $transaction_id = rand(10000000, 99999999);
+
+//     $with = new Withdrawal;
+//     $with->transaction_id = $transaction_id;
+//     $with->user_id        = $userId;
+//     $with->amount         = $request->amount;
+//     $with->status         = 0;
+
+//     // MODE — MATCHING YOUR FORM
+//     $with->mode = $request->payment;
+
+//     // CRYPTO FIELDS
+//     $with->wallet_address = $request->wallet;
+
+//     // BANK FIELDS
+//     $with->account_name        = $request->acc_name;
+//     $with->account_number      = $request->acc_no;
+//     $with->bank_name           = $request->bank_name;
+//     $with->bank_country        = $request->country;
+//     $with->swift               = $request->swift;
+//     $with->currency            = $request->currency;
+//     $with->zip                 = $request->zip;
+
+//     $with->save();
+
+//     // Insert transaction
+//     $transaction = new Transaction;
+//     $transaction->user_id        = $userId;
+//     $transaction->transaction_id = $transaction_id;
+//     $transaction->transaction_type = "Debit";
+//     $transaction->transaction      = "debit";
+//     $transaction->credit           = 0;
+//     $transaction->debit            = $request->amount;
+//     $transaction->status           = 0;
+//     $transaction->save();
+
+//     // SEND TO SUCCESS PAGE
+//     return view('user.withdraw-success', [
+//         'withdrawal'        => $with,
+//         'withdrawal_amount' => $request->amount,
+//         'mode'              => $request->payment,
+//         'wallet'            => $request->wallet,
+//         'btcAmount'         => $with->btc_amount ?? null,
+//         'ethAmount'         => $with->eth_amount ?? null
+//     ]);
+// }
+
+
+
+
+public function makeWithdrawal(Request $request)
+{
+    $userId = Auth::id();
+
+    // ============================
+    // 1. CALCULATE USER BALANCE
+
+    $data['deposit']     = Deposit::where('user_id', $userId)->where('status', '1')->sum('amount');
+    $data['withdrawal']  = Withdrawal::where('user_id', $userId)->sum('amount');
+    $data['addprofit']   = Profit::where('user_id', $userId)->sum('amount');
+    $data['debitprofit'] = Debitprofit::where('user_id', $userId)->sum('amount');
+    $data['profit']      = $data['addprofit'] - $data['debitprofit'];
+    $data['earning']     = Earning::where('user_id', $userId)->sum('amount');
+    $data['plan']        = Plan::where('user_id', $userId)->sum('amount');
+    $data['referral']    = Refferal::where('user_id', $userId)->sum('amount');
+
+    $data['balance'] =
+        $data['profit'] +
+        $data['deposit'] +
+        $data['earning'] +
+        $data['referral'] -
+        $data['withdrawal'] -
+        $data['plan'];
+
+    // TRANSACTION BALANCE
+    $data['credit'] = Transaction::where('user_id', $userId)->where('status', '1')->sum('credit');
+    $data['debit']  = Transaction::where('user_id', $userId)->where('status', '1')->sum('debit');
+
+    $data['user_balance'] = $data['credit'] - $data['debit'];
+
+    // INSUFFICIENT BALANCE
+    if ($data['user_balance'] <= 0) {
+        return redirect()->route('user.withdrawal')
+            ->with('status', 'Your Balance Is Insufficient');
     }
 
- 
+    if ($request->amount > $data['user_balance']) {
+        return redirect()->route('user.withdrawal')
+            ->with('error', 'Withdrawal amount exceeds available balance.');
+    }
 
-    $transaction_id = rand(76503737, 12344994);
+    // ============================
+    // 2. LIVE CRYPTO PRICE FETCH (BTC & ETH)
+
+    try {
+        $response = file_get_contents("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd");
+        $prices = json_decode($response, true);
+        $priceBTC = $prices['bitcoin']['usd'] ?? null;
+        $priceETH = $prices['ethereum']['usd'] ?? null;
+    } catch (\Exception $e) {
+        $priceBTC = null;
+        $priceETH = null;
+    }
+
+    // Fallback prices
+    if (!$priceBTC) $priceBTC = 60000;
+    if (!$priceETH) $priceETH = 3000;
+
+    // ============================
+    // 3. CREATE WITHDRAWAL
+    
+    $transaction_id = rand(10000000, 99999999);
+
     $with = new Withdrawal;
     $with->transaction_id = $transaction_id;
-    $with->user_id = Auth::user()->id;
-    $with->amount = $request['amount'];
-    $with->status = 0;
-    $with->mode = $request['mode'];
-    $with->account_name = $request['account_name'];
-    $with->account_number = $request['account_number'];
-    $with->bank_name = $request['bank_name'];
-    $with->bank_routing_number = $request['bank_routing_number'];
-    $with->swift = $request['swift'];
-    $with->bank_country = $request['bank_country'];
-    $with->currency = $request['currency'];
-    $with->zip = $request['zip'];
-    $with->crypto_type = $request['crypto_type'];
-    $with->wallet_address = $request['wallet_address'];
-    $mode = $request->input('mode');
-    $data['mode']=$mode;
-    
-    //   // Calculate BTC and ETH amounts
-    // $with->btc_amount = $with->amount / $priceBTC;
-    // $with->eth_amount = $with->amount / $priceETH;
-       // Check if the withdrawal amount exceeds the user's balance
-    if ($request['amount'] > $data['user_balance']) {
-       return redirect()->route('user.withdrawal')
-    ->with('error', 'Withdrawal amount exceeds available balance.');
+    $with->user_id        = $userId;
+    $with->amount         = $request->amount;
+    $with->status         = 0;
+    $with->mode           = $request->payment;
 
+    // CRYPTO FIELDS
+    $with->wallet_address = $request->wallet;
+
+    // BANK FIELDS
+    $with->account_name        = $request->acc_name;
+    $with->account_number      = $request->acc_no;
+    $with->bank_name           = $request->bank_name;
+    $with->bank_country        = $request->country;
+    $with->swift               = $request->swift;
+    $with->currency            = $request->currency;
+    $with->zip                 = $request->zip;
+
+    // ============================
+    // 4. CALCULATE BTC & ETH AMOUNT
+  
+
+    if ($request->payment === 'Btc') {
+        $with->btc_amount = round($request->amount / $priceBTC, 8);
     }
+
+    if ($request->payment === 'Eth') {
+        $with->eth_amount = round($request->amount / $priceETH, 8);
+    }
+
     $with->save();
 
-
+    // ============================
+    // 5. CREATE TRANSACTION RECORD
+ 
     $transaction = new Transaction;
-    $transaction->user_id = Auth::user()->id;
+    $transaction->user_id        = $userId;
     $transaction->transaction_id = $transaction_id;
     $transaction->transaction_type = "Debit";
-    $transaction->transaction = "debit";
-    $transaction->credit = "0";
-    $transaction->debit = $request['amount'];
-    $transaction->status = 0;
+    $transaction->transaction      = "debit";
+    $transaction->credit           = 0;
+    $transaction->debit            = $request->amount;
+    $transaction->status           = 0;
     $transaction->save();
-    
-    
-      // Prepare data to pass to the view
-     $dataForView = [
-        'withdrawal' => $with,
-        'withdrawal_amount' => $request['amount'], // Pass withdrawal amount
-        'mode' => $request->input('mode'), // Pass item
-        'btcAmount' => $with->btc_amount,
-        'ethAmount' => $with->eth_amount
-    ];
 
-    return view('user.withdraw-success', $dataForView);
+    // ============================
+    // 6. RETURN SUCCESS PAGE
+    return view('user.withdraw-success', [
+        'withdrawal'        => $with,
+        'withdrawal_amount' => $request->amount,
+        'mode'              => $request->payment,
+        'wallet'            => $request->wallet,
+        'btcAmount'         => $with->btc_amount ?? null,
+        'ethAmount'         => $with->eth_amount ?? null,
+    ]);
 }
+
 
 }

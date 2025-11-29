@@ -9,7 +9,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18 animate__animated animate__fadeInDown animate__faster">🔔 AI Notifications Center</h4>
+                        <h4 class="mb-sm-0 font-size-18 animate__animated animate__fadeInDown animate__faster">
+                            🔔 AI Notifications Center
+                        </h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
@@ -38,13 +40,100 @@
                 </div>
             </div>
 
-         
-           
+            {{-- <!-- Statistics Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card ai-stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="sweet-icon bg-primary me-3">
+                                    <i class="mdi mdi-bell-ring-outline display-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 ai-count" data-target="{{ $notifications->count() }}">0</h4>
+                                    <p class="text-muted mb-0">Total Notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card ai-stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="sweet-icon bg-success me-3">
+                                    <i class="mdi mdi-email-open display-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 ai-count" data-target="{{ $notifications->where('read', false)->count() }}">0</h4>
+                                    <p class="text-muted mb-0">Unread</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card ai-stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="sweet-icon bg-warning me-3">
+                                    <i class="mdi mdi-alert-circle display-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 ai-count" data-target="{{ $notifications->where('priority', 'high')->count() }}">0</h4>
+                                    <p class="text-muted mb-0">Important</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card ai-stats-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="sweet-icon bg-info me-3">
+                                    <i class="mdi mdi-calendar-today display-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 ai-count" data-target="{{ $notifications->where('created_at', '>=', \Carbon\Carbon::today())->count() }}">0</h4>
+                                    <p class="text-muted mb-0">Today</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <!-- Action Buttons -->
+            {{-- <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.5s">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">
+                                    <i class="mdi mdi-cog-outline me-2"></i>Notification Actions
+                                </h5>
+                                <div class="d-flex gap-2">
+                                    <button class="btn btn-outline-success ai-action-btn" onclick="markAllAsRead()">
+                                        <i class="mdi mdi-email-open me-1"></i> Mark All as Read
+                                    </button>
+                                    <button class="btn btn-outline-danger ai-action-btn" onclick="clearAllNotifications()">
+                                        <i class="mdi mdi-delete-sweep me-1"></i> Clear All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
 
             <!-- Notifications List -->
             <div class="row">
                 <div class="col-12">
-                    <div class="card animate__animated animate__fadeInUp">
+                    <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4 class="card-title mb-0">
@@ -52,9 +141,9 @@
                                 </h4>
                                 <div class="d-flex gap-2">
                                     <div class="dropdown">
-                                        <button class="btn btn-outline-primary btn-sm dropdown-toggle ai-filter-btn" type="button" data-bs-toggle="dropdown">
+                                        {{-- <button class="btn btn-outline-primary btn-sm dropdown-toggle ai-filter-btn" type="button" data-bs-toggle="dropdown">
                                             <i class="mdi mdi-filter me-1"></i> Filter
-                                        </button>
+                                        </button> --}}
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#" onclick="filterNotifications('all')">All Notifications</a></li>
                                             <li><a class="dropdown-item" href="#" onclick="filterNotifications('unread')">Unread Only</a></li>
@@ -62,9 +151,9 @@
                                             <li><a class="dropdown-item" href="#" onclick="filterNotifications('important')">Important</a></li>
                                         </ul>
                                     </div>
-                                    <button class="btn btn-outline-secondary btn-sm ai-refresh-btn" onclick="refreshNotifications()">
+                                    {{-- <button class="btn btn-outline-secondary btn-sm ai-refresh-btn" onclick="refreshNotifications()">
                                         <i class="mdi mdi-refresh me-1"></i> Refresh
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </div>
                         </div>
@@ -73,7 +162,10 @@
                             @if($notifications->count() > 0)
                                 <div class="ai-notifications-list">
                                     @foreach($notifications as $note)
-                                    <div class="ai-notification-item animate__animated animate__fadeIn" data-priority="{{ $note->priority ?? 'normal' }}" data-read="{{ $note->read ? 'true' : 'false' }}" style="animation-delay: {{ $loop->index * 0.1 }}s">
+                                    <div class="ai-notification-item animate__animated animate__fadeIn" 
+                                         data-priority="{{ $note->priority ?? 'normal' }}" 
+                                         data-read="{{ $note->read ? 'true' : 'false' }}" 
+                                         style="animation-delay: {{ $loop->index * 0.1 }}s">
                                         <div class="notification-icon">
                                             @if($note->type == 'trade')
                                                 <i class="mdi mdi-chart-line text-success"></i>
@@ -97,18 +189,18 @@
                                                 • {{ $note->created_at->format('M j, Y • h:i A') }}
                                             </div>
                                         </div>
-                                        <div class="notification-actions">
-                                            {{-- @if(!$note->read)
+                                        {{-- <div class="notification-actions">
+                                            @if(!$note->read)
                                                 <button class="btn btn-sm btn-outline-primary ai-mark-read-btn" onclick="markAsRead('{{ $note->id }}')" title="Mark as read">
                                                     <i class="mdi mdi-check"></i>
                                                 </button>
                                             @else
                                                 <span class="badge bg-success ai-badge">Read</span>
-                                            @endif --}}
-                                            {{-- <button class="btn btn-sm btn-outline-danger ai-delete-btn" onclick="deleteNotification('{{ $note->id }}')" title="Delete">
+                                            @endif
+                                            <button class="btn btn-sm btn-outline-danger ai-delete-btn" onclick="deleteNotification('{{ $note->id }}')" title="Delete">
                                                 <i class="mdi mdi-delete"></i>
-                                            </button> --}}
-                                        </div>
+                                            </button>
+                                        </div> --}}
                                     </div>
                                     @endforeach
                                 </div>
@@ -260,6 +352,11 @@
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        margin-bottom: 12px;
+    }
+
+    .ai-notification-item:last-child {
+        margin-bottom: 0;
     }
 
     .ai-notification-item::before {

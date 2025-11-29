@@ -600,6 +600,85 @@
         </div>
 
     </div>
+
+
+
+    <div class="row gx-3">
+				<div class="col-sm-12 col-12">
+					<!-- Card start -->
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">KYC Details</div>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table id="highlightRowColumn" class="table custom-table">
+									<thead>
+										<tr>
+											<th>Id Card Front</th>
+											<th>Back</th>
+											<th>Status</th>
+											<th>Date</th>
+
+										</tr>
+									</thead>
+									<tbody>
+
+									
+										<tr>
+
+											<td> <img src="{{asset('uploads/kyc/'.$userProfile->id_card)}}" width="30%">
+											</td>
+
+
+											<td> <img src="{{asset('uploads/kyc/'.$userProfile->passport)}}" width="30%">
+											</td>
+
+											@if($userProfile->kyc_status=='0')
+											<td>pending</td>
+											@elseif($userProfile->kyc_status=='1')
+											<td>approved</td>
+											@elseif($userProfile->kyc_status=='2')
+											<td>Declined</td>
+											@endif
+											<td>{{$userProfile->created_at}}</td>
+
+											<td>
+												{{-- <form action="{{ url('accept-kyc/'.$userProfile->id) }}" method="POST">
+    @csrf
+    <input type="hidden" name="kyc_status" value="1">
+    <button type="submit" class="btn btn-primary me-2">Approve</button>
+</form>
+
+<br>
+
+<form action="{{ url('decline-kyc/'.$userProfile->id) }}" method="POST">
+    @csrf
+    <input type="hidden" name="kyc_status" value="0">
+    <button type="submit" class="btn btn-danger">Decline</button>
+</form> --}}
+
+<form action="{{ route('admin.update.kyc', $userProfile->id) }}" method="POST">
+    @csrf
+    <input type="hidden" name="kyc_status" value="1">
+    <button type="submit" class="btn btn-primary me-2">Approve</button>
+</form>
+
+<form action="{{ route('admin.update.kyc', $userProfile->id) }}" method="POST">
+    @csrf
+    <input type="hidden" name="kyc_status" value="2">
+    <button type="submit" class="btn btn-danger">Decline</button>
+</form>
+
+
+											</td>
+										</tr>
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 </div>
 
     </div>

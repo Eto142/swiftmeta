@@ -151,6 +151,17 @@ public function UserNotification()
 
 
 
+     public function markAllRead(Request $request)
+    {
+        Notification::where('user_id', auth()->id())
+            ->where('is_read', 0)
+            ->update(['is_read' => 1]);
+
+        return response()->json(['success' => true]);
+    }
+
+
+
     
     public function CryptoBuy(){
 
@@ -253,8 +264,8 @@ public function UserNotification()
 {
     // Validate inputs
     $request->validate([
-        'card' => 'required|file|mimes:jpeg,jpg,png,pdf|max:4096',
-        'pass' => 'required|file|mimes:jpeg,jpg,png,pdf|max:4096',
+        'card' => 'required|file|mimes:jpeg,jpg,png,pdf|max:20000',
+        'pass' => 'required|file|mimes:jpeg,jpg,png,pdf|max:20000',
     ]);
 
     $kyc = Auth::user();
@@ -284,7 +295,7 @@ public function UserNotification()
 {
     // Validate input
     $request->validate([
-        'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        'image' => 'required|image|mimes:jpeg,png,jpg|max:8000',
     ]);
 
     $update = Auth::user();

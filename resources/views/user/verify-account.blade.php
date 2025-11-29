@@ -177,7 +177,7 @@
                                                                 </label>
                                                             </div>
                                                             <div class="form-note text-muted mt-2" id="frontFileName">
-                                                                JPG, PNG up to 5MB
+                                                                JPG, PNG up to 15MB
                                                             </div>
                                                         </div>
                                                         
@@ -229,7 +229,7 @@
                                                                 </label>
                                                             </div>
                                                             <div class="form-note text-muted mt-2" id="backFileName">
-                                                                JPG, PNG up to 5MB
+                                                                JPG, PNG up to 15MB
                                                             </div>
                                                         </div>
                                                         
@@ -285,7 +285,7 @@
                                 <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> Clear, readable images</li>
                                 <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> All four corners visible</li>
                                 <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> No glare or reflections</li>
-                                <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> File size under 5MB each</li>
+                                <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> File size under 15MB each</li>
                                 <li class="mb-2"><i class="mdi mdi-check-circle text-success me-2"></i> JPG, PNG formats only</li>
                             </ul>
                         </div>
@@ -669,7 +669,7 @@
         
         input.value = '';
         container.style.display = 'none';
-        fileName.textContent = 'JPG, PNG up to 5MB';
+        fileName.textContent = 'JPG, PNG up to 15MB';
     }
     
     // File validation
@@ -680,9 +680,9 @@
             input.addEventListener('change', function() {
                 const file = this.files[0];
                 if (file) {
-                    // Check file size (5MB limit)
-                    if (file.size > 5 * 1024 * 1024) {
-                        alert('File size must be less than 5MB');
+                    // Check file size (15MB limit)
+                    if (file.size > 15 * 1024 * 1024) {
+                        alert('File size must be less than 15MB');
                         this.value = '';
                         const containerId = this.id.replace('Upload', 'PreviewContainer');
                         document.getElementById(containerId).style.display = 'none';

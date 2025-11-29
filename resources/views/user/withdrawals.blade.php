@@ -204,7 +204,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{url('/make-withdrawal')}}">
+                <form method="post" action="{{route('user.make.withdrawal')}}">
                     @csrf
                     <div class="mb-3">
                         <label for="btcAmount" class="form-label">Amount (BTC)</label>
@@ -214,6 +214,7 @@
                         <label for="btcWallet" class="form-label">Bitcoin Wallet Address</label>
                         <input type="text" name="wallet" id="btcWallet" class="form-control" placeholder="Enter your BTC wallet address" required>
                     </div>
+                    
                     <input type="hidden" value="Btc" name="payment">
                     <div class="d-grid">
                         <button type="submit" name="pay" class="btn btn-primary">
@@ -239,7 +240,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{url('/make-withdrawal')}}">
+                <form method="post" action="{{route('user.make.withdrawal')}}">
                     @csrf
                     <div class="mb-3">
                         <label for="ethAmount" class="form-label">Amount (ETH)</label>
@@ -274,7 +275,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{url('/make-withdrawal')}}">
+                <form method="post" action="{{route('user.make.withdrawal')}}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">

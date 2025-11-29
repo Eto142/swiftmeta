@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\OtpMail;
 
 class RegisterController extends Controller
 {
@@ -78,49 +80,149 @@ class RegisterController extends Controller
     /**
      * Handle step2 details submission
      */
-    public function step2(Request $request)
-    {
-        try {
-            $user = Auth::user();
+    // public function step2(Request $request)
+    // {
+    //     try {
+    //         $user = Auth::user();
 
-            // Protect against null user
-            if (!$user) {
-                return redirect()->route('login')->with('error', 'Session expired. Please log in.');
-            }
+    //         // Protect against null user
+    //         if (!$user) {
+    //             return redirect()->route('login')->with('error', 'Session expired. Please log in.');
+    //         }
 
-            // Validate step2 input
-            $request->validate([
-                'country' => 'required|string|max:255',
-                'state'   => 'required|string|max:255',
-                'pcode'   => 'required|string|max:20',
-                'address' => 'required|string|max:255',
-                'phone'   => 'required|string|max:20',
-            ]);
+    //         // Validate step2 input
+    //         $request->validate([
+    //             'country' => 'required|string|max:255',
+    //             'state'   => 'required|string|max:255',
+    //             'pcode'   => 'required|string|max:20',
+    //             'address' => 'required|string|max:255',
+    //             'phone'   => 'required|string|max:20',
+    //         ]);
 
-            // Update user details
-            $user->update([
-                'country'      => $request->input('country'),
-                'state'        => $request->input('state'),
-                'pcode'        => $request->input('pcode'),
-                'address'      => $request->input('address'),
-                'phone'        => $request->input('phone'),
-                'is_activated' => 1,
-            ]);
+    //         // Update user details
+    //         $user->update([
+    //             'country'      => $request->input('country'),
+    //             'state'        => $request->input('state'),
+    //             'pcode'        => $request->input('pcode'),
+    //             'address'      => $request->input('address'),
+    //             'phone'        => $request->input('phone'),
+    //             'is_activated' => 1,
+    //         ]);
 
-            // Send welcome email
-            Mail::to($user->email)->send(new WelcomeMail($user));
+    //         // Send welcome email
+    //         Mail::to($user->email)->send(new WelcomeMail($user));
 
-            return redirect()->route('user.home')
-                ->with('success', 'Your details have been successfully updated. Welcome aboard!');
+    //         return redirect()->route('user.home')
+    //             ->with('success', 'Your details have been successfully updated. Welcome aboard!');
 
-        } catch (\Throwable $e) {
-            Log::error('Update details error:', [
-                'message' => $e->getMessage(),
-                'file'    => $e->getFile(),
-                'line'    => $e->getLine(),
-            ]);
+    //     } catch (\Throwable $e) {
+    //         Log::error('Update details error:', [
+    //             'message' => $e->getMessage(),
+    //             'file'    => $e->getFile(),
+    //             'line'    => $e->getLine(),
+    //         ]);
 
-            return back()->with('error', 'Failed to update details. Please try again.');
+    //         return back()->with('error', 'Failed to update details. Please try again.');
+    //     }
+    // }
+
+
+
+
+public function step2(Request $request)
+{
+    try {
+        $user = Auth::user();
+
+        // Protect against null user
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Session expired. Please log in.');
         }
+
+        // Validate step2 input
+        $request->validate([
+            'country' => 'required|string|max:255',
+            'state'   => 'required|string|max:255',
+            'pcode'   => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'phone'   => 'required|string|max:20',
+        ]);
+
+        // Generate 4-digit OTP
+        $otp = random_int(1000, 9999);
+
+        // Update user details and OTP
+        $user->update([
+            'country'      => $request->input('country'),
+            'state'        => $request->input('state'),
+            'pcode'        => $request->input('pcode'),
+            'address'      => $request->input('address'),
+            'phone'        => $request->input('phone'),
+            'is_activated' => 1,
+            'otp_code'     => $otp,
+        ]);
+
+        // Send OTP email
+        Mail::to($user->email)->send(new OtpMail($user, $otp));
+
+        return redirect()->route('user.step3.form') // redirect to OTP verification page
+            ->with('success', 'Your details are updated. An OTP has been sent to your email for verification.');
+
+    } catch (\Throwable $e) {
+        Log::error('Update details error:', [
+            'message' => $e->getMessage(),
+            'file'    => $e->getFile(),
+            'line'    => $e->getLine(),
+        ]);
+
+        return back()->with('error', 'Failed to update details. Please try again.');
     }
+}
+
+
+
+
+// public function step3(Request $request)
+// {
+//     try {
+//         $user = Auth::user();
+
+//         if (!$user) {
+//             return redirect()->route('login')->with('error', 'Session expired. Please log in.');
+//         }
+
+//         $request->validate([
+//             'otp' => 'required|digits:4',
+//         ]);
+
+//         $inputOtp = $request->input('otp');
+
+//         // Check OTP
+//         if ($user->otp_code !== $inputOtp) {
+//             return back()->with('error', 'Invalid OTP. Please try again.');
+//         }
+
+//         // Mark user as fully verified
+//         $user->update([
+//             'otp_verified' => 1,
+//             'otp_code'     => null, // clear OTP after verification
+//         ]);
+
+//         return redirect()->route('user.home')
+//             ->with('success', 'OTP verified successfully! Your account is now fully activated.');
+
+//     } catch (\Throwable $e) {
+//         Log::error('OTP verification error:', [
+//             'message' => $e->getMessage(),
+//             'file'    => $e->getFile(),
+//             'line'    => $e->getLine(),
+//         ]);
+
+//         return back()->with('error', 'Failed to verify OTP. Please try again.');
+//     }
+// }
+
+
+
+
 }

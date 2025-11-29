@@ -65,7 +65,7 @@
                                                 </div>
                                             </div>
                                             <div class="wallet-balance mb-4">
-                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($btc_balance)}}">0.00000000 <small class="text-muted">BTC</small></h3>
+                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($btc_balance)}}">{{$btc_balance}} <small class="text-muted">BTC</small></h3>
                                                 <p class="text-muted mb-0">≈ {{$user_balance}} USD</p>
                                                 <div class="ai-trend mt-1">
                                                     <i class="mdi mdi-trending-up text-success me-1"></i>
@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                             <div class="wallet-balance mb-4">
-                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($eth_balance)}}">0.00000000 <small class="text-muted">ETH</small></h3>
+                                                <h3 class="text-primary mb-1 animate-count" data-target="{{floatval($eth_balance)}}">{{$eth_balance}} <small class="text-muted">ETH</small></h3>
                                                 <p class="text-muted mb-0">≈ {{$user_balance}} USD</p>
                                                 <div class="ai-trend mt-1">
                                                     <i class="mdi mdi-trending-neutral text-warning me-1"></i>
@@ -181,8 +181,8 @@
                                                 </div>
                                             </div>
                                             <div class="wallet-balance mb-4">
-                                                <h3 class="text-primary mb-1">0.00 <small class="text-muted">USD</small></h3>
-                                                <p class="text-muted mb-0">≈ 0.00 USD</p>
+                                                <h3 class="text-primary mb-1">{{$user_balance}}  <small class="text-muted">USD</small></h3>
+                                                <p class="text-muted mb-0">≈ {{$user_balance}} USD</p>
                                                 <div class="ai-trend mt-1">
                                                     <i class="mdi mdi-rocket-launch text-info me-1"></i>
                                                     <small class="text-info">AI Ready for Activation</small>

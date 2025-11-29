@@ -66,6 +66,7 @@ Route::post('/signal-strength/{id}', [ManageUserController::class, 'updateSignal
 Route::post('/update-escrow/{id}', [ManageUserController::class, 'updateEscrow'])->name('update.escrow');
 Route::post('/update-tradefee/{id}', [ManageUserController::class, 'updateTradeFee'])->name('update.tradefee');
 
+Route::post('/update-kyc/{id}', [ManageUserController::class, 'updateKyc'])->name('update.kyc');
 // Transaction Management
 Route::post('/admin/add-transaction/{id}', [AdminController::class, 'addTransaction'])->name('admin.add.transaction');
 Route::post('/admin/withdrawal-status/{id}', [AdminController::class, 'updateWithdrawalStatus'])->name('admin.withdrawal.status');
@@ -75,8 +76,9 @@ Route::post('/approve-deposit/{id}', [AdminController::class, 'approveDeposit'])
 Route::post('/decline-deposit/{id}', [AdminController::class, 'declineDeposit'])->name('decline.deposit');
 Route::post('/approve-withdrawal/{id}', [AdminController::class, 'approveWithdrawal'])->name('approve.withdrawal');
 Route::post('/decline-withdrawal/{id}', [AdminController::class, 'declineWithdrawal'])->name('decline.withdrawal');
-Route::post('/accept-kyc/{id}', [AdminController::class, 'acceptKyc'])->name('accept.kyc');
-Route::post('/decline-kyc/{id}', [AdminController::class, 'declineKyc'])->name('decline.kyc');
+// Route::post('/accept-kyc/{id}', [ManageUserController::class, 'acceptKyc'])->name('accept.kyc');
+// Route::post('/decline-kyc/{id}', [ManageUserController::class, 'declineKyc'])->name('decline.kyc');
+
 
 // Escrow Management
 Route::post('/admin/escrow/approve/{id}', [AdminController::class, 'approveEscrow'])->name('admin.escrow.approve');
