@@ -58,7 +58,7 @@
         <p>If you did not request this, please ignore this email.</p>
 
         <div class="footer">
-            &copy; {{ date('Y') }} Your Company Name. All rights reserved.
+            &copy; {{ date('Y') }} Swiftmetatrd. All rights reserved.
         </div>
     </div>
 </body>
