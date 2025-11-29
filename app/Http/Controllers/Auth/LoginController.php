@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OtpMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -52,6 +53,10 @@ class LoginController extends Controller
 //     }
 // }
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OtpMail;
+use Illuminate\Support\Facades\Auth;
+
 public function login(Request $request)
 {
     try {
@@ -75,13 +80,27 @@ public function login(Request $request)
                     ->with('info', 'Please update your details to activate your account.');
             }
 
-              // Check if user is activated
+            // If user is not verified, resend OTP
             if ($user->is_verified == 0) {
+                // Generate new 4-digit OTP
+                $otp = rand(1000, 9999);
+
+                // Save OTP to user in DB
+                $user->otp_code = $otp;
+                $user->save();
+
+                // Send OTP email
+                try {
+                    Mail::to($user->email)->send(new OtpMail($user, $otp));
+                } catch (\Exception $e) {
+                    \Log::error('OTP resend failed: ' . $e->getMessage());
+                }
+
                 return redirect()->route('user.step3.form')
-                    ->with('info', 'Please update your details to activate your account.');
+                    ->with('info', 'Your account is not verified. A new OTP has been sent to your email.');
             }
 
-            // Redirect to home page if activated
+            // Redirect to home page if activated and verified
             return redirect()->route('user.home')->with('success', 'Login successful!');
         }
 
