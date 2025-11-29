@@ -1,4 +1,4 @@
-@include('dashboard.header')
+@include('user.header')
   <!-- content @s -->
                 <div class="nk-content nk-content-fluid">
                     <div class="container-xl wide-lg">
@@ -33,4 +33,4 @@
 </div>
 <!-- TradingView Widget END -->
                 
-    @include('dashboard.footer')
+    @include('user.footer')
