@@ -229,7 +229,7 @@
                 </div>
             </div>
 
-            <!-- Action Buttons -->
+            {{-- <!-- Action Buttons -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
                     <a href="{{route('user.fund.wallet')}}" class="btn btn-primary btn-lg ai-action-btn me-3 animate__animated animate__pulse animate__infinite">
@@ -239,7 +239,23 @@
                         <i class="mdi mdi-robot me-2"></i> Trading Bot
                     </a>
                 </div>
-            </div>
+            </div> --}}
+
+
+            <!-- Action Buttons -->
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-center flex-wrap gap-3">
+        <a href="{{route('user.fund.wallet')}}" 
+           class="btn btn-primary btn-lg ai-action-btn animate__animated animate__pulse animate__infinite">
+            <i class="mdi mdi-plus-circle me-2"></i> Add Funds
+        </a>
+
+        <a href="{{route('user.copy')}}" 
+           class="btn btn-success btn-lg ai-action-btn">
+            <i class="mdi mdi-robot me-2"></i> Trading Bot
+        </a>
+    </div>
+</div>
 
             <!-- Charts Section -->
             <div class="row">

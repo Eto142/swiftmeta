@@ -86,6 +86,20 @@
             margin-top: 10px;
             color: #f56565;
         }
+        p.text-muted {
+    color: white !important;
+}
+
+/* Make input placeholder white */
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Make input text white */
+.form-control {
+    color: white !important;
+}
+
     </style>
 </head>
 <body>
@@ -94,7 +108,7 @@
             <i class="fas fa-shield-alt"></i>
         </div>
         <h4 class="mb-3">OTP Verification</h4>
-        <p class="text-muted mb-4">Enter the 4-digit OTP sent to your email to verify your account.</p>
+        <p class="text-muted mb-4" style="color:white">Enter the 4-digit OTP sent to your email to verify your account.</p>
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>

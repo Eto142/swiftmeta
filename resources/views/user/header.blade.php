@@ -1135,7 +1135,7 @@ document.head.appendChild(style);
                 </div>
             </div>
             <!-- Left Sidebar End -->
-
+{{-- 
             @if(Auth::user()->kyc_status == '1')
 <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055; min-width: 300px;">
     <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true">
@@ -1180,7 +1180,7 @@ document.head.appendChild(style);
             return new bootstrap.Toast(toastEl, { delay: 5000, autohide: true }).show()
         })
     });
-</script>
+</script> --}}
 
 
             
