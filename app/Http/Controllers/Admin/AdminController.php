@@ -27,7 +27,7 @@ class AdminController extends Controller
         //  $totalTransactionCount = Transaction::count();
 
          // Recent Activity
-        $recentUsers = User::latest()->take(5)->get();
+        $recentUsers = User::latest()->take(20)->get();
 
 
         return view('admin.dashboard', compact(

@@ -9,20 +9,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next, $guard = null): Response
     {
-        if (Auth::check()) {
-            return redirect('/user/home'); // Redirects to user/home URL
+        // If ADMIN is logged in, redirect them to admin dashboard
+        if ($guard === 'admin' && Auth::guard('admin')->check()) {
+            return redirect('/admin/dashboard');
         }
 
-        if (Auth::guard($guard)->check()) {
-            return redirect('/user/home'); // Redirect authenticated users to /home or any other route
+        // If USER is logged in, redirect them to user homepage
+        if ($guard === 'web' && Auth::guard('web')->check()) {
+            return redirect('/user/home');
         }
+
         return $next($request);
     }
 }

@@ -27,12 +27,21 @@ use Illuminate\Support\Facades\Route;
 
 
 
-     Route::middleware(['web'])->prefix('admin')->name('admin.')->group(function () {
+    //  Route::middleware(['web'])->prefix('admin')->name('admin.')->group(function () {
 
+    // Route::middleware('guest:admin')->group(function () {
+    //     Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
+    //     Route::post('/login', [AdminLoginController::class, 'login'])->name('login.post');
+    // });
+
+    Route::prefix('admin')->name('admin.')->middleware('web')->group(function () {
+    
+    // Guest routes (NOT logged in as admin)
     Route::middleware('guest:admin')->group(function () {
         Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
         Route::post('/login', [AdminLoginController::class, 'login'])->name('login.post');
     });
+
 
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');

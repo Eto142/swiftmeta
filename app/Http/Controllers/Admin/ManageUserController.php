@@ -21,7 +21,7 @@ class ManageUserController extends Controller
 {
     public function ManageUsers()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(100);
         
         if (request()->ajax()) {
             return response()->json([
@@ -81,7 +81,10 @@ public function userProfile($id)
     $withdrawal = Withdrawal::where('user_id', $id)->orderBy('id', 'desc')->get();
     $plan = Plan::where('user_id', $id)->orderBy('id', 'desc')->get();
     $earning = Earning::where('user_id', $id)->orderBy('id', 'desc')->get();
-    $notifications = Notification::with('user')->orderBy('created_at', 'desc')->get();
+  $notifications = Notification::where('user_id', $id)
+    ->orderBy('id', 'desc')
+    ->get();
+
     // Calculate totals
     $totalDeposit = DB::table('deposits')->where('user_id', $id)->where('status', '1')->sum('amount');
     $totalEarning = DB::table('earnings')->where('user_id', $id)->sum('amount');
