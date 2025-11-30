@@ -192,7 +192,7 @@
         <div class="card-body">
 
             <div class="d-flex align-items-center justify-content-between mb-3">
-                <h5 class="card-title mb-0 d-flex align-items-center">
+                <h5 class="card-title mb-0 d-flex align-items-center text-dark">
                     <i class="mdi mdi-access-point me-2 text-primary"></i>
                     AI Signal Strength
                 </h5>
