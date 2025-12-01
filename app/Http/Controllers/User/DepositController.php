@@ -119,7 +119,8 @@ public function getDeposit(Request $request)
     $userBalance = $credit - $debit;
 
     // Fetch wallet details (e.g., BTC, ETH, USDT, etc.)
-    $wallets = Wallet::all(['method', 'address']); 
+    $wallets = Wallet::all(['method', 'address', 'bankName', 'accountName', 'accountNumber',
+'swiftCode', 'bankAddress']); 
     // assuming you have these columns: name, address, qr_code, network
 
     // Prepare data for the view

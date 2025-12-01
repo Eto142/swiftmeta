@@ -9,6 +9,11 @@ class Wallet extends Model
     protected $fillable = [
         'method',          // ✅ allow mass assignment
         'address',
-        'destination_tag'
+        'destination_tag',
+        'bankName',
+        'accountName',
+        'accountNumber',
+        'swiftCode',
+        'bankAddress'
     ];
 }
