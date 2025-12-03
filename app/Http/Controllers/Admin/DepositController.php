@@ -114,8 +114,6 @@ public function approveDeposit(Request $request, $id)
 
 
 
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
 
 public function DeclineDeposit(Request $request, $id)
 {
@@ -149,7 +147,7 @@ public function DeclineDeposit(Request $request, $id)
         Log::warning("Deposit ID {$deposit->id} has no email address. Email not sent.");
     }
 
-    return redirect()->back()->with('message', 'Deposit has been declined successfully');
+    return redirect()->back()->with('success', 'Deposit has been declined successfully');
 }
 
 
