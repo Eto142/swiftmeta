@@ -4,38 +4,41 @@
     <meta charset="UTF-8">
     <title>{{ $subjectLine ?? 'Notification' }}</title>
 </head>
-<body style="font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0;">
+<body style="font-family: Arial, sans-serif; background: #eef1f7; margin: 0; padding: 0;">
     <div style="width: 100%; padding: 30px 0;">
-        <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.04);">
 
-            <!-- Header with Logo -->
-            <div style="background: #1a73e8; padding: 20px;">
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr>
-                        <td style="vertical-align: middle; width: 60px;">
-                            <div style="width: 50px; height: 50px; background: #330d8cff; text-align: center; line-height: 50px; font-size: 22px; font-weight: bold; color: #fff; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                                G
-                            </div>
-                        </td>
-                        <td style="vertical-align: middle; color: #ffffff;">
-                            <div style="font-size: 18px; font-weight: bold; letter-spacing: 1px;">SWIFT<span style="color:#ffd700;">META</span></div>
-                            <div style="font-size: 12px; letter-spacing: 0.5px;"></div>
-                        </td>
-                    </tr>
-                </table>
+            <!-- Header with Premium Text Logo -->
+            <div style="background: #ffffff; padding: 35px 20px; text-align: center; border-bottom: 1px solid #ececec;">
+                <div style="
+                    font-size: 32px;
+                    font-weight: 800;
+                    letter-spacing: 1.5px;
+                    font-family: 'Trebuchet MS', Arial, sans-serif;
+                    color: #0b1c36;
+                    text-transform: uppercase;
+                    background: linear-gradient(90deg, #0b1c36, #3a74ff);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                ">
+                    Swift<span style="font-weight:300;">Meta</span><span style="font-weight:800;">Trd</span>
+                </div>
+            
             </div>
 
             <!-- Body -->
-            <div style="padding: 25px;">
-                <h2 style="color: #333333; font-size: 20px; margin-bottom: 15px;">{{ $subjectLine }}</h2>
-                <p style="font-size: 15px; line-height: 1.6; color: #555555; margin-bottom: 15px;">
+            <div style="padding: 30px 28px;">
+                <h2 style="color: #2d3a4b; font-size: 20px; margin-bottom: 15px;">{{ $subjectLine }}</h2>
+                <p style="font-size: 15px; line-height: 1.6; color: #4a5568; margin-bottom: 15px;">
                     {!! nl2br(e($bodyMessage)) !!}
                 </p>
             </div>
 
             <!-- Footer -->
-            <div style="background: #f8f8f8; padding: 15px; text-align: center; font-size: 12px; color: #777777;">
-                &copy; {{ date('Y') }} Swiftmeta. All rights reserved.
+            <div style="background: #f8f9fc; padding: 18px; text-align: center; font-size: 12px; color: #7c869b; line-height: 1.5;">
+                You are receiving this message because you are a verified user of Swiftmetatrd.<br>
+                If this message is not relevant to you, please disregard it.<br><br>
+                &copy; {{ date('Y') }} Swiftmetatrd. All Rights Reserved.
             </div>
 
         </div>
