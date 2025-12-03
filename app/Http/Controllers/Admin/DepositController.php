@@ -34,7 +34,7 @@ class DepositController extends Controller
 
     // Update the status of the corresponding transaction
     Transaction::where('transaction_id', $deposit->transaction_id)
-               ->update(['transaction_status' => 1]);
+               ->update(['status' => 1]);
 
     $email = $deposit->email; 
     $data = [
@@ -87,7 +87,7 @@ public function DeclineDeposit(Request $request, $id)
 
     // Update the status of the corresponding transaction
     Transaction::where('transaction_id', $deposit->transaction_id)
-               ->update(['transaction_status' => 2]);
+               ->update(['status' => 2]);
 
     $email = $deposit->email; 
     $data = [
