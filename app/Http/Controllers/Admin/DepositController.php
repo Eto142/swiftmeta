@@ -71,7 +71,7 @@ public function approveDeposit(Request $request, $id)
 
     if (!empty($email)) {
         $data = [
-            'message' => 'Your check has been approved successfully!',
+            'message' => 'Your deposit has been approved successfully!',
             'amount' => $deposit->amount,
             'deposit_type' => $deposit->deposit_type
         ];
@@ -114,33 +114,43 @@ public function approveDeposit(Request $request, $id)
 
 
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+
 public function DeclineDeposit(Request $request, $id)
 {
-    // Get the deposit with the given ID
+    // Get the deposit by ID
     $deposit = Deposit::findOrFail($id);
 
-    // Update the status of the deposit
+    // Update deposit status to declined (2)
     $deposit->status = 2;
     $deposit->save();
 
-    // Update the status of the corresponding transaction
+    // Update the related transaction status to declined (2)
     Transaction::where('transaction_id', $deposit->transaction_id)
                ->update(['status' => 2]);
 
-    $email = $deposit->email; 
-    $data = [
-        'message' => "Your $" . $deposit->amount . " check has been declined!",
-        'amount' => $deposit->amount,
-        'reason' => $deposit->reason
-    ];
+    // Decide which email to use: form input or database
+    $email = $request->input('email') ?? $deposit->email;
 
-    // Send the email
-    Mail::to($email)->send(new \App\Mail\DeclineDepositEmail($data));
+    if (!empty($email)) {
+        $data = [
+            'message' => "Your $" . $deposit->amount . " deposit has been declined!",
+            'amount' => $deposit->amount,
+            'reason' => $deposit->reason ?? 'No reason provided'
+        ];
+
+        try {
+            Mail::to($email)->send(new \App\Mail\DeclineDepositEmail($data));
+        } catch (\Exception $e) {
+            Log::error("Decline deposit email failed for deposit ID {$deposit->id}: " . $e->getMessage());
+        }
+    } else {
+        Log::warning("Deposit ID {$deposit->id} has no email address. Email not sent.");
+    }
 
     return redirect()->back()->with('message', 'Deposit has been declined successfully');
 }
-
-
 
 
 
