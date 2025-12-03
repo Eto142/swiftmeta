@@ -192,14 +192,7 @@ public function WithdrawalStatus(Request $request, $id)
         return back()->with('success', 'Signal Strength update successful');
     }
     
-    //  public function updateNotification(Request $request, $id)
-    // {
-
-    //     $user  = User::where('id', $id)->first();
-    //     $user->update_notification = $request->update_notification;
-    //     $user->save();
-    //     return back()->with('success', 'Notification update successful');
-    // }
+    
 
 
 
