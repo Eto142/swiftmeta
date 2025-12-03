@@ -63,7 +63,7 @@
                             You are receiving this email as a verified user of Swiftmetatrd.<br>
                             If this message is not relevant to you, simply ignore it.<br><br>
 
-                            © {{ date('Y') }} Swiftmetatrd — All Rights Reserved.
+                            © {{ date('Y') }} Swiftmetatrd All Rights Reserved.
                         </td>
                     </tr>
 
