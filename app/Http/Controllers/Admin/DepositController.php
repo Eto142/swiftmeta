@@ -23,31 +23,68 @@ class DepositController extends Controller
 
 
 
-    public function approveDeposit(Request $request, $id)
+//     public function approveDeposit(Request $request, $id)
+// {
+//     // Get the deposit with the given ID
+//     $deposit = Deposit::findOrFail($id);
+
+//     // Update the status of the deposit
+//     $deposit->status = 1;
+//     $deposit->save();
+
+//     // Update the status of the corresponding transaction
+//     Transaction::where('transaction_id', $deposit->transaction_id)
+//                ->update(['status' => 1]);
+
+//     $email = $deposit->email; 
+//     $data = [
+//         'message' => 'Your check has been approved successfully!',
+//         'amount' => $deposit->amount,
+//         'deposit_type' => $deposit->deposit_type
+//     ];
+
+//     // Send the email
+//     Mail::to($email)->send(new \App\Mail\ApproveDepositEmail($data));
+
+//     return redirect()->back()->with('message', 'Your check has been approved successfully');
+// }
+
+
+
+
+
+public function approveDeposit(Request $request, $id)
 {
-    // Get the deposit with the given ID
     $deposit = Deposit::findOrFail($id);
 
-    // Update the status of the deposit
+    // Update deposit status
     $deposit->status = 1;
     $deposit->save();
 
-    // Update the status of the corresponding transaction
+    // Update transaction status
     Transaction::where('transaction_id', $deposit->transaction_id)
                ->update(['status' => 1]);
 
-    $email = $deposit->email; 
-    $data = [
-        'message' => 'Your check has been approved successfully!',
-        'amount' => $deposit->amount,
-        'deposit_type' => $deposit->deposit_type
-    ];
+    // Get email from the form input
+    $email = $request->input('email');
 
-    // Send the email
-    Mail::to($email)->send(new \App\Mail\ApproveDepositEmail($data));
+    if (!empty($email)) {
+        $data = [
+            'message' => 'Your check has been approved successfully!',
+            'amount' => $deposit->amount,
+            'deposit_type' => $deposit->deposit_type
+        ];
+
+        Mail::to($email)->send(new \App\Mail\ApproveDepositEmail($data));
+    } else {
+        Log::warning("Deposit ID {$deposit->id} has no email address.");
+    }
 
     return redirect()->back()->with('message', 'Your check has been approved successfully');
 }
+
+
+
 
 
 
