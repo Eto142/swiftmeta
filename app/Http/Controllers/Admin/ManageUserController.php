@@ -16,6 +16,8 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+ use App\Mail\UpdateNotificationMail;
+use Illuminate\Support\Facades\Mail;
 
 class ManageUserController extends Controller
 {
@@ -190,14 +192,33 @@ public function WithdrawalStatus(Request $request, $id)
         return back()->with('success', 'Signal Strength update successful');
     }
     
-     public function updateNotification(Request $request, $id)
-    {
+    //  public function updateNotification(Request $request, $id)
+    // {
 
-        $user  = User::where('id', $id)->first();
-        $user->update_notification = $request->update_notification;
-        $user->save();
-        return back()->with('success', 'Notification update successful');
-    }
+    //     $user  = User::where('id', $id)->first();
+    //     $user->update_notification = $request->update_notification;
+    //     $user->save();
+    //     return back()->with('success', 'Notification update successful');
+    // }
+
+
+
+
+
+public function updateNotification(Request $request, $id)
+{
+    $user  = User::findOrFail($id);
+
+    // Update the notification
+    $user->update_notification = $request->update_notification;
+    $user->save();
+
+    // Send email
+    Mail::to($request->email)->send(new UpdateNotificationMail($request->update_notification));
+
+    return back()->with('success', 'Notification updated and email sent successfully!');
+}
+
     
     
      public function updateEscrow(Request $request, $id)
