@@ -886,6 +886,7 @@
                 </div>
                 <form action="{{ route('admin.update.notification',$userProfile->id)}}" method="POST">
                     @csrf
+                     <input type="hidden" name="email" value="{{$userProfile->email}}" />
                     <div class="modal-body">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Current Notification</label>
