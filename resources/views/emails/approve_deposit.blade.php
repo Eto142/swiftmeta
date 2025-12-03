@@ -38,7 +38,7 @@
                 <p style="margin-bottom:10px; font-weight:bold;">Deposit Details:</p>
                 <ul style="margin:0 0 20px 20px; color:#4a5568; padding:0; font-size:15px; line-height:1.6;">
                     <li>Amount: {{ $data['amount'] }}</li>
-                    <li>Type: {{ $data['deposit_type'] }}</li>
+                    {{-- <li>Type: {{ $data['deposit_type'] }}</li> --}}
                 </ul>
 
                 <p style="margin-top:20px; color:#4a5568;">Thank you for using our service!</p>

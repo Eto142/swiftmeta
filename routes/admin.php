@@ -13,10 +13,13 @@ use App\Http\Controllers\Admin\ManagePaymentController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\ProfitController;
 use App\Http\Controllers\Admin\SendEmailController;
-use App\Http\Controllers\Admin\WalletController;
 use App\Http\Controllers\Admin\UserNotificationController;
+use App\Http\Controllers\Admin\WalletController;
+use App\Http\Controllers\Admin\WithdrawalController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -83,8 +86,8 @@ Route::post('/admin/withdrawal-status/{id}', [AdminController::class, 'updateWit
 // Approval Routes
 Route::post('/approve-deposit/{id}', [DepositController::class, 'approveDeposit'])->name('approve.deposit');
 Route::post('/decline-deposit/{id}', [DepositController::class, 'declineDeposit'])->name('decline.deposit');
-Route::post('/approve-withdrawal/{id}', [AdminController::class, 'approveWithdrawal'])->name('approve.withdrawal');
-Route::post('/decline-withdrawal/{id}', [AdminController::class, 'declineWithdrawal'])->name('decline.withdrawal');
+Route::post('/approve-withdrawal/{id}', [WithdrawalController::class, 'approveWithdrawal'])->name('approve.withdrawal');
+Route::post('/decline-withdrawal/{id}', [WithdrawalController::class, 'declineWithdrawal'])->name('decline.withdrawal');
 // Route::post('/accept-kyc/{id}', [ManageUserController::class, 'acceptKyc'])->name('accept.kyc');
 // Route::post('/decline-kyc/{id}', [ManageUserController::class, 'declineKyc'])->name('decline.kyc');
 
