@@ -81,7 +81,7 @@ public function approveDeposit(Request $request, $id)
         Log::warning("Deposit ID {$deposit->id} has no email address.");
     }
 
-    return redirect()->back()->with('message', 'Your check has been approved successfully');
+    return redirect()->back()->with('success', 'Your deposit has been approved successfully');
 }
 
 

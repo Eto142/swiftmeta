@@ -326,10 +326,13 @@
                                                     <div class="btn-group btn-group-sm">
                                                         <form action="{{ route('admin.approve.deposit', $depositItem->id) }}" method="POST">
                                                             @csrf
+                                                              <input type="hidden" name="email" value="{{$userProfile->email}}" />
+
                                                             <button type="submit" class="btn btn-success btn-sm">Approve</button>
                                                         </form>
                                                         <form action="{{ route('admin.decline.deposit', $depositItem->id) }}" method="POST">
                                                             @csrf
+                                                              <input type="hidden" name="email" value="{{$userProfile->email}}" />
                                                             <button type="submit" class="btn btn-danger btn-sm">Decline</button>
                                                         </form>
                                                     </div>
